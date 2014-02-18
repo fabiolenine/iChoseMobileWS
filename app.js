@@ -25,7 +25,7 @@ var passport            = require('passport');
 var nodemailer          = require('nodemailer');
 var MemoryStore         = require('connect').session.MemoryStore;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
-var restorepassword     = require('./modulos/RestorePasswordModel.js');
+var restorepassword	= require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
 
@@ -50,10 +50,11 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 var db;              // our MongoDb database
 
 var account             = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
-var evento              = require('./modulos/Event.js')(mongoose);
-var processo            = require('./modulos/Process.js')(mongoose);
+//Implementar as rotas e as funções antes de liberar.
+//var evento              = require('./modulos/Event.js')(mongoose);
+//var processo            = require('./modulos/Process.js')(mongoose);
 
-var ObjectID            = mongoose.Types.ObjectId;
+var ObjectID 		= mongoose.Types.ObjectId;
 
 // ------------------------------------------------------------------------
 // Connect to our Mongo Database hosted on another server
@@ -81,9 +82,10 @@ app.configure(function()
         {
                 app.set('view engine','jade');
                 app.use(express.static(__dirname + '/public'));
-                app.use(express.urlencoded());
-                app.use(express.json());
-                app.use(express.cookieParser());
+//                app.use(express.urlencoded());
+//                app.use(express.json());
+                app.use(express.bodyParser()); //Evitar o uso desse parser, consultar documentação do ExpressJS;
+		app.use(express.cookieParser());
                 app.use(express.session(
                 {
                         secret: "iChose secret key", store: new MemoryStore()
@@ -99,9 +101,11 @@ app.get('/api/', function(req,res)
         res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
         });
 
+
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio do Usuário.
 // ------------------------------------------------------------------------
+
 
 app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
         {
@@ -115,45 +119,45 @@ app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
         var Email               = req.body.email;
         var Senha               = req.body.senha;
         var Foto                = req.body.foto;
+	
+	console.log(req.body.nomecompleto.nomeprincipal);
 
-        console.log(req.body.nomecompleto.nomeprincipal);
-
-        if(null == Email || null == Senha )
+        if(null == Email || null == Senha ) 
                 {
                         console.log('Tentativa de cadastro com email ou senha nula.')
                         res.send(400);
-                }
+                } 
         else
                 {
-                        usuariomobile.model.findOne({'email': Email}, function (err, emails)
+                        usuariomobile.model.findOne({'email': Email}, function (err, emails) 
                         {
                                 if (err)
                                         {
-                                        console.log('Erro na tentativa de busca para cadastro do email: ' + Email);
+                                        console.log('Erro na tentativa de busca para cadastro do email: ' + Email);     
                                         res.send(400);
                                         }
-                                else
+                                else 
                                         {
                                         if(emails)
                                                 {
                                                 console.log('Tentativa de cadastro com e-mail existente: ' + Email);
                                                 res.send(400);
                                                  }
-                                        else
+                                        else 
                                                 {
                                                 account.register(Email, Senha, nomePrincipal, sobreNome, Genero, Cpf, dataNascimento, Celular, Cep, Foto, function(callback)
-                                                {
-                                                        if (callback)
-                                                        {
-                                                                console.log(callback);
-                                                                res.send(callback);
-                                                        }
-                                                        else
-                                                        {
-                                                                res.send(400);
-                                                        }
-                                                });
-                                                }
+						{
+							if (callback)
+							{
+								console.log(callback);
+								res.send(callback);
+							}
+							else 
+							{ 
+								res.send(400);
+							}
+						});                                                                	            
+						}	
                                         }
                         });
                 }
@@ -184,11 +188,13 @@ app.post('/api/v01/usuariomobile/acesso', function(req, res)
 
 app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
         {
-                var hostname            = req.headers.host;
-                var resetPasswordUrl    = 'http://' + hostname + '/api/v01/usuariomobile/restaurar';
+                var hostname = req.headers.host;
+                var resetPasswordUrl = 'http://' + hostname + '/api/v01/usuariomobile/restaurar';
                 var Email               = req.body.email;
-                var Lon                 = req.body.lon;
-                var Lat                 = req.body.lat;
+                var Lon                 = req.body.loc.lon;
+                var Lat                 = req.body.loc.lat;
+			
+		console.log('Recebi o valor: ' +  Email + ', com longitude: ' + Lon + ' e latitude: ' + Lat);
 
                 if (null == Email || Email.length < 5)
                 {
@@ -211,64 +217,64 @@ app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
 
 app.get('/api/v01/usuariomobile/restaurar', function(req, res)
         {
-                var accountId = req.param('account',null);
-                var id = {ID: AccountId};
-                res.render('resetPassword.jade',id);
+                var AccountId = req.param('account',null);
+		var id = {ID: AccountId};
+		res.render('resetPassword.jade',id);
         });
 
 app.post('/api/v01/usuariomobile/restaurar', function(req, res)
         {
                 var accountId = req.param('accountId',null);
                 var Senha = req.param('password',null);
-                var condition = { usuarioid: new ObjectID(accountId), utilizou: false };
+		var condition = { usuarioid: new ObjectID(accountId), utilizou: false };
 
-                if (null  != accountId && null != Senha)
+		if (null  != accountId && null != Senha) 
                         {
-                                restorepassword.model.update(condition,{$set:{utilizou:true}},{upsert:false, multi:true},
+                        	restorepassword.model.update(condition,{$set:{utilizou:true}},{upsert:false, multi:true},
                                         function(erro,doc)
                                         {
-                                                if(erro)
-                                                {
-                                                console.log('Não foi possivel atualizar a flag UTILIZOU, houve um erro.');
-                                                }
-                                                else
-                                                {
-                                                        if(doc==0)
-                                                        {
-                                                                //Inserir aqui uma pagina com a mensagem.
-                                                                console.log('Não encontrei registro para atualizar a flag UTILIZOU, por favor, solicite novamente a restauraçào de senha.');
-                                                                res.send(400);
-                                                        }
-                                                        else
-                                                        {
-                                                                account.changePassword(accountId, Senha, function(callback)
-                                                                {
-                                                                        if(callback)
-                                                                        {
-                                                                                console.log('Utilização verdadeira, quantidade: ' + doc);
-                                                                                res.render('resetPasswordSuccess.jade');
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                                //Inserir aqui uma página com a mensagem.
-                                                                                console.log('Houve um erro ao tentar alterar a senha, por favor, solicite novamente.');
-                                                                        }
-                                                                });
-                                                        }
-                                                }});
+						if(erro)
+						{
+						console.log('Não foi possivel atualizar a flag UTILIZOU, houve um erro.');
+						}
+						else
+						{
+                                            		if(doc==0)
+							{
+								//Inserir aqui uma pagina com a mensagem.
+								console.log('Não encontrei registro para atualizar a flag UTILIZOU, por favor, solicite novamente a restauraçào de senha.');
+								res.send(400);
+							}
+							else
+							{ 
+								account.changePassword(accountId, Senha, function(callback)
+                                    				{
+                                        				if(callback)
+                                        				{
+										console.log('Utilização verdadeira, quantidade: ' + doc);
+                                            					res.render('resetPasswordSuccess.jade');
+									}
+									else
+									{
+										//Inserir aqui uma página com a mensagem.
+										console.log('Houve um erro ao tentar alterar a senha, por favor, solicite novamente.');
+									}
+								});
+							}
+                                    		}});
                         };
         });
 
 app.get('/api/v01/usuariomobile/recuperarusuario', function(req, res)
         {
-        var Email               = req.email;
-        var Senha               = req.senha;
+        var Email               = req.param('email','');
+        var Senha               = req.param('senha','');
 
-        console.log(req.email);
+        console.log(req.param('email',''));
 
         if(null == Email || null == Senha )
                 {
-                        console.log('Tentativa de recuperar usuario com email ou senha nula.')
+                        console.log('Tentativa de cadastro com email ou senha nula.')
                         res.send(400);
                 }
         else
@@ -288,7 +294,6 @@ app.get('/api/v01/usuariomobile/recuperarusuario', function(req, res)
                 }
         });
 
-
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio das Baladas.
 // ------------------------------------------------------------------------
@@ -297,6 +302,7 @@ app.get('/api/v01/usuariomobile/recuperarusuario', function(req, res)
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio dos Processos de log e backend.
 // ------------------------------------------------------------------------
+
 
 
 //
@@ -321,3 +327,4 @@ app.use(function(err, req, res, next)
 console.log('Iniciando o Web server iChose');
 app.listen(8080);
 console.log('Webserver está escutando na port 8080');
+
