@@ -1,0 +1,6 @@
+
+tentando se conectar a instância MongoDB remoto em outro servidor EC2 10.235.39.109
+conexão com o MongoDB em mongodb://ichoseuser:helioenai@10.235.39.109:27017/dbichose
+Iniciando o Web server iChose
+Webserver está escutando na port 8080
+database dbichose está agora aberto em 10.235.39.109
