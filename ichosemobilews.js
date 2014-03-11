@@ -165,10 +165,10 @@ app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
 
 app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         {
-        var AccountId = req.body.id;
+        var AccountId = req.body.accountid;
         var Foto      = req.body.foto;
     
-        console.log('Atualizando foto do ID: ' + req.body.id);
+        console.log('Atualizando foto do ID: ' + req.body.accountid);
 
         if(null == id) 
                 {
