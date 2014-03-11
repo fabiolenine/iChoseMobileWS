@@ -1,7 +1,7 @@
 module.exports = function(config, mongoose, nodemailer)
 	{
-	var crypto 			= require('crypto');
-	var usuariomobile 		= require('./UsuarioMobileModel.js');
+	var crypto 					= require('crypto');
+	var usuariomobile 			= require('./UsuarioMobileModel.js');
 	var restorepassword 		= require('./RestorePasswordModel.js');
 	var triedrestorepassword 	= require('./TriedRestorePasswordModel.js');
 
@@ -75,15 +75,14 @@ module.exports = function(config, mongoose, nodemailer)
 								else
 								{
 									var restore = new restorepassword.model ({	
-                                                            								usuarioid: 	doc._id, 
-                                                            								email: 		Email,
-															loc: 		{type: 'Point', coordinates: [Lon,Lat]},
-															utilizou: 	false 
-                               											});
-                                            	                	restore.save(function(err)
-                                                	            	{
-                                                        	    		if (err)
-                                                            			{
+                                                            					usuarioid: 	doc._id, 
+                                                            					email: 		Email,
+																				loc: 		{type: 'Point', coordinates: [Lon,Lat]},
+																				utilizou: 	false 
+                               												});
+                                 	restore.save(function(err) {
+                                                        	   		if (err)
+                                                           				{
                                                             				console.log('Não foi possível salvar a solicitação de renocação senha.');
                                                             				callback(false);
                                                             			}
@@ -91,7 +90,7 @@ module.exports = function(config, mongoose, nodemailer)
                                                             			{
                                                             				callback(true);
                                                             			}
-                                                            		});
+                                                           		});
 								}
 							});
 						} 
@@ -171,11 +170,43 @@ module.exports = function(config, mongoose, nodemailer)
 			
 		};
 
+	var atualizarFoto = function(accountId, Foto, callback)
+		{
+			usuariomobile.model.update(
+				{
+					_id:accountId
+				},
+				{
+					$set: 
+						{
+						foto:Foto
+						}
+				},
+				{
+					upsert:false
+				},
+				function atualizarFotoCallback(err) 
+					{
+						if(err)
+						{
+							console.log('Atualização da foto falhou, ID: ' + accountId);
+							callback(false);
+						}
+						else
+						{
+							// Registrar inserção.
+							console.log('Foto alterada, do ID: ' + accountId);
+							callback(true);
+						}
+					});
+		};
+
 	var retorno = {
 			"register"		: register,
 			"forgotPassword"	: forgotPassword,
 			"changePassword"	: changePassword,
-			"recuperarusuario"	: recuperarusuario
+			"recuperarusuario"	: recuperarusuario,
+			"atualizarFoto"		: atualizarFoto
 		};
 
 	return retorno;	

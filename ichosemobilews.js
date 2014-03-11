@@ -25,7 +25,7 @@ var passport            = require('passport');
 var nodemailer          = require('nodemailer');
 var MemoryStore         = require('connect').session.MemoryStore;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
-var restorepassword	= require('./modulos/RestorePasswordModel.js');
+var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
 
@@ -49,7 +49,7 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 
 var db;              // our MongoDb database
 
-var account             = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
+var account               = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
 //Implementar as rotas e as funções antes de liberar.
 //var evento              = require('./modulos/Event.js')(mongoose);
 //var processo            = require('./modulos/Process.js')(mongoose);
@@ -80,13 +80,13 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
-                app.set('view engine','jade');
-                app.use(express.static(__dirname + '/public'));
-//                app.use(express.urlencoded());
-//                app.use(express.json());
-                app.use(express.bodyParser()); //Evitar o uso desse parser, consultar documentação do ExpressJS;
-		app.use(express.cookieParser());
-                app.use(express.session(
+            app.set('view engine','jade');
+            app.use(express.static(__dirname + '/public'));
+//          app.use(express.urlencoded());
+//          app.use(express.json());
+            app.use(express.bodyParser()); //Evitar o uso desse parser, consultar documentação do ExpressJS;
+            app.use(express.cookieParser());
+            app.use(express.session(
                 {
                         secret: "iChose secret key", store: new MemoryStore()
                 }));
@@ -163,6 +163,35 @@ app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
                 }
         });
 
+app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
+        {
+        var AccountId = req.body.id;
+        var Foto      = req.body.foto;
+    
+        console.log('Atualizando foto do ID: ' + req.body.id);
+
+        if(null == id) 
+                {
+                    console.log('Tentativa de atualização da foto com id null.')
+                    res.send(400);
+                } 
+        else
+                {
+                    account.atualizarFoto(AccountId, Foto, function(callback)
+                    {
+                    if (callback)
+                        {
+                            console.log(callback);
+                            res.send(callback);
+                        }
+                    else 
+                        { 
+                            res.send(400);
+                        }
+                    });                                                                             
+                }
+        });
+
 app.post('/api/v01/usuariomobile/acesso', function(req, res) 
         {
                 var Email = req.param('email','');
@@ -224,9 +253,9 @@ app.get('/api/v01/usuariomobile/restaurar', function(req, res)
 
 app.post('/api/v01/usuariomobile/restaurar', function(req, res)
         {
-                var accountId = req.param('accountId',null);
-                var Senha = req.param('password',null);
-		var condition = { usuarioid: new ObjectID(accountId), utilizou: false };
+        var accountId   = req.param('accountId',null);
+        var Senha       = req.param('password',null);
+		var condition   = { usuarioid: new ObjectID(accountId), utilizou: false };
 
 		if (null  != accountId && null != Senha) 
                         {
