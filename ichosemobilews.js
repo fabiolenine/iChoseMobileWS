@@ -170,7 +170,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
-        if(null == id) 
+        if(null == AccountId) 
                 {
                     console.log('Tentativa de atualização da foto com id null.')
                     res.send(400);
