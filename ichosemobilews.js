@@ -84,8 +84,8 @@ app.configure(function()
             app.use(express.static(__dirname + '/public'));
             app.use(express.bodyParser()); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
-            app.use(express.json({limit: '100mb'}));
-            app.use(express.urlencoded({limit: '100mb'}));
+            app.use(express.json({limit: '300mb'}));
+            app.use(express.urlencoded({limit: '300mb'}));
             app.use(express.session(
                 {
                         secret: "iChose secret key", store: new MemoryStore()
