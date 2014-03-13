@@ -4,6 +4,7 @@ module.exports = function(config, mongoose, nodemailer)
 	var usuariomobile 			= require('./UsuarioMobileModel.js');
 	var restorepassword 		= require('./RestorePasswordModel.js');
 	var triedrestorepassword 	= require('./TriedRestorePasswordModel.js');
+	var ObjectID 				= mongoose.Types.ObjectId;
 
 	//chamar o model e acima fazer um require;
 
@@ -142,8 +143,8 @@ module.exports = function(config, mongoose, nodemailer)
                                         				cep:            CEP,
                                         				email:          Email,
                                         				senha:          Senha,
-									foto:		Foto
-								});
+														foto:			Foto
+													});
 			usuario.save(function(err)
 					{
 						if (err)
@@ -174,7 +175,7 @@ module.exports = function(config, mongoose, nodemailer)
 		{
 			usuariomobile.model.update(
 				{
-					_id:accountId
+					_id: new ObjectID(accountId)
 				},
 				{
 					$set: 
@@ -202,12 +203,12 @@ module.exports = function(config, mongoose, nodemailer)
 		};
 
 	var retorno = {
-			"register"		: register,
+			"register"			: register,
 			"forgotPassword"	: forgotPassword,
 			"changePassword"	: changePassword,
 			"recuperarusuario"	: recuperarusuario,
 			"atualizarFoto"		: atualizarFoto
-		};
+					};
 
 	return retorno;	
 	}
