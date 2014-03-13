@@ -4,7 +4,6 @@ module.exports = function(config, mongoose, nodemailer)
 	var usuariomobile 			= require('./UsuarioMobileModel.js');
 	var restorepassword 		= require('./RestorePasswordModel.js');
 	var triedrestorepassword 	= require('./TriedRestorePasswordModel.js');
-	var ObjectID 				= mongoose.Types.ObjectId;
 
 	//chamar o model e acima fazer um require;
 
@@ -175,7 +174,7 @@ module.exports = function(config, mongoose, nodemailer)
 		{
 			usuariomobile.model.update(
 				{
-					_id: new ObjectID(accountId)
+					_id: accountId
 				},
 				{
 					$set: 
