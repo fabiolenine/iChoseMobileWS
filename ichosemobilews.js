@@ -170,6 +170,36 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
+//Trecho inicial de teste
+        usuariomobile.model.update(
+                {
+                    _id: accountId
+                },
+                {
+                    $set: 
+                        {
+                        foto:Foto
+                        }
+                },
+                {
+                    upsert:false
+                },
+                function atualizarFotoCallback(err) 
+                    {
+                        if(err)
+                        {
+                            console.log('Atualização da foto falhou, ID: ' + accountId);
+                            callback(false);
+                        }
+                        else
+                        {
+                            // Registrar inserção.
+                            console.log('Foto alterada, do ID: ' + accountId);
+                            callback(true);
+                        }
+                    });
+//Trecho fim de teste
+
         if(null == AccountId) 
                 {
                     console.log('Tentativa de atualização da foto com id null.')
@@ -217,8 +247,8 @@ app.post('/api/v01/usuariomobile/acesso', function(req, res)
 
 app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
         {
-                var hostname = req.headers.host;
-                var resetPasswordUrl = 'http://' + hostname + '/api/v01/usuariomobile/restaurar';
+                var hostname            = req.headers.host;
+                var resetPasswordUrl    = 'http://' + hostname + '/api/v01/usuariomobile/restaurar';
                 var Email               = req.body.email;
                 var Lon                 = req.body.loc.lon;
                 var Lat                 = req.body.loc.lat;
