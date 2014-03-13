@@ -246,7 +246,7 @@ app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
 
 app.get('/api/v01/usuariomobile/restaurar', function(req, res)
         {
-                var AccountId = req.param('account',null);
+        var AccountId = req.param('account',null);
 		var id = {ID: AccountId};
 		res.render('resetPassword.jade',id);
         });
