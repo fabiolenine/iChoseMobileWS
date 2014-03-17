@@ -173,11 +173,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
 // Trecho inicial de teste
         usuariomobile.model.update(
                 {
-<<<<<<< HEAD
                     _id: AccountId
-=======
-                    _id:AccountId
->>>>>>> Issue#5
                 },
                 {
                     $set: 
