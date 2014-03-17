@@ -170,7 +170,41 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
+<<<<<<< HEAD
         if(null == AccountId) 
+=======
+//Trecho inicial de teste
+        usuariomobile.model.update(
+                {
+                    _id: accountId
+                },
+                {
+                    $set: 
+                        {
+                        foto:Foto
+                        }
+                },
+                {
+                    upsert:false
+                },
+                function atualizarFotoCallback(err) 
+                    {
+                        if(err)
+                        {
+                            console.log('Atualização da foto falhou, ID: ' + accountId);
+                            callback(false);
+                        }
+                        else
+                        {
+                            // Registrar inserção.
+                            console.log('Foto alterada, do ID: ' + accountId);
+                            callback(true);
+                        }
+                    });
+//Trecho fim de teste
+
+/*        if(null == AccountId) 
+>>>>>>> Issue#5
                 {
                     console.log('Tentativa de atualização da foto com id null.')
                     res.send(400);
@@ -190,7 +224,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                         }
                     });                                                                             
                 }
-        });
+*/        });
 
 app.post('/api/v01/usuariomobile/acesso', function(req, res) 
         {
