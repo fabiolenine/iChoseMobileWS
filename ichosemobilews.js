@@ -170,7 +170,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
-//Trecho inicial de teste
+// Trecho inicial de teste
         usuariomobile.model.update(
                 {
 <<<<<<< HEAD
@@ -202,7 +202,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                             callback(true);
                         }
                     });
-//Trecho fim de teste
+// Trecho fim de teste
 
 /*        if(null == AccountId) 
 >>>>>>> Issue#5
