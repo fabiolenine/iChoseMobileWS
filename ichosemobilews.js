@@ -173,7 +173,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
 // Trecho inicial de teste
         usuariomobile.model.update(
                 {
-                    _id: AccountId
+                    _id:AccountId
                 },
                 {
                     $set: 
@@ -188,13 +188,13 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                     {
                         if(err)
                         {
-                            console.log('Atualização da foto falhou, ID: ' + accountId);
+                            console.log('Atualização da foto falhou, ID: ' + AccountId);
                             callback(false);
                         }
                         else
                         {
                             // Registrar inserção.
-                            console.log('Foto alterada, do ID: ' + accountId);
+                            console.log('Foto alterada, do ID: ' + AccountId);
                             callback(true);
                         }
                     });
