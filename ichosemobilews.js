@@ -200,7 +200,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                     });
 //Trecho fim de teste
 
-        if(null == AccountId) 
+/*        if(null == AccountId) 
                 {
                     console.log('Tentativa de atualização da foto com id null.')
                     res.send(400);
@@ -220,7 +220,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                         }
                     });                                                                             
                 }
-        });
+*/        });
 
 app.post('/api/v01/usuariomobile/acesso', function(req, res) 
         {
