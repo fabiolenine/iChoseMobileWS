@@ -172,7 +172,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
 // Trecho inicial de teste
-        usuariomobile.model.findByIdAndUpdate(AccountId,{$set:{'foto':Foto}},{upsert:false},
+        usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{$set:{'foto':Foto}},{upsert:false},
                 function(err) 
                     {
                         if(err)
