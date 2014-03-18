@@ -188,14 +188,14 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                     {
                         if(err)
                         {
-                            console.log('Atualização da foto falhou, ID: ' + accountId);
+                            console.log('Atualização da foto falhou, ID: ' + AccountId);
                             res.send(400);
                             //callback(false);
                         }
                         else
                         {
                             // Registrar inserção.
-                            console.log('Foto alterada, do ID: ' + accountId);
+                            console.log('Foto alterada, do ID: ' + AccountId);
                             res.send(200);
                             //callback(true);
                         }
