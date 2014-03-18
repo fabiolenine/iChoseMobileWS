@@ -184,18 +184,30 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                 {
                     upsert:false
                 },
-                function atualizarFotoCallback(err) 
+                function(err) 
                     {
                         if(err)
                         {
+<<<<<<< HEAD
                             console.log('Atualização da foto falhou, ID: ' + AccountId);
                             callback(false);
+=======
+                            console.log('Atualização da foto falhou, ID: ' + accountId);
+                            res.send(400);
+                            //callback(false);
+>>>>>>> Issue#5
                         }
                         else
                         {
                             // Registrar inserção.
+<<<<<<< HEAD
                             console.log('Foto alterada, do ID: ' + AccountId);
                             callback(true);
+=======
+                            console.log('Foto alterada, do ID: ' + accountId);
+                            res.send(200);
+                            //callback(true);
+>>>>>>> Issue#5
                         }
                     });
 // Trecho fim de teste
