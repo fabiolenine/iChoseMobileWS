@@ -167,13 +167,14 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         {
         var AccountId = req.body.accountid;
         var Foto      = req.body.foto;
+        var condition = { _id: new ObjectID(AccountId)};
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
 
 // Trecho inicial de teste
         usuariomobile.model.update(
                 {
-                    '_id':AccountId
+                    condition
                 },
                 {
                     $set: 
