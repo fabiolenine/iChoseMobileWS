@@ -54,7 +54,7 @@ var account               = require('./modulos/Account.js')(configmail, mongoose
 //var evento              = require('./modulos/Event.js')(mongoose);
 //var processo            = require('./modulos/Process.js')(mongoose);
 
-var ObjectID 		= mongoose.Types.ObjectId;
+var ObjectID 		      = mongoose.Types.ObjectId;
 
 // ------------------------------------------------------------------------
 // Connect to our Mongo Database hosted on another server
@@ -173,12 +173,12 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
 // Trecho inicial de teste
         usuariomobile.model.update(
                 {
-                    _id:AccountId
+                    '_id':AccountId
                 },
                 {
                     $set: 
                         {
-                        foto:Foto
+                        'foto':Foto
                         }
                 },
                 {
