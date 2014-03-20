@@ -82,7 +82,7 @@ app.configure(function()
         {
             app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
-            app.use(express.bodyParser()); //Evitar o uso desse parser, consultar documentação do ExpressJS;
+            app.use(express.bodyParser({ limite : '200mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
             //app.use(express.json({limit: '300mb'}));
             //app.use(express.urlencoded({limit: '300mb'}));
