@@ -170,6 +170,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         //var Condition = { _id: new ObjectID(AccountId)};
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
+        console.log('Tamanho: ' + Foto.length);
 
 // Trecho inicial de teste
         usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{$set:{'foto':Foto}},{upsert:false},
@@ -185,6 +186,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                         {
                             // Registrar inserção.
                             console.log('Foto alterada, do ID: ' + AccountId);
+                            console.log('Tamanho: ' + Foto.length);
                             res.send(200);
                             //callback(true);
                         }
