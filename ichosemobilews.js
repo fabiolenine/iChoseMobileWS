@@ -82,10 +82,10 @@ app.configure(function()
         {
             app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
-            app.use(express.bodyParser({ limite : '200mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
+            app.use(express.bodyParser({ limite : '300mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
-            //app.use(express.json({limit: '300mb'}));
-            //app.use(express.urlencoded({limit: '300mb'}));
+            app.use(express.json({limit: '300mb'}));
+            app.use(express.urlencoded({limit: '300mb'}));
             app.use(express.session(
                 {
                         secret: "iChose secret key", store: new MemoryStore()
@@ -170,7 +170,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         //var Condition = { _id: new ObjectID(AccountId)};
     
         console.log('Atualizando foto do ID: ' + req.body.accountid);
-        console.log('Limit:' + limit);
+
 // Trecho inicial de teste
         usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{$set:{'foto':Foto}},{upsert:false},
                 function(err) 
