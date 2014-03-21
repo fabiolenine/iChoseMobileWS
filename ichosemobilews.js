@@ -173,7 +173,7 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         console.log('Tamanho: ' + Foto.length);
 
 // Trecho inicial de teste
-        var result = usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{foto:Foto},{upsert:false},
+        var result = usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{'foto':Foto},{upsert:false},
                 function(err) 
                     {
                         if(err)
