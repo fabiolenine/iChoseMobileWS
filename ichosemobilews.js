@@ -29,9 +29,11 @@ var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
+var appweb              = express();
 
-http.createServer(app).listen(80);
-https.createServer(options,app).listen(443);
+http.createServer(app).listen(8080);
+http.createServer(appweb).listen(80);
+//https.createServer(options,app).listen(443);
 
 var configmail  =       {
                         mail: require('./config/mail')
@@ -100,9 +102,9 @@ app.configure(function()
 // Roteamento dos sites do ecosistema iChose.
 //
 // roteamento do hotsite
-app.get('/', function(req,res) 
+appweb.get('/', function(req,res) 
         {       
-        res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
+        res.send('appweb funcionou na porta 80');
         });
 
 // ------------------------------------------------------------------------
