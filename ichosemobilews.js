@@ -31,8 +31,8 @@ var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 var app                 = express();
 var appweb              = express();
 
-http.createServer(app).listen(8080);
-http.createServer(appweb).listen(80);
+//http.createServer(app).listen(8080);
+//http.createServer(appweb).listen(80);
 //https.createServer(options,app).listen(443);
 
 var configmail  =       {
@@ -395,6 +395,7 @@ app.use(function(err, req, res, next)
 // Start Express Webserver
 //
 console.log('Iniciando o Web server iChose');
-//app.listen(80,8080);
+app.listen(8080);
+appweb.listen(80);
 console.log('Webserver está escutando na port 80 e 443');
 
