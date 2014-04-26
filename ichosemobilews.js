@@ -19,6 +19,7 @@
  */
 
 var http                = require('http');
+var https               = require('https');
 var mongoose            = require('mongoose');
 var express             = require('express');
 var passport            = require('passport');
@@ -28,6 +29,9 @@ var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
+
+http.createServer(app).listen(80);
+https.createServer(options,app).listen(443);
 
 var configmail  =       {
                         mail: require('./config/mail')
@@ -389,6 +393,6 @@ app.use(function(err, req, res, next)
 // Start Express Webserver
 //
 console.log('Iniciando o Web server iChose');
-app.listen(80,8080);
-console.log('Webserver está escutando na port 8080');
+//app.listen(80,8080);
+console.log('Webserver está escutando na port 80 e 443');
 
