@@ -93,9 +93,18 @@ app.configure(function()
         });
 
 // ------------------------------------------------------------------------
+// Roteamento dos sites do ecosistema iChose.
+//
+// roteamento do hotsite
+app.get('/', function(req,res) 
+        {       
+        res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
+        });
+
+// ------------------------------------------------------------------------
 // set up Express routes to handle incoming requests
 //
-// Express route for all incoming requests
+// roteamento do serviçoweb
 app.get('/api/', function(req,res) 
         {       
         res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
@@ -380,6 +389,6 @@ app.use(function(err, req, res, next)
 // Start Express Webserver
 //
 console.log('Iniciando o Web server iChose');
-app.listen(8080);
+app.listen(80,8080);
 console.log('Webserver está escutando na port 8080');
 
