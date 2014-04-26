@@ -29,7 +29,6 @@ var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
-var appweb              = express();
 
 http.createServer(app).listen(80);
 //https.createServer(options,app).listen(443);
