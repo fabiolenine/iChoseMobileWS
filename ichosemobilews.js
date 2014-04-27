@@ -110,7 +110,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {       
-        res.send('provider.ichose.com.br funcionou na porta 80');
+        res.render('../ichoseprovider/index.html');
         });
 
 // ------------------------------------------------------------------------
