@@ -110,7 +110,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {       
-        res.render('/home/ubuntu/ichoseprovider/index.html');
+        res.render('index.html');
         });
 
 // ------------------------------------------------------------------------
