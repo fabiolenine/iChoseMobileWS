@@ -88,9 +88,14 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
-            app.set('views', __dirname + '/views');
-            app.engine('html', engines.mustache);
-            app.set('view engine', 'html');
+     //       app.set('views', __dirname + '/views');
+     //       app.engine('html', engines.mustache);
+     //       app.set('view engine', 'html');
+     
+        app.set('views', __dirname + '/views');
+        app.register('.html',require('ejs'));
+        //appProvider.engine('html', engines.swig);
+        app.set('view engine', 'ejs');
 
             //app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
@@ -114,14 +119,7 @@ app.get('/', function(req,res)
         });
 
 appProvider.get('/', function(req,res) 
-        {    
-appProvider.configure(function()
-{
-        appProvider.set('views', __dirname + '/views');
-        appProvider.register('.html',require('ejs'));
-        //appProvider.engine('html', engines.swig);
-        appProvider.set('view engine', 'ejs');   
-});
+        {       
         res.render('index.html');
         });
 
