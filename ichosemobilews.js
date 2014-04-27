@@ -118,7 +118,7 @@ appProvider.get('/', function(req,res)
 appProvider.configure(function()
 {
         appProvider.set('views', __dirname + '/views');
-        appProvider.engine('html', engines.swig);
+      //  appProvider.engine('html', engines.swig);
         appProvider.set('view engine', 'html');   
 });
         res.render('index.html');
