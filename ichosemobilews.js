@@ -35,7 +35,7 @@ http.createServer(app).listen(80);
 
 var configmail  =       {
                         mail: require('./config/mail')
-                        }
+                        };
 
 var config      =       {
                         "USER"     : "ichoseuser",
@@ -102,7 +102,12 @@ app.configure(function()
 // roteamento do hotsite
 app.get('/', function(req,res) 
         {       
-        res.send('appweb funcionou na porta 80');
+        res.send('localhost funcionou na porta 80');
+        });
+
+app.get('htto://provider.ichose.com.br/', function(req,res) 
+        {       
+        res.send('provider funcionou na porta 80');
         });
 
 // ------------------------------------------------------------------------
