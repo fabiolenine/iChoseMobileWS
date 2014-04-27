@@ -24,7 +24,7 @@ var mongoose            = require('mongoose');
 var express             = require('express');
 var passport            = require('passport');
 var nodemailer          = require('nodemailer');
-var engines             = require('consolidate');
+//var engines             = require('consolidate');
 var MemoryStore         = require('connect').session.MemoryStore;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
@@ -92,12 +92,12 @@ app.configure(function()
      //       app.engine('html', engines.mustache);
      //       app.set('view engine', 'html');
      
-        app.set('views', __dirname + '/views');
-        app.engine('html', require('ejs').renderFile);
-        //appProvider.engine('html', engines.swig);
-        app.set('view engine', 'html');
+//        app.set('views', __dirname + '/views');
+//        app.engine('html', require('ejs').renderFile);
+//        //appProvider.engine('html', engines.swig);
+//        app.set('view engine', 'html');
 
-            //app.set('view engine','jade');
+            app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
             app.use(express.bodyParser({ limite : '300mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
@@ -121,6 +121,7 @@ app.get('/', function(req,res)
 appProvider.get('/', function(req,res) 
         {  
         appProvider.set('views', '../ichoseprovider');
+        appProvider.set('css', '../ichoseprovider/css');
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
         res.render('index.html');
