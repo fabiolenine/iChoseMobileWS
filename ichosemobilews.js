@@ -115,7 +115,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {       
-        res.render('index.html');
+        res.render('index');
         });
 
 // ------------------------------------------------------------------------
