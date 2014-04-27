@@ -105,7 +105,7 @@ app.get('/', function(req,res)
         res.send('localhost funcionou na porta 80');
         });
 
-app.get('htto://provider.ichose.com.br/', function(req,res) 
+app.get('http://provider.ichose.com.br/', function(req,res) 
         {       
         res.send('provider funcionou na porta 80');
         });
