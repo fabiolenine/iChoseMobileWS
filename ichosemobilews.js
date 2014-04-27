@@ -93,9 +93,9 @@ app.configure(function()
      //       app.set('view engine', 'html');
      
         app.set('views', __dirname + '/views');
-        app.register('.html',require('ejs'));
+        app.engine('html', require('ejs').renderFile);
         //appProvider.engine('html', engines.swig);
-        app.set('view engine', 'ejs');
+        app.set('view engine', 'html');
 
             //app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
