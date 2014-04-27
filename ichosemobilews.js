@@ -29,6 +29,9 @@ var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
+var appProvider         = express();
+
+app.use(express.vhost('provider.ichose.com.br',appProvider));
 
 http.createServer(app).listen(80);
 //https.createServer(options,app).listen(443);
@@ -105,9 +108,9 @@ app.get('/', function(req,res)
         res.send('localhost funcionou na porta 80');
         });
 
-app.get('http://provider.ichose.com.br/', function(req,res) 
+appProvider.get('/', function(req,res) 
         {       
-        res.send('provider funcionou na porta 80');
+        res.send('provider.ichose.com.br funcionou na porta 80');
         });
 
 // ------------------------------------------------------------------------
