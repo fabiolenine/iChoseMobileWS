@@ -121,7 +121,8 @@ app.get('/', function(req,res)
 appProvider.get('/', function(req,res) 
         {  
         appProvider.set('views', '../ichoseprovider');
-        appProvider.set('css', '../ichoseprovider/css');
+        appProvider.use(express.static('../ichoseprovider'));
+        appProvider.use('/js',express.static('../ichoseprovider/js'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
         res.render('index.html');
