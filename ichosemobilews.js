@@ -24,6 +24,7 @@ var mongoose            = require('mongoose');
 var express             = require('express');
 var passport            = require('passport');
 var nodemailer          = require('nodemailer');
+var engines             = require('consolidate');
 var MemoryStore         = require('connect').session.MemoryStore;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
@@ -87,7 +88,11 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
-            app.set('view engine','html');
+            app.set('views', __dirname + '/views');
+            app.engine('html', engines.mustache);
+            app.set('view engine', 'html');
+
+            //app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
             app.use(express.bodyParser({ limite : '300mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
