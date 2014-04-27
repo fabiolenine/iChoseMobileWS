@@ -87,8 +87,7 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
-            app.engine('.html', require('ejs').__express);
-            app.set('view engine','html');
+            app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
             app.use(express.bodyParser({ limite : '300mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
             app.use(express.cookieParser());
@@ -98,6 +97,12 @@ app.configure(function()
                 {
                         secret: "iChose secret key", store: new MemoryStore()
                 }));
+        });
+
+appProvider.configure(function()
+        {
+            appProvider.set('views', '../ichoseprovider');
+            appProvider.set('view engine','html');
         });
 
 // ------------------------------------------------------------------------
@@ -111,7 +116,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {       
-        res.render('../ichoseprovider/index.html');
+        res.render('index.html');
         });
 
 // ------------------------------------------------------------------------
