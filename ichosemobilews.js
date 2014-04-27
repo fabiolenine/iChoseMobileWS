@@ -114,7 +114,10 @@ app.get('/', function(req,res)
         });
 
 appProvider.get('/', function(req,res) 
-        {       
+        {    
+        appProvider.set('views', __dirname + '/views');
+        appProvider.engine('html', engines.mustache);
+        appProvider.set('view engine', 'html');   
         res.render('./views/index.html');
         });
 
