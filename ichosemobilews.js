@@ -118,8 +118,9 @@ appProvider.get('/', function(req,res)
 appProvider.configure(function()
 {
         appProvider.set('views', __dirname + '/views');
-      //  appProvider.engine('html', engines.swig);
-        appProvider.set('view engine', 'html');   
+        appProvider.register('.html',require('ejs'));
+        //appProvider.engine('html', engines.swig);
+        appProvider.set('view engine', 'ejs');   
 });
         res.render('index.html');
         });
