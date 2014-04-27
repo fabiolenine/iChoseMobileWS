@@ -99,12 +99,6 @@ app.configure(function()
                 }));
         });
 
-appProvider.configure(function()
-        {
-            appProvider.set('views', '../ichoseprovider');
-            appProvider.set('view engine','html');
-        });
-
 // ------------------------------------------------------------------------
 // Roteamento dos sites do ecosistema iChose.
 //
@@ -116,7 +110,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {       
-        res.render('index.html');
+        res.render('/home/ubuntu/ichoseprovider/index.html');
         });
 
 // ------------------------------------------------------------------------
