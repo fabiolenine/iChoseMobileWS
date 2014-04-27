@@ -87,6 +87,7 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
+            app.engine('.html', require('ejs').__express);
             app.set('view engine','html');
             app.use(express.static(__dirname + '/public'));
             app.use(express.bodyParser({ limite : '300mb '})); //Evitar o uso desse parser, consultar documentação do ExpressJS;
