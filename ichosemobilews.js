@@ -120,11 +120,11 @@ app.get('/', function(req,res)
 
 appProvider.get('/', function(req,res) 
         {  
-                appProvider.set('views', __dirname + '/views');
+        appProvider.set('views', __dirname + '../ichoseprovider');
         appProvider.engine('html', require('ejs').renderFile);
         //appProvider.engine('html', engines.swig);
         appProvider.set('view engine', 'html');     
-        res.render('../ichoseprovider/index.html');
+        res.render('index.html');
         });
 
 // ------------------------------------------------------------------------
