@@ -123,6 +123,7 @@ appProvider.get('/', function(req,res)
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
         appProvider.use('/js',express.static('../ichoseprovider/js'));
+        appProvider.use('/css',express.static('../ichoseprovider/css'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
         res.render('index.html');
@@ -133,6 +134,7 @@ appProvider.get('/dashboard/', function(req,res)
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
         appProvider.use('/js',express.static('../ichoseprovider/js'));
+        appProvider.use('/css',express.static('../ichoseprovider/css'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
         res.render('dashboard.html');
