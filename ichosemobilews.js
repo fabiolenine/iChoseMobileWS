@@ -122,8 +122,6 @@ appProvider.get('/', function(req,res)
         {  
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
-        appProvider.use('/js',express.static('../ichoseprovider/js'));
-        appProvider.use('/css',express.static('../ichoseprovider/css'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
         res.render('index.html');
@@ -131,11 +129,11 @@ appProvider.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res) 
         {  
-        appProvider.set('views', 'https://s3-us-west-2.amazonaws.com/ichose/site/provider/view/');
+        appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
-        res.render('https://s3-us-west-2.amazonaws.com/ichose/site/provider/view/dashboard.html');
+        res.render('dashboard.html');
         });
 
 // ------------------------------------------------------------------------
