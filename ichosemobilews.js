@@ -128,6 +128,16 @@ appProvider.get('/', function(req,res)
         res.render('index.html');
         });
 
+appProvider.get('/dashboard/', function(req,res) 
+        {  
+        appProvider.set('views', '../ichoseprovider');
+        appProvider.use(express.static('../ichoseprovider'));
+        appProvider.use('/js',express.static('../ichoseprovider/js'));
+        appProvider.engine('html', require('ejs').renderFile);
+        appProvider.set('view engine', 'html');     
+        res.render('dashboard.html');
+        });
+
 // ------------------------------------------------------------------------
 // set up Express routes to handle incoming requests
 //
