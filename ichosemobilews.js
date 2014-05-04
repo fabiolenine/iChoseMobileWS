@@ -131,13 +131,11 @@ appProvider.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res) 
         {  
-        appProvider.set('views', '../ichoseprovider');
+        appProvider.set('views', 'https://s3-us-west-2.amazonaws.com/ichose/site/provider/view/');
         appProvider.use(express.static('../ichoseprovider'));
-        appProvider.use('/js',express.static('../ichoseprovider/js'));
-        appProvider.use('/css',express.static('../ichoseprovider/css'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');     
-        res.render('dashboard.html');
+        res.render('https://s3-us-west-2.amazonaws.com/ichose/site/provider/view/dashboard.html');
         });
 
 // ------------------------------------------------------------------------
