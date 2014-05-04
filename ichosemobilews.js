@@ -134,8 +134,18 @@ appProvider.get('/dashboard/', function(req,res)
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');
         console.log(req.url);      
-        res.render('dashboard.html');
-
+        if (req.url == '/dashboard/') 
+            {
+                res.render('dashboard.html');
+            }
+        else if (req.url == '/dashboard/grafico') 
+            {
+                res.render('grafico.html');
+            }
+        else 
+            {
+                res.render('404.html');   
+            };
         });
 
 // ------------------------------------------------------------------------
