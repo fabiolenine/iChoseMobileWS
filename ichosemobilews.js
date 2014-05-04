@@ -24,7 +24,7 @@ var mongoose            = require('mongoose');
 var express             = require('express');
 var passport            = require('passport');
 var nodemailer          = require('nodemailer');
-//var engines             = require('consolidate');
+var cons                = require('consolidate');
 var MemoryStore         = require('connect').session.MemoryStore;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
@@ -129,11 +129,13 @@ appProvider.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res) 
         {  
+        appProvider.engine(html,cons.swig);
+        appProvider.set('view engine','html');
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
-        appProvider.engine('html', require('ejs').renderFile);
-        appProvider.set('view engine', 'html');
-        console.log(req.url);      
+        //appProvider.engine('html', require('ejs').renderFile);
+        
+        console.log(req);      
         if (req.url == '/dashboard/') 
             {
                 res.render('dashboard.html');
