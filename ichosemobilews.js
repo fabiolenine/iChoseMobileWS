@@ -129,25 +129,24 @@ appProvider.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res) 
         {  
-        appProvider.engine(html,cons.swig);
+        appProvider.engine('html',cons.swig);
         appProvider.set('view engine','html');
         appProvider.set('views', '../ichoseprovider');
-        appProvider.use(express.static('../ichoseprovider'));
+        //appProvider.use(express.static('../ichoseprovider'));
         //appProvider.engine('html', require('ejs').renderFile);
-        
-        console.log(req);      
-        if (req.url == '/dashboard/') 
-            {
-                res.render('dashboard.html');
-            }
-        else if (req.url == '/dashboard/grafico') 
-            {
-                res.render('grafico.html');
-            }
-        else 
-            {
-                res.render('404.html');   
-            };
+        //console.log(req);      
+        res.render('dashboard.html');
+        });
+
+appProvider.get('/verao2015/', function(req,res) 
+        {  
+        appProvider.engine('html',cons.swig);
+        appProvider.set('view engine','html');
+        appProvider.set('views', __dirname+'/ichosehotsite');
+        //appProvider.use(express.static('../ichoseprovider'));
+        //appProvider.engine('html', require('ejs').renderFile);
+        //console.log(req);      
+        res.render('verao2015.html');
         });
 
 // ------------------------------------------------------------------------
