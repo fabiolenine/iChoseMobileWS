@@ -142,7 +142,7 @@ appProvider.get('/verao2015/', function(req,res)
         {  
         appProvider.engine('html',cons.swig);
         appProvider.set('view engine','html');
-        appProvider.set('views', __dirname+'/ichosehotsite');
+        appProvider.set('views', __dirname+'/ichosehotsite/iChoseWebSite');
         //appProvider.use(express.static('../ichoseprovider'));
         //appProvider.engine('html', require('ejs').renderFile);
         //console.log(req);      
