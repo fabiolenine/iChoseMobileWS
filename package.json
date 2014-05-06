@@ -3,6 +3,7 @@
         "version": "0.0.1",
         "description": "Web Service - Rest",
         "private": true,
+        "main": "ichosemobilews.js",
         "contributors": [{
                         "name":         "Fabio Lenine Vilela da Silva",
                         "email":        "fabiolenine@icloud.com"
