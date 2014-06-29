@@ -1,19 +1,19 @@
 /**
  * app.js
- * 
+ *
  * @version 0.1 - Beta
- * 
+ *
  * DESCRIPTION:
- * Serviço WEB do aplicativo iChose. 
+ * Serviço WEB do aplicativo iChose.
  * Webserver and a mongo DB on separate instances on AWS EC2.
- * Uses the Express and Mongoose node packages. 
- * 
- * 
+ * Uses the Express and Mongoose node packages.
+ *
+ *
  * @ichoseapp
  * @see ichoseapp.com
  * @see ichose.com.br
  * @see ichoseapp.com.br
- * 
+ *
  * @author Fabio Lenine Vilela da Silva
  * (C) 2014 Florianópolis - Brasil
  */
@@ -22,6 +22,7 @@ var http                = require('http');
 var https               = require('https');
 var mongoose            = require('mongoose');
 var express             = require('express');
+var ejb
 var passport            = require('passport');
 var nodemailer          = require('nodemailer');
 //var engines             = require('consolidate');
@@ -80,7 +81,7 @@ mongoose.connection.on('erro: ', function(err)
 
 // connection successful event handler:
 // check if the Db already contains a greeting. if not, create one and save it to the Db
-mongoose.connection.once('open', function() 
+mongoose.connection.once('open', function()
         {
         console.log('database '+config.DATABASE+' está agora aberto em '+config.HOST );
         });
@@ -88,14 +89,6 @@ mongoose.connection.once('open', function()
 
 app.configure(function()
         {
-     //       app.set('views', __dirname + '/views');
-     //       app.engine('html', engines.mustache);
-     //       app.set('view engine', 'html');
-     
-//        app.set('views', __dirname + '/views');
-//        app.engine('html', require('ejs').renderFile);
-//        //appProvider.engine('html', engines.swig);
-//        app.set('view engine', 'html');
 
             app.set('view engine','jade');
             app.use(express.static(__dirname + '/public'));
@@ -113,26 +106,26 @@ app.configure(function()
 // Roteamento dos sites do ecosistema iChose.
 //
 // roteamento do hotsite
-app.get('/', function(req,res) 
-        {       
+app.get('/', function(req,res)
+        {
         res.send('localhost funcionou na porta 80');
         });
 
-appProvider.get('/', function(req,res) 
-        {  
+appProvider.get('/', function(req,res)
+        {
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
         appProvider.engine('html', require('ejs').renderFile);
-        appProvider.set('view engine', 'html');     
+        appProvider.set('view engine', 'html');
         res.render('index.html');
         });
 
-appProvider.get('/dashboard/', function(req,res) 
-        {  
+appProvider.get('/dashboard/', function(req,res)
+        {
         appProvider.set('views', '../ichoseprovider');
         appProvider.use(express.static('../ichoseprovider'));
         appProvider.engine('html', require('ejs').renderFile);
-        appProvider.set('view engine', 'html');     
+        appProvider.set('view engine', 'html');
         res.render('dashboard.html');
         });
 
@@ -140,8 +133,8 @@ appProvider.get('/dashboard/', function(req,res)
 // set up Express routes to handle incoming requests
 //
 // roteamento do serviçoweb
-app.get('/api/', function(req,res) 
-        {       
+app.get('/api/', function(req,res)
+        {
         res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
         });
 
@@ -163,31 +156,31 @@ app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
         var Email               = req.body.email;
         var Senha               = req.body.senha;
         var Foto                = req.body.foto;
-	
+
 	console.log(req.body.nomecompleto.nomeprincipal);
 
-        if(null == Email || null == Senha ) 
+        if(null == Email || null == Senha )
                 {
                         console.log('Tentativa de cadastro com email ou senha nula.')
                         res.send(400);
-                } 
+                }
         else
                 {
-                        usuariomobile.model.findOne({'email': Email}, function (err, emails) 
+                        usuariomobile.model.findOne({'email': Email}, function (err, emails)
                         {
                                 if (err)
                                         {
-                                        console.log('Erro na tentativa de busca para cadastro do email: ' + Email);     
+                                        console.log('Erro na tentativa de busca para cadastro do email: ' + Email);
                                         res.send(400);
                                         }
-                                else 
+                                else
                                         {
                                         if(emails)
                                                 {
                                                 console.log('Tentativa de cadastro com e-mail existente: ' + Email);
                                                 res.send(400);
                                                  }
-                                        else 
+                                        else
                                                 {
                                                 account.register(Email, Senha, nomePrincipal, sobreNome, Genero, Cpf, dataNascimento, Celular, Cep, Foto, function(callback)
 						{
@@ -196,12 +189,12 @@ app.post('/api/v01/usuariomobile/cadastrar', function(req, res)
 								console.log(callback);
 								res.send(callback);
 							}
-							else 
-							{ 
+							else
+							{
 								res.send(400);
 							}
-						});                                                                	            
-						}	
+						});
+						}
                                         }
                         });
                 }
@@ -212,13 +205,13 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         var AccountId = req.body.accountid;
         var Foto      = req.body.foto;
         //var Condition = { _id: new ObjectID(AccountId)};
-    
+
         console.log('Atualizando foto do ID: ' + req.body.accountid);
         console.log('Tamanho: ' + Foto.length);
 
 // Trecho inicial de teste
         var result = usuariomobile.model.findByIdAndUpdate(AccountId.ToString,{'foto':Foto},{upsert:false},
-                function(err) 
+                function(err)
                     {
                         if(err)
                         {
@@ -239,12 +232,12 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
         console.log(result);
 // Trecho fim de teste
 
-/*        if(null == AccountId) 
+/*        if(null == AccountId)
 >>>>>>> Issue#5
                 {
                     console.log('Tentativa de atualização da foto com id null.')
                     res.send(400);
-                } 
+                }
         else
                 {
                     account.atualizarFoto(AccountId, Foto, function(callback)
@@ -254,15 +247,15 @@ app.post('/api/v01/usuariomobile/atualizafoto', function(req, res)
                             console.log(callback);
                             res.send(callback);
                         }
-                    else 
-                        { 
+                    else
+                        {
                             res.send(400);
                         }
-                    });                                                                             
+                    });
                 }
 */        });
 
-app.post('/api/v01/usuariomobile/acesso', function(req, res) 
+app.post('/api/v01/usuariomobile/acesso', function(req, res)
         {
                 var Email = req.param('email','');
                 var Senha = req.param('senha','');
@@ -292,7 +285,7 @@ app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
                 var Email               = req.body.email;
                 var Lon                 = req.body.loc.lon;
                 var Lat                 = req.body.loc.lat;
-			
+
 		console.log('Recebi o valor: ' +  Email + ', com longitude: ' + Lon + ' e latitude: ' + Lat);
 
                 if (null == Email || Email.length < 5)
@@ -303,7 +296,7 @@ app.post('/api/v01/usuariomobile/esqueceu', function(req, res)
 
                 account.forgotPassword(Email, Lon, Lat, resetPasswordUrl, function(success)
                 {
-                        if (success) 
+                        if (success)
                                 {
                                         res.send(200);
                                 }
@@ -327,7 +320,7 @@ app.post('/api/v01/usuariomobile/restaurar', function(req, res)
         var Senha       = req.param('password',null);
 		var condition   = { usuarioid: new ObjectID(accountId), utilizou: false };
 
-		if (null  != accountId && null != Senha) 
+		if (null  != accountId && null != Senha)
                         {
                         	restorepassword.model.update(condition,{$set:{utilizou:true}},{upsert:false, multi:true},
                                         function(erro,doc)
@@ -345,7 +338,7 @@ app.post('/api/v01/usuariomobile/restaurar', function(req, res)
 								res.send(400);
 							}
 							else
-							{ 
+							{
 								account.changePassword(accountId, Senha, function(callback)
                                     				{
                                         				if(callback)
@@ -387,7 +380,7 @@ app.get('/api/v01/usuariomobile/recuperarusuario', function(req, res)
                             else
                                     {
                                         console.log('Usuário: ' + Email + ' não encontrado.');
-                                        res.send(400);                                                
+                                        res.send(400);
                                     }
                         });
                 }
@@ -409,12 +402,12 @@ app.get('/api/v01/usuariomobile/recuperarusuario', function(req, res)
 //
 app.use(function(err, req, res, next)
         {
-        if (req.xhr) 
+        if (req.xhr)
                 {
                 res.send(500, 'Algo deu errado Sam!');
                 res.end;
-                } 
-        else 
+                }
+        else
                 {
                 next(err);
                 }
@@ -426,4 +419,3 @@ app.use(function(err, req, res, next)
 console.log('Iniciando o Web server iChose');
 //app.listen(8080)
 console.log('Webserver está escutando na port 80.');
-
