@@ -102,7 +102,7 @@ appProvider.set('view engine', 'ejs');
 app.use(morgan('dev'));     //log every request to the console
 app.use(cookieParser());    // read cookies (need for auth)
 app.use(bodyParser.json()); //get information from html forms
-app.use(bodyParser.urlencoded({extended: true});
+app.use(bodyParser.urlencoded({extended: true}));
 
 // required for passport
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));  // session secret
