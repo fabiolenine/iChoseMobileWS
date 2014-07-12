@@ -150,8 +150,8 @@ app.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res)
         {
-        appProvider.set('views', '../ichoseprovider');
-        appProvider.use(express.static('../ichoseprovider'));
+        appProvider.set('views', __dirname+'/ichoseprovider'); //old ../
+        //appProvider.use(express.static('../ichoseprovider'));
         appProvider.engine('html', require('ejs').renderFile);
         appProvider.set('view engine', 'html');
         res.render('dashboard.html');
