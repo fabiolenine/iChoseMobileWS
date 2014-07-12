@@ -145,8 +145,8 @@ app.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res)
         {
-        appProvider.set('views', __dirname+'/ichoseprovider'); //old ../
-        res.render('dashboard');
+        appProvider.set('views', __dirname+'../ichoseprovider');
+        res.render('dashboard.ejs');
         });
 
 appProvider.get('/verao2015/', function(req,res)
