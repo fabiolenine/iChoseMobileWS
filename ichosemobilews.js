@@ -30,10 +30,11 @@ var morgan              = require('morgan');
 var cookieParser        = require('cookie-parser');
 var bodyParser          = require('body-parser');
 var session             = require('express-session');
+var vhost               = require('vhost');
 //var MemoryStore         = require('connect').session.MemoryStore;
 var MemoryStore         = require('connect').session;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
-var restorepassword	   = require('./modulos/RestorePasswordModel.js');
+var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
 var appProvider         = express();
