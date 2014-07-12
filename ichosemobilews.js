@@ -31,13 +31,14 @@ var cookieParser        = require('cookie-parser');
 var bodyParser          = require('body-parser');
 var session             = require('express-session');
 //var MemoryStore         = require('connect').session.MemoryStore;
+var MemoryStore         = require('connect').session;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	   = require('./modulos/RestorePasswordModel.js');
 
 var app                 = express();
 var appProvider         = express();
 
-app.use(express.vhost('provider.ichose.com.br',appProvider));
+app.use(vhost('provider.ichose.com.br',appProvider));
 
 http.createServer(app).listen(80);
 //https.createServer(options,app).listen(443);
