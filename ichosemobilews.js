@@ -145,7 +145,7 @@ app.get('/', function(req,res)
 
 appProvider.get('/dashboard/', function(req,res)
         {
-        appProvider.set('views', __dirname+'../ichoseprovider');
+        appProvider.set('views', '../ichoseprovider');
         res.render('dashboard.ejs');
         });
 
