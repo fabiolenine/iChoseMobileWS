@@ -31,7 +31,6 @@ var cookieParser        = require('cookie-parser');
 var bodyParser          = require('body-parser');
 var session             = require('express-session');
 //var MemoryStore         = require('connect').session.MemoryStore;
-var MemoryStore         = require('connect').session;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	   = require('./modulos/RestorePasswordModel.js');
 
