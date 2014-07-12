@@ -6,7 +6,7 @@ module.exports = function(app, passport) {
   // =====================================
 
   app.set('views', '../ichoseprovider');
-  app.use(express.static('../ichoseprovider'));
+  //app.use(express.static('../ichoseprovider'));
 
   app.get('/', function(req, res)
   {
