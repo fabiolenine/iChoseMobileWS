@@ -5,11 +5,10 @@ module.exports = function(app, passport) {
   // HOME PAGE (with login links) ========
   // =====================================
 
-  app.set('views', '../ichoseprovider');
-  //app.use(express.static('../ichoseprovider'));
-
+  
   app.get('/', function(req, res)
   {
+    app.set('views', '../ichoseprovider');
     res.render('index.ejs'); // load the index.ejs file
   });
 
@@ -45,6 +44,12 @@ module.exports = function(app, passport) {
     res.redirect('/');
   });
 };
+
+app.get('/dashboard/', function(req,res)
+        {
+        app.set('views', '../ichoseprovider');
+        res.render('dashboard.ejs');
+        });
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

@@ -143,12 +143,6 @@ app.get('/', function(req,res)
         res.send('localhost funcionou na porta 80');
         });
 
-appProvider.get('/dashboard/', function(req,res)
-        {
-        appProvider.set('views', '../ichoseprovider');
-        res.render('dashboard.ejs');
-        });
-
 appProvider.get('/verao2015/', function(req,res)
         {
         appProvider.set('views', __dirname+'/ichosehotsite/iChoseWebSite');
