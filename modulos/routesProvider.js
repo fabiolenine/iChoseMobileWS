@@ -43,13 +43,15 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
-};
-
-app.get('/dashboard/', function(req,res)
+    
+app.get('/dashboard', function(req,res)
         {
         app.set('views', '../ichoseprovider');
         res.render('dashboard.ejs');
         });
+    
+};
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
