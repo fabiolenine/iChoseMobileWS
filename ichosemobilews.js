@@ -138,10 +138,6 @@ require('./modulos/routesProvider.js')(appProvider, passport); // load our route
 // Roteamento dos sites do ecosistema iChose.
 //
 // roteamento do hotsite
-app.get('/', function(req,res)
-        {
-        res.send('localhost funcionou na porta 80');
-        });
 
 appProvider.get('/verao2015/', function(req,res)
         {
