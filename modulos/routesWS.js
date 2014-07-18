@@ -21,10 +21,10 @@ module.exports = function(app, passport) {
 	// LOGIN ===============================
 	// =====================================
 	// show the login form
-	app.get('/login', function(req, res) {
-
+	app.get('/hotsite', function(req, res) {
+        app.set('views', './ichosehotsite/iChoseWebSite');
 		// render the page and pass in any flash data if it exists
-		res.render('login.ejs', { message: req.flash('loginMessage') });
+		res.render('index.ejs');
 	});
 
 	// process the login form
