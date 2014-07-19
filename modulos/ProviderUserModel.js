@@ -16,13 +16,15 @@ var provideruserSchema = mongoose.Schema({
 // methods
 // generating a hash
 provideruserSchema.methods.generateHash = function(password)
-{
+{   
+    console.log('Acessou o metodo generateHash.');
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
 provideruserSchema.methods.validPassword = function(password)
 {
+    console.log('Acessou o metodo validPassword.');
     return bcrypt.compareSync(password, this.local.password);
 };
 
