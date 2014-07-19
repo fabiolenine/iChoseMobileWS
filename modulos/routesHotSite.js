@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 	});
 
 	// =====================================
-	// LOGIN ===============================
+	// HOME  ===============================
 	// =====================================
 	// show the login form
 	app.get('/hotsite', function(req, res) {

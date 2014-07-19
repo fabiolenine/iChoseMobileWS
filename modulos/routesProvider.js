@@ -1,37 +1,34 @@
 // app/routesProvider.js
 module.exports = function(app, passport) {
 
+    app.set('views', '../ichoseprovider');
+    
   // =====================================
   // HOME PAGE (with login links) ========
   // =====================================
-
-  
-  app.get('/', function(req, res)
-  {
-    app.set('views', '../ichoseprovider');
-    res.render('index.ejs'); // load the index.ejs file
-  });
-
   // =====================================
   // LOGIN ===============================
   // =====================================
   // show the login form
-  app.get('/login', function(req, res) {
+  
+    app.get('/', function(req, res) {
+        res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
+    });
 
-    // render the page and pass in any flash data if it exists
-    res.render('login.ejs', { message: req.flash('loginMessage') });
-  });
-
-  // process the login form
-  // app.post('/login', do all our passport stuff here);
+    // process the login form
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect   : '/dashboard', // redirect to the secure profile section
+		failureRedirect   : '/',          // redirect back to the signup page if there is an error
+		failureFlash      : true          // allow flash messages
+	}));
 
   // =====================================
   // PROFILE SECTION =====================
   // =====================================
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
-  app.get('/forgot', isLoggedIn, function(req, res) {
-    res.render('forgot.ejs', {
+  app.get('/dashboard', isLoggedIn, function(req, res) {
+    res.render('dashboard.ejs', {
       user : req.user // get the user out of session and pass to template
     });
   });
@@ -43,11 +40,15 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
-    
-app.get('/dashboard', function(req,res)
+
+    app.get('/forgot', function(req,res)
         {
-        app.set('views', '../ichoseprovider');
-        res.render('dashboard.ejs');
+        res.render('forgot.ejs');
+        });
+
+    app.get('/accessdenied', function(req,res)
+        {
+        res.render('accessdenied.ejs');
         });
     
 };
@@ -61,5 +62,5 @@ function isLoggedIn(req, res, next) {
     return next();
 
   // if they aren't redirect them to the home page
-  res.redirect('/');
+  res.redirect('/accessdenied');
 }
