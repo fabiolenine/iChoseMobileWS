@@ -14,12 +14,6 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
-
-    	app.get('/loginteste', function(req, res) {
-
-		// render the page and pass in any flash data if it exists
-		res.render('loginteste.ejs', { message: req.flash('loginMessage') }); 
-	});
     
     // process the login form
 	app.post('/login', passport.authenticate('local-login', {
