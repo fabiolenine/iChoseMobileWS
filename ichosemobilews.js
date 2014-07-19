@@ -147,14 +147,7 @@ require('./modulos/routesProvider.js')(appProvider, passport);  // load our rout
 
 require('./modulos/routesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
 
-// ------------------------------------------------------------------------
-// set up Express routes to handle incoming requests
-//
-// roteamento do serviçoweb
-appMobileWS.get('/api/', function(req,res)
-        {
-        res.send('Olá Sam Bell, estou aqui para lhe ajudar!');
-        });
+
 
 
 // ------------------------------------------------------------------------
