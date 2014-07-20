@@ -3,14 +3,14 @@ module.exports = function(app, passport) {
 
     app.set('views', '../ichoseprovider');
     
-  // =====================================
-  // HOME PAGE (with login links) ========
-  // =====================================
-  // =====================================
-  // LOGIN ===============================
-  // =====================================
-  // show the login form
+// =====================================
+// HOME PAGE (with login links) ========
+// =====================================
   
+// =====================================
+// LOGIN ===============================
+// =====================================
+// show the login form  
     app.get('/', function(req, res) {
         res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
@@ -22,21 +22,32 @@ module.exports = function(app, passport) {
 		failureFlash      : true              // allow flash messages
 	}));
 
-  // =====================================
-  // PROFILE SECTION =====================
-  // =====================================
-  // we will want this protected so you have to be logged in to visit
-  // we will use route middleware to verify this (the isLoggedIn function)
+// =====================================
+// DashBoard SECTION =====================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
   app.get('/dashboard', isLoggedIn, function(req, res) {
     res.render('dashboard.ejs', {
       user : req.user // get the user out of session and pass to template
     });
   });
+    
+// =====================================
+// DashBoard SECTION =====================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/perfil', isLoggedIn, function(req, res) {
+    res.render('perfil.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
 
-    // =====================================
-	// SIGNUP ==============================
-	// =====================================
-	// show the signup form
+// =====================================
+// SIGNUP ==============================
+// =====================================
+// show the signup form
 	app.get('/signup', function(req, res) {
 		// render the page and pass in any flash data if it exists
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
@@ -49,14 +60,17 @@ module.exports = function(app, passport) {
 		failureFlash      : true          // allow flash messages
 	}));
     
-  // =====================================
-  // LOGOUT ==============================
-  // =====================================
+// =====================================
+// LOGOUT ==============================
+// =====================================
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
+// =====================================
+// Forgot ==============================
+// =====================================    
     app.get('/forgot', function(req,res)
         {
         res.render('forgot.ejs');
