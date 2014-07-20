@@ -109,7 +109,7 @@ app.use(bodyParser.json()); //get information from html forms
 app.use(bodyParser.urlencoded({extended: true}));
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));  // session secret
+app.use(session({ secret: 'jacagueiprontoagoravamosfudersuaputa' }));  // session secret
 app.use(passport.initialize());
 app.use(passport.session());                                     // persistent login sessions
 app.use(flash());                                                // use connect-flash for flash messages stored in session
@@ -122,7 +122,7 @@ appProvider.use(bodyParser.json()); //get information from html forms
 appProvider.use(bodyParser.urlencoded({extended: true}));
 
 // required for passport
-appProvider.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));  // session secret
+appProvider.use(session({ secret: 'jacagueiprontoagoravamosfudersuaputa' }));  // session secret
 appProvider.use(passport.initialize());
 appProvider.use(passport.session());                                     // persistent login sessions
 appProvider.use(flash());
@@ -135,7 +135,7 @@ appMobileWS.use(bodyParser.json()); //get information from html forms
 appMobileWS.use(bodyParser.urlencoded({extended: true}));
 
 // required for passport
-appMobileWS.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));  // session secret
+appMobileWS.use(session({ secret: 'jacagueiprontoagoravamosfudersuaputa' }));  // session secret
 appMobileWS.use(passport.initialize());
 appMobileWS.use(passport.session());                                     // persistent login sessions
 appMobileWS.use(flash());
