@@ -1,6 +1,6 @@
 // app/routesWS.js
 module.exports = function(app, passport) {
-
+    var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
     app.set('views', './ichosehotsite/iChoseWebSite');
 
 	// =====================================
@@ -36,8 +36,23 @@ module.exports = function(app, passport) {
 	// Registro de email e redirecionamento de página.
     
     app.post('/emailverao2015',function(req, res) {
-     console.log(req.param);   
-     console.log(req.param);
+        var email = req.body.email;
+        if (null == Email || Email.length < 5)
+                {
+                        res.send(400);
+                        return;
+                }
+        hotsitedetalhes.emailVerao2015(Email, function(success)
+                {
+                        if (success)
+                                {
+                                        res.send(200);
+                                }
+                        else
+                                {
+                                        res.send(404);
+                                }
+                });
     });
 
 	// =====================================

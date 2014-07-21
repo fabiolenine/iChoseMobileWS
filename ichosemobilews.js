@@ -42,6 +42,7 @@ var appMobileWS         = express();
 
 app.use(vhost('provider.ichose.com.br',appProvider));
 app.use(vhost('mobilews.ichose.com.br',appMobileWS));
+app.use(vhost('counter.ichose.com.br',appCounter));
 
 http.createServer(app).listen(80);
 //https.createServer(options,app).listen(443);
@@ -67,9 +68,6 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 var db;              // our MongoDb database
 
 var account               = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
-//Implementar as rotas e as funções antes de liberar.
-//var evento              = require('./modulos/Event.js')(mongoose);
-//var processo            = require('./modulos/Process.js')(mongoose);
 
 var ObjectID 		      = mongoose.Types.ObjectId;
 
@@ -140,14 +138,27 @@ appMobileWS.use(passport.initialize());
 appMobileWS.use(passport.session());                                     // persistent login sessions
 appMobileWS.use(flash());
 
+// Declaração de configuração para a rota Counter
+// set up our express application
+appCounter.use(morgan('dev'));     //log every request to the console
+appCounter.use(cookieParser());    // read cookies (need for auth)
+appCounter.use(bodyParser.json()); //get information from html forms
+appCounter.use(bodyParser.urlencoded({extended: true}));
+
+// required for passport
+appCounter.use(session({ secret: 'jacagueiprontoagoravamosfudersuaputa' }));  // session secret
+appCounter.use(passport.initialize());
+appCounter.use(passport.session());                                     // persistent login sessions
+appCounter.use(flash());
+
 // routes
 require('./modulos/routesHotSite.js')(app, passport);           // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesProvider.js')(appProvider, passport);  // load our routes and pass in our app and fully configured passport
+require('./modulos/RoutesProvider.js')(appProvider, passport);  // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
+require('./modulos/RoutesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
 
-
+require('./modulos/RoutesCounter.js')(appMobileWS, passport);   // load our routes and pass in our app and fully configured passport
 
 
 // ------------------------------------------------------------------------
