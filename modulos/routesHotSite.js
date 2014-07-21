@@ -1,6 +1,6 @@
 // app/routesWS.js
 module.exports = function(app, passport) {
-    var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
+    var hotsitedetalhes = require('/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
     app.set('views', './ichosehotsite/iChoseWebSite');
 
 	// =====================================
