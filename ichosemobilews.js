@@ -39,6 +39,7 @@ var restorepassword	    = require('./modulos/RestorePasswordModel.js');
 var app                 = express();
 var appProvider         = express();
 var appMobileWS         = express();
+var appCounter          = express();
 
 app.use(vhost('provider.ichose.com.br',appProvider));
 app.use(vhost('mobilews.ichose.com.br',appMobileWS));
