@@ -1,6 +1,6 @@
 // app/routesWS.js
 module.exports = function(app, passport) {
-    var hotsitedetalhes = require('/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
+    //var hotsitedetalhes = require('~/ichosemobilews/modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
     app.set('views', './ichosehotsite/iChoseWebSite');
 
 	// =====================================
@@ -42,17 +42,17 @@ module.exports = function(app, passport) {
                         res.send(400);
                         return;
                 }
-        hotsitedetalhes.emailVerao2015(Email, function(success)
-                {
-                        if (success)
-                                {
-                                        res.send(200);
-                                }
-                        else
-                                {
-                                        res.send(404);
-                                }
-                });
+//        hotsitedetalhes.emailVerao2015(Email, function(success)
+//                {
+//                        if (success)
+//                                {
+//                                        res.send(200);
+//                                }
+//                        else
+//                                {
+//                                        res.send(404);
+//                                }
+//                });
     });
 
 	// =====================================
