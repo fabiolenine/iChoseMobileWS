@@ -159,7 +159,7 @@ require('./modulos/routesProvider.js')(appProvider, passport);  // load our rout
 
 require('./modulos/routesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesCounter.js')(appMobileWS, passport);   // load our routes and pass in our app and fully configured passport
+require('./modulos/RoutesCounter.js')(appCounter, passport);   // load our routes and pass in our app and fully configured passport
 
 
 // ------------------------------------------------------------------------
