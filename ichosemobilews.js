@@ -155,11 +155,11 @@ appCounter.use(flash());
 // routes
 require('./modulos/routesHotSite.js')(app, passport);           // load our routes and pass in our app and fully configured passport
 
-require('./modulos/RoutesProvider.js')(appProvider, passport);  // load our routes and pass in our app and fully configured passport
+require('./modulos/routesProvider.js')(appProvider, passport);  // load our routes and pass in our app and fully configured passport
 
-require('./modulos/RoutesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
+require('./modulos/routesMobileWS.js')(appMobileWS, passport);  // load our routes and pass in our app and fully configured passport
 
-require('./modulos/RoutesCounter.js')(appMobileWS, passport);   // load our routes and pass in our app and fully configured passport
+require('./modulos/routesCounter.js')(appMobileWS, passport);   // load our routes and pass in our app and fully configured passport
 
 
 // ------------------------------------------------------------------------

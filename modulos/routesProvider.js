@@ -1,7 +1,7 @@
 // app/routesProvider.js
 module.exports = function(app, passport) {
 
-    app.set('views', '../ichoseprovider');
+    app.set('views', '../iChoseProviderWeb');
     
 // =====================================
 // HOME PAGE (with login links) ========

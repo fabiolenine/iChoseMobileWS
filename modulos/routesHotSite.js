@@ -1,7 +1,7 @@
 // app/routesWS.js
 module.exports = function(app, passport) {
     //var hotsitedetalhes = require('~/ichosemobilews/modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
-    app.set('views', './ichosehotsite/iChoseWebSite');
+    app.set('views', '../iChoseWebSite');
 
 	// =====================================
 	// HOME PAGE (with login links) ========
