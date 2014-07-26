@@ -1,7 +1,7 @@
-// app/routesProvider.js
+//RoutesManagement.js
 module.exports = function(app, passport) {
 
-    app.set('views', '../iChoseProviderWeb');
+    app.set('views', '../iChoseManagementWeb');
     
 // =====================================
 // HOME PAGE (with login links) ========
@@ -16,14 +16,14 @@ module.exports = function(app, passport) {
     });
     
     // process the login form
-	app.post('/login', passport.authenticate('local-login-provider', {
+	app.post('/login', passport.authenticate('local-login-management', {
 		successRedirect   : '/dashboard',     // redirect to the secure profile section
 		failureRedirect   : '/accessdenied',  // redirect back to the signup page if there is an error
 		failureFlash      : true              // allow flash messages
 	}));
 
 // =====================================
-// DashBoard SECTION =====================
+// DashBoard SECTION ====================
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
@@ -34,12 +34,23 @@ module.exports = function(app, passport) {
   });
     
 // =====================================
-// DashBoard SECTION =====================
+// Perfil SECTION =====================
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/perfil', isLoggedIn, function(req, res) {
     res.render('perfil.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+
+// =====================================
+// Fornecedores SECTION ================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/provider', isLoggedIn, function(req, res) {
+    res.render('provider.ejs', {
       user : req.user // get the user out of session and pass to template
     });
   });
@@ -54,8 +65,8 @@ module.exports = function(app, passport) {
 	});
     
     // process the signup form
-	app.post('/signup', passport.authenticate('local-signup-provider', {
-		successRedirect   : '/dashboard', // redirect to the secure profile section
+	app.post('/signup', passport.authenticate('local-signup-management', {
+		successRedirect   : '/terminal', // redirect to the secure profile section
 		failureRedirect   : '/signup',    // redirect back to the signup page if there is an error
 		failureFlash      : true          // allow flash messages
 	}));
@@ -69,15 +80,13 @@ module.exports = function(app, passport) {
   });
 
 // =====================================
-// Forgot ==============================
+// Esquecer ============================
 // =====================================    
-    app.get('/forgot', function(req,res)
-        {
+    app.get('/forgot', function(req,res){
         res.render('forgot.ejs');
         });
 
-    app.get('/accessdenied', function(req,res)
-        {
+    app.get('/accessdenied', function(req,res){
         res.render('accessdenied.ejs');
         });
     
