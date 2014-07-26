@@ -88,7 +88,7 @@ module.exports = function(passport)
 
   				          // if there is no user with that email
                         // create the user
-                        var newUser            = new User();
+                        var newUser            = new UserProvider();
 
                         // set the user's local credentials
                         newUser.local.email    = email;
@@ -137,7 +137,7 @@ module.exports = function(passport)
 
   				          // if there is no user with that email
                         // create the user
-                        var newUser            = new User();
+                        var newUser            = new UserManagement();
 
                         // set the user's local credentials
                         newUser.local.email    = email;
@@ -186,7 +186,7 @@ module.exports = function(passport)
 
   				          // if there is no user with that email
                         // create the user
-                        var newUser            = new User();
+                        var newUser            = new UserCounter();
 
                         // set the user's local credentials
                         newUser.local.email    = email;
