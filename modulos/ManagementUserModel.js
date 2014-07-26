@@ -20,7 +20,7 @@ managementuserSchema.methods.generateHash = function(password)
 };
 
 // checking if password is valid
-provideruserSchema.methods.validPassword = function(password)
+managementuserSchema.methods.validPassword = function(password)
 {
     return bcrypt.compareSync(password, this.local.password);
 };
