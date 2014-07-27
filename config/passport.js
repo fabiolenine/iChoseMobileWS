@@ -112,9 +112,9 @@ module.exports = function(passport)
     {
       // by default, local strategy uses username and password, we will override with email
       usernameField     : 'email',
-      passwordField     : 'password',
+      passwordField     : 'senha',
       passReqToCallback : true // allows us to pass back the entire request to the callback
-    },function(req, email, password, done)
+    },function(req, email, senha, done)
         {
           // asynchronous
           // User.findOne wont fire unless data is sent back
@@ -141,7 +141,7 @@ module.exports = function(passport)
 
                         // set the user's local credentials
                         newUser.local.email    = email;
-                        newUser.local.password = newUser.generateHash(password);
+                        newUser.local.password = newUser.generateHash(senha);
 
   				              // save the user
                         newUser.save(function(err)
@@ -239,15 +239,15 @@ module.exports = function(passport)
     
     
 // =========================================================================
-// LOCAL LOGIN Management===================================================
+// LOCAL LOGIN Management ==================================================
 // =========================================================================
     passport.use('local-login-management', new localStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'password',
+        passwordField : 'senha',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) { // callback with email and password from our form
+    function(req, email, senha, done) { // callback with email and password from our form
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
         UserManagement.findOne({ 'local.email' :  email }, function(err, user) {
@@ -260,7 +260,7 @@ module.exports = function(passport)
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
 
 			// if the user is found but the password is wrong
-            if (!user.validPassword(password))
+            if (!user.validPassword(senha))
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
