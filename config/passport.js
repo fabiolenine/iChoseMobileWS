@@ -7,7 +7,7 @@ var UserManagement  = require('../modulos/ManagementUserModel.js');
 var UserCounter     = require('../modulos/CounterUserModel.js');
 
 // expose this function to our app using module.exports
-module.exports = function(passport)
+module.exports = function(senha)
 {
 //
 // passport session setup
