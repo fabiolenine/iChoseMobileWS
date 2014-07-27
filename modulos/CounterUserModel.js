@@ -4,8 +4,8 @@ var counteruserSchema;
 
 // define the schema for our user model
 var counteruserSchema = mongoose.Schema({
-                                            local       : { email       : String,
-                                                            password    : String}
+                                            local       : { email   : String,
+                                                            senha   : String}
 //                                            ,
 //                                            nome        : String,
 //                                            cargo       : String,

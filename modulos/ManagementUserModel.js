@@ -4,8 +4,8 @@ var managementuserSchema;
 
 // define the schema for our user model
 var managementuserSchema = mongoose.Schema({
-                                            local       : { email       : String,
-                                                            password    : String}
+                                            local       : { email   : String,
+                                                            senha   : String}
 //                                            ,
 //                                            nome        : String,
 //                                            cargo       : String,
