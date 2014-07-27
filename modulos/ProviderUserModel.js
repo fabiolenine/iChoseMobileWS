@@ -4,8 +4,8 @@ var provideruserSchema;
 
 // define the schema for our user model
 var provideruserSchema = mongoose.Schema({
-                                            local       : { email   : String,
-                                                            senha   : String}
+                                            local       : { email       : String,
+                                                            password    : String}
 //                                            ,
 //                                            nome        : String,
 //                                            cargo       : String,

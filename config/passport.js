@@ -7,7 +7,7 @@ var UserManagement  = require('../modulos/ManagementUserModel.js');
 var UserCounter     = require('../modulos/CounterUserModel.js');
 
 // expose this function to our app using module.exports
-module.exports = function(password)
+module.exports = function(passport)
 {
 //
 // passport session setup
@@ -16,14 +16,14 @@ module.exports = function(password)
 // passport needs ability to serialize and unserialize users out of session
 
 // used to serialize the user for the session
-  password.serializeUser(function(user, done)
+  passport.serializeUser(function(user, done)
   {
     done(null, user.id);
   });
 
 // used to deserialize the user
 // Melhorar esse DeserializeUse área de risco de segurança
-  password.deserializeUser(function(id, done)
+  passport.deserializeUser(function(id, done)
   {
     UserProvider.findById(id, function(err, user)
     {   
