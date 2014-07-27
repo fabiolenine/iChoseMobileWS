@@ -14,15 +14,15 @@ var managementuserSchema = mongoose.Schema({
 
 // methods
 // generating a hash
-managementuserSchema.methods.generateHash = function(senha)
+managementuserSchema.methods.generateHash = function(password)
 {   
-    return bcrypt.hashSync(senha, bcrypt.genSaltSync(8), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-managementuserSchema.methods.validPassword = function(senha)
+managementuserSchema.methods.validPassword = function(password)
 {
-    return bcrypt.compareSync(senha, this.local.senha);
+    return bcrypt.compareSync(password, this.local.senha);
 };
 
 // create the model for users and expose it to our app

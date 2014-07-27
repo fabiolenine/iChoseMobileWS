@@ -7,7 +7,7 @@ var UserManagement  = require('../modulos/ManagementUserModel.js');
 var UserCounter     = require('../modulos/CounterUserModel.js');
 
 // expose this function to our app using module.exports
-module.exports = function(senha)
+module.exports = function(password)
 {
 //
 // passport session setup
@@ -16,14 +16,14 @@ module.exports = function(senha)
 // passport needs ability to serialize and unserialize users out of session
 
 // used to serialize the user for the session
-  senha.serializeUser(function(user, done)
+  password.serializeUser(function(user, done)
   {
     done(null, user.id);
   });
 
 // used to deserialize the user
 // Melhorar esse DeserializeUse área de risco de segurança
-  senha.deserializeUser(function(id, done)
+  password.deserializeUser(function(id, done)
   {
     UserProvider.findById(id, function(err, user)
     {   
@@ -114,7 +114,7 @@ module.exports = function(senha)
       usernameField     : 'email',
       passwordField     : 'senha',
       passReqToCallback : true // allows us to pass back the entire request to the callback
-    },function(req, email, senha, done)
+    },function(req, email, password, done)
         {
           // asynchronous
           // User.findOne wont fire unless data is sent back
@@ -141,7 +141,7 @@ module.exports = function(senha)
 
                         // set the user's local credentials
                         newUser.local.email = email;
-                        newUser.local.senha = newUser.generateHash(senha);
+                        newUser.local.senha = newUser.generateHash(password);
 
   				              // save the user
                         newUser.save(function(err)
@@ -244,10 +244,10 @@ module.exports = function(senha)
     passport.use('local-login-management', new localStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
-        passwordField : 'senha',
+        passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, senha, done) { // callback with email and password from our form
+    function(req, email, password, done) { // callback with email and password from our form
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
         UserManagement.findOne({ 'local.email' :  email }, function(err, user) {
@@ -260,7 +260,7 @@ module.exports = function(senha)
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
 
 			// if the user is found but the password is wrong
-            if (!user.validPassword(senha))
+            if (!user.validPassword(password))
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
