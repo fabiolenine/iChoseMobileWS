@@ -5,7 +5,7 @@ module.exports = function(config, mongoose, nodemailer)
     var triedemailverao2015 	= require('./TriedEmailVerao2015Model.js');
 
     
-    var envioemail = function(Email, Lon, Lat, confirmarEmailUrl, callback)
+    var envioemail = function(Email, confirmarEmailUrl, callback)
         { 
             //Verificar se o e-mail já foi cadastrado
             //Registrar o novo e-mail
@@ -27,8 +27,9 @@ module.exports = function(config, mongoose, nodemailer)
 						if (doc)
 						{
                             //acrescentar aqui o registro do e-mail no banco e envio
-							var triedverao = new triedemailverao2015.model ({ email      : Email,
-														                       loc        : {type: 'Point', coordinates:[Lon,Lat]}
+							var triedverao = new triedemailverao2015.model ({ email      : Email
+                                                                             //,
+														                      // loc        : {type: 'Point', coordinates:[Lon,Lat]}
 													                         });
                             triedverao.save(function(err) { if(err) {
                       						console.log('Erro, ' + err + ', ao tentar salvar a tentativa de envio repetido a conta: ' + Email);}
@@ -55,7 +56,7 @@ module.exports = function(config, mongoose, nodemailer)
 								else
 								{
 									var verao = new emailverao2015.model ({ email   : Email,
-																            loc     : {type: 'Point', coordinates: [Lon,Lat]},
+																        //    loc     : {type: 'Point', coordinates: [Lon,Lat]},
 																            utilizou: false 
                                												});
                                  	verao.save(function(err) {  if(err) {callback(false);}

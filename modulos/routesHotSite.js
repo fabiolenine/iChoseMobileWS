@@ -38,9 +38,9 @@ module.exports = function(app, passport) {
     app.post('/emailverao2015',function(req, res) {
         var hostname            = req.headers.host;
         var confirmarEmailURL   = 'http://' + hostname + '/emailverao2015/confirmaremail';
-        var Email = req.body.email;
-        var Lon                 = req.body.loc.lon;
-        var Lat                 = req.body.loc.lat;
+        var Email               = req.body.email;
+        //var Lon                 = req.body.loc.lon;
+        //var Lat                 = req.body.loc.lat;
         
         if (null == Email || Email.length < 5)
                 {
@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
                  }
         else
         {
-            hotsitedetalhes.envioemail(Email, Lon, Lat, confirmarEmailURL,function(success)
+            hotsitedetalhes.envioemail(Email, confirmarEmailURL,function(success)
             {
                 if(success) {res.send(200);}
                 else {res.send(404);}
