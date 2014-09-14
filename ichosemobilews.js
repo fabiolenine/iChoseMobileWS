@@ -71,7 +71,7 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 var db;              // our MongoDb database
 
 var account         = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
-var hotsitedetalhes = require('./HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
+var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 
