@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-var triedrestorepasswordSchema;
+var triedemailverao2015Schema;
 
-triedrestorepasswordSchema = new mongoose.Schema({
-                                        	       	email: 		String,
+triedemailverao2015Schema = new mongoose.Schema({   email: 		String,
                                         	      	timestamp: 	{type: Date, default: Date.now},
 						 	                        loc: 		{type: {type: String},
 									                                   coordinates: [Number]}
                                                 });
+//Depois adicionar o registro de IP.
 
-exports.model = mongoose.model('triedrestorepassword',triedrestorepasswordSchema);
+exports.model = mongoose.model('triedemailverao2015',triedemailverao2015Schema);

@@ -6,7 +6,7 @@ emailverao2015Schema = new mongoose.Schema({
                                         	timestamp: 	{type: Date, default: Date.now},
 											loc: 		{type: {type: 			String},
                                             					coordinates: 	[Number]},
-											utilizou: 		Boolean 
+											utilizou: 	Boolean 
 					});
 
 exports.model = mongoose.model('verao2015email',emailverao2015Schema);
