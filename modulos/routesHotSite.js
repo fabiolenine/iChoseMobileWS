@@ -36,12 +36,15 @@ module.exports = function(app, passport) {
 	// Registro de email e redirecionamento de página.
     
     app.post('/emailverao2015',function(req, res) {
-        var email = req.body.email;
+        var Email = req.body.email;
         if (null == Email || Email.length < 5)
                 {
                         res.send(400);
-                        return;
-                }
+                 }
+        else
+        {
+            res.send(200);
+        };
 //        hotsitedetalhes.emailVerao2015(Email, function(success)
 //                {
 //                        if (success)
