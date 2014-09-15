@@ -50,8 +50,8 @@ module.exports = function(config, mongoose, nodemailer)
 								                                                             subject: 'iChose - Verão 2015.',
 								                                                             text: 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl},function saveemailverao2015(err){ if(err) {callback(false);}
 								                         else    {callback(true);}});    
-                                                                }
-                                                     });    
+                                                                    }
+                                                         });    
 						}
 					}
 				});

@@ -1,14 +1,14 @@
 module.exports = {
-                  service: "SES",
-                  host: "email-smtp.us-west-2.amazonaws.com",
-                  port: 587,
-                  secureConnection: false,
+                  service           : "SES",
+                  host              : "email-smtp.us-west-2.amazonaws.com",
+                  port              : 587,
+                  secureConnection  : false,
                   //name: "servername",
                   auth: {
-                          user: "AKIAJZRVDRAIB6VZ4QSQ",
-                          pass: "AnG/KPjOn557b3BjJDxeAn6G/bjLYCaBm9lOf3GASh0p"
+                          user: "AKIAJKORSFHUALWMOGOA",
+                          pass: "AgYuP3kHPUeCJWyYxVCP/ixk2PKBx4l32D5dnXR9RqJR"
                         },
-                  ignoreTLS: false,
-                  debug: false,
-                  maxConnections: 5 // Default is 5
+                  ignoreTLS         : false,
+                  debug             : false,
+                  maxConnections    : 5 // Default is 5
 }
