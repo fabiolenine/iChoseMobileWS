@@ -1,5 +1,5 @@
 // app/routesWS.js
-module.exports = function(app, passport) {
+module.exports = function(app, passport, hotsitedetalhes) {
     
     app.set('views', '../iChoseWebSite');
 

@@ -169,15 +169,15 @@ appManagementWeb.use(passport.session());                                     //
 appManagementWeb.use(flash());
 
 // routes
-require('./modulos/routesHotSite.js')(app, passport);               // load our routes and pass in our app and fully configured passport
+require('./modulos/routesHotSite.js')(app, passport, hotsitedetalhes);      // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesProvider.js')(appProvider, passport);      // load our routes and pass in our app and fully configured passport
+require('./modulos/routesProvider.js')(appProvider, passport);              // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesMobileWS.js')(appMobileWS, passport);      // load our routes and pass in our app and fully configured passport
+require('./modulos/routesMobileWS.js')(appMobileWS, passport);              // load our routes and pass in our app and fully configured passport
 
-require('./modulos/RoutesCounter.js')(appCounter, passport);        // load our routes and pass in our app and fully configured passport
+require('./modulos/RoutesCounter.js')(appCounter, passport);                // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesManagementWeb.js')(appManagementWeb, passport);  // load our routes and pass in our app and fully configured passport
+require('./modulos/routesManagementWeb.js')(appManagementWeb, passport);    // load our routes and pass in our app and fully configured passport
 
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio do Usuário.
