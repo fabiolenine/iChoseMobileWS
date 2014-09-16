@@ -35,7 +35,7 @@ module.exports = function(config, mongoose, nodemailer)
                                                                                                                    );
                                                                      //confirmarEmailUrl += '/?account=' + doc._id;
 						                                             smtpTransport.sendMail({from: 'verao2015@ichose.com.br',
-                                                                                             to: 'fabiolenine@gmail.com' //doc.email,
+                                                                                             to: 'fabiolenine@gmail.com', //doc.email,
 								                                                             subject: 'iChose - Verão 2015.',
 								                                                             text: 'Confirme aqui o recebimento do e-mail: ' 
                                                                                              //+ confirmarEmailUrl
