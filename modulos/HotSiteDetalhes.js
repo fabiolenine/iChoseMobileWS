@@ -28,13 +28,13 @@ module.exports = function(config, mongoose, nodemailer)
 												                //    loc     : {type: 'Point', coordinates: [Lon,Lat]},
 																      utilizou: false 
                                                                     });
-                            verao.save(function(err,doc) {  if(err) {callback(false);}
+                            verao.save(function(errs,doc) {  if(errs) {callback(false);}
                                                             else    {var smtpTransport = nodemailer.createTransport('SES', config.mail);
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
 						                                             smtpTransport.sendMail({from: 'verao2015@ichose.com.br',
                                                                                              to: doc.email,
 								                                                             subject: 'iChose - Verão 2015.',
-								                                                             text: 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl},function saveemailverao2015(err){ if(err) {callback(false);}
+								                                                             text: 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl},function emailverao2015(erre){ if(erre) {callback(erre);}
 								                         else    {callback(true);}                                                                                                                });    
                                                                     }
                                                          });    
