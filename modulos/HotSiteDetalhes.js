@@ -39,7 +39,7 @@ module.exports = function(config, mongoose, nodemailer)
 								                                                             subject: 'iChose - Verão 2015.',
 								                                                             text: 'Confirme aqui o recebimento do e-mail: ' 
                                                                                              //+ confirmarEmailUrl
-                                                                                            },function emailverao2015(err){ if(err) {callback(err);}
+                                                                                            },function emailverao(err){ if(err) {callback(false);}
 								                         else    {callback(true);}                                                                                                                });    
                                                                     }
                                                          });    
