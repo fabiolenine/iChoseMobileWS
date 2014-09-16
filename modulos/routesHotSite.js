@@ -51,8 +51,8 @@ module.exports = function(app, passport, hotsitedetalhes) {
         {
             hotsitedetalhes.envioemail(Email, confirmarEmailURL,function(success)
             {
-                if(success) {res.send(200);}
-                else {res.send(404);}
+                if(success) {res.send(success);}
+                else {res.send(success);}
             });
         }
     });
