@@ -24,6 +24,7 @@ var mongoose            = require('mongoose');
 var express             = require('express');
 var passport            = require('passport');
 var nodemailer          = require('nodemailer');
+var sesTransport        = require('nodemailer-ses-transport');
 var cons                = require('consolidate');
 var flash               = require('connect-flash');
 var morgan              = require('morgan');
@@ -70,8 +71,8 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 
 var db;              // our MongoDb database
 
-var account         = require('./modulos/Account.js')(configmail, mongoose, nodemailer);
-var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer);
+var account         = require('./modulos/Account.js')(configmail, mongoose, nodemailer, sesTransport);
+var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer, sesTransport);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 

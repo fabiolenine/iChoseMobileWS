@@ -1,4 +1,4 @@
-module.exports = function(config, mongoose, nodemailer)
+module.exports = function(config, mongoose, nodemailer, sesTransport)
 	{
 	var crypto 					= require('crypto');
 	var usuariomobile 			= require('./UsuarioMobileModel.js');
