@@ -30,10 +30,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
                                                             else    {
-var smtpTransport = nodemailer.createTransport(sesTransport({   accessKeyId     : "key.Lenine",
-                                                                secretAccessKey : "AKIAIADQRPL3VGD4OGUA,AB0Oer6VwADbkBEfa++TT70fluv3IxjfLUdTJsfh",
-                                                                region          : "us-west-2",
-                                                                rateLimit       : 1}));
+var smtpTransport = nodemailer.createTransport(sesTransport());
                                                                      //confirmarEmailUrl += '/?account=' + doc._id;
 smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
                         to      : 'fabiolenine@gmail.com', //doc.email,
