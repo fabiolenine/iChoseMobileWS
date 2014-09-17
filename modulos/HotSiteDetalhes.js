@@ -30,8 +30,8 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
                                                             else    {
-var smtpTransport = nodemailer.createTransport(sesTransport({   accessKeyId     : "AKIAJKORSFHUALWMOGOA",
-                                                                secretAccessKey : "AgYuP3kHPUeCJWyYxVCP/ixk2PKBx4l32D5dnXR9RqJR",
+var smtpTransport = nodemailer.createTransport(sesTransport({   accessKeyId     : "key.Lenine",
+                                                                secretAccessKey : "AKIAIADQRPL3VGD4OGUA,AB0Oer6VwADbkBEfa++TT70fluv3IxjfLUdTJsfh",
                                                                 region          : "us-west-2",
                                                                 rateLimit       : 1}));
                                                                      //confirmarEmailUrl += '/?account=' + doc._id;
