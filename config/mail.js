@@ -1,5 +1,5 @@
 module.exports = {
-                  service           : "SES",
+                  service           : "SMTP",
                   host              : "email-smtp.us-west-2.amazonaws.com",
                   port              : 465,
                   secureConnection  : true,
