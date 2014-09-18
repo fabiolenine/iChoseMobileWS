@@ -5,11 +5,13 @@ module.exports = {
                   secureConnection  : true,
                   //name: "servername",
                   auth: {
-                          user: "AKIAJKORSFHUALWMOGOA",
-                          pass: "AgYuP3kHPUeCJWyYxVCP/ixk2PKBx4l32D5dnXR9RqJR"
+                          user: "AKIAIXWOBMI3VNXAMOJA",
+                          pass: "Aj340Qk2iiLHl8SjwyWbJ1gHfR64bHWmvfCwZ6I2fN8m "
                         },
-                  AWSAccessKeyID    : "AKIAJKORSFHUALWMOGOA",
-                  AWSSecretKey      : "AgYuP3kHPUeCJWyYxVCP/ixk2PKBx4l32D5dnXR9RqJR", 
+                  AWSAccessKeyID    : "AKIAIXWOBMI3VNXAMOJA",
+                  AWSSecretKey      : "Aj340Qk2iiLHl8SjwyWbJ1gHfR64bHWmvfCwZ6I2fN8m ", 
+                  accessKeyId       : "AKIAIXWOBMI3VNXAMOJA",
+                  secretAccessKey   : "Aj340Qk2iiLHl8SjwyWbJ1gHfR64bHWmvfCwZ6I2fN8m ", 
                   SeviceUrl         : "email-smtp.us-west-2.amazonaws.com",
                   ignoreTLS         : false,
                   debug             : false,
