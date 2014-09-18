@@ -28,7 +28,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 												                //    loc     : {type: 'Point', coordinates: [Lon,Lat]},
 																      utilizou: false 
                                                                     });
-                            verao.save(function(err,doc) {  if(errs) {callback(false);}
+                            verao.save(function(errs,doc) {  if(errs) {callback(false);}
                                                             else    {
 var smtpTransport = nodemailer.createTransport(sesTransport({   accessKeyId     : "AKIAJPRRTYD76GM7NZIA",
                                                                 secretAccessKey : "Ams02ztkEgkvW/21V6zh8fW5npyB9BrZYOf+AM/nHpBL",
