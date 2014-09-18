@@ -38,7 +38,8 @@ smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
                         subject : 'iChose - Verão 2015.',
 				        text    : 'Confirme aqui o recebimento do e-mail: ' 
                                                                                              //+ confirmarEmailUrl
-                        },function emailverao(err){ if(err) {callback(false);}
+                        },function emailverao(error){ if(error) {   console.log(error);
+                                                                callback(false);}
 								                    else    {callback(true);}                                                                                                                });    
                                                                     }
                                                          });    
