@@ -30,6 +30,8 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
                                                             else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
+                                                                     console.log(config.mail);
+                                                                     console.log(doc._id);
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
 smtpTransport.sendMail({from    : 'fabiolenine@gmail.com',
                         to      : doc.email,
