@@ -29,18 +29,12 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 																      utilizou: false 
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
-                                                            else    {
-var smtpTransport = nodemailer.createTransport(sesTransport({   accessKeyId       : 'AKIAIBDD6BMPW7WRKXSQ',
-                                                                secretAccessKey   : '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',
-                                                                rateLimit         : 1,
-                                                                region            : 'us-west-2'
-                                                                }));
-                                                                     //confirmarEmailUrl += '/?account=' + doc._id;
+                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
+                                                                     confirmarEmailUrl += '/?account=' + doc._id;
 smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
-                        to      : 'fabiolenine@gmail.com', //doc.email,
+                        to      : doc.email,
                         subject : 'iChose - Verão 2015.',
-				        text    : 'Confirme aqui o recebimento do e-mail: ' 
-                                                                                             //+ confirmarEmailUrl
+				        text    : 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl
                         },function emailverao(error){ if(error) {   console.log(error);
                                                                 callback(false);}
 								                    else    {callback(true);}                                                                                                                });    
