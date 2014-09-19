@@ -32,7 +32,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                                                             else    {var smtpTransport = nodemailer.createTransport(sesTransport({  accessKeyId       : 'AKIAINUEXEGOIZHZYUOA'
                     ,secretAccessKey   : 'AtS3twe664K0i4oeOWxshoZqvY/p94zAOOjnvxlPF4u/'
                     ,rateLimit         : 5
-                    //,region            : 'us-west-2'
+                    ,region            : 'us-west-2'
                 }));
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
 smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
