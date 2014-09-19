@@ -35,7 +35,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                     ,region            : 'us-west-2'
                 }));
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
-smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
+smtpTransport.sendMail({from    : 'fabiolenine@gmail.com',
                         to      : Email,
                         subject : 'iChose - Verão 2015.',
 				        text    : 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl
