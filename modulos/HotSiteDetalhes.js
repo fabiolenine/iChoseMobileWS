@@ -29,16 +29,14 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 																      utilizou: false 
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
-                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport({  accessKeyId       : 'AKIAIBDD6BMPW7WRKXSQ',
-                    secretAccessKey   : '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',
-                    rateLimit         : 5,
-                    region            : 'us-west-2'
+                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport({  accessKeyId       : 'AKIAIBDD6BMPW7WRKXSQ'
+                    ,secretAccessKey   : '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'
+                    ,rateLimit         : 5
+                    //,region            : 'us-west-2'
                 }));
-                                                                     console.log(config.mail);
-                                                                     console.log(doc._id);
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
-smtpTransport.sendMail({from    : 'fabiolenine@gmail.com',
-                        to      : doc.email,
+smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
+                        to      : Email,
                         subject : 'iChose - Verão 2015.',
 				        text    : 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl
                         },function emailverao(error){ if(error) {   console.log(error);
