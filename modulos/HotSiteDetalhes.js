@@ -29,7 +29,11 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 																      utilizou: false 
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
-                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
+                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport({  accessKeyId       : 'AKIAIBDD6BMPW7WRKXSQ',
+                    secretAccessKey   : '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',
+                    rateLimit         : 5,
+                    region            : 'us-west-2'
+                }));
                                                                      console.log(config.mail);
                                                                      console.log(doc._id);
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
