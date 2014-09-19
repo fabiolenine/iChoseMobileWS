@@ -31,7 +31,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                             verao.save(function(err,doc) {  if(err) {callback(false);}
                                                             else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
-smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
+smtpTransport.sendMail({from    : 'fabiolenine@gmail.com',
                         to      : doc.email,
                         subject : 'iChose - Verão 2015.',
 				        text    : 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl
