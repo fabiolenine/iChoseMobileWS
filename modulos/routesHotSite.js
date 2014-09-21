@@ -45,14 +45,14 @@ module.exports = function(app, passport, hotsitedetalhes) {
         if (null == Email || Email.length < 5)
                 {
                         console.log(Email);
-                        res.send(400);
+                        res.send(false);
                  }
         else
         {
             hotsitedetalhes.envioemail(Email, confirmarEmailURL,function(success)
             {
-                if(success) {res.send(200);}
-                else {res.send(404);}
+                if(success) {res.send(true);}
+                else {res.send(false;}
             });
         }
     });
