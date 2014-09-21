@@ -52,7 +52,7 @@ module.exports = function(app, passport, hotsitedetalhes) {
             hotsitedetalhes.envioemail(Email, confirmarEmailURL,function(success)
             {
                 if(success) {res.send(true);}
-                else {res.send(false;}
+                else {res.send(false);}
             });
         }
     });
