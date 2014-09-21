@@ -29,13 +29,9 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 																      utilizou: false 
                                                                     });
                             verao.save(function(err,doc) {  if(err) {callback(false);}
-                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport({  accessKeyId       : 'AKIAJGCSQRR2OQLOHX5Q'
-                    ,secretAccessKey   : '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'
-                    ,rateLimit         : 5
-                    ,region            : 'us-west-2'
-                }));
+                                                            else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
                                                                      confirmarEmailUrl += '/?account=' + doc._id;
-smtpTransport.sendMail({from    : 'verao2015@ichose.com.br',
+smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Verão 2015.',
 				        text    : 'Confirme aqui o recebimento do e-mail: ' + confirmarEmailUrl
