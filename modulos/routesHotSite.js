@@ -38,21 +38,20 @@ module.exports = function(app, passport, hotsitedetalhes) {
     app.post('/emailverao2015',function(req, res) {
         var hostname            = req.headers.host;
         var confirmarEmailURL   = 'http://' + hostname + '/emailverao2015/confirmaremail';
+        var cancelarEmailURL    = 'http://' + hostname + '/emailverao2015/cancelaremail';
         var Email               = req.body.email;
         //var Lon                 = req.body.loc.lon;
         //var Lat                 = req.body.loc.lat;
         
         if (null == Email || Email.length < 5)
                 {
-                        console.log(Email);
                         res.send(false);
                  }
         else
         {
-            hotsitedetalhes.envioemail(Email, confirmarEmailURL,function(success)
+            hotsitedetalhes.envioemail(Email, confirmarEmailURL, cancelarEmailURL, function(success)
             {
-                if(success) {res.send(true);}
-                else {res.send(false);}
+                res.send(success);
             });
         }
     });
