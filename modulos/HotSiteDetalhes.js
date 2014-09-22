@@ -35,23 +35,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Verão 2015.',
-                        html    : '<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-    	<!-- Meta, title, CSS, favicons, etc. -->
-    	<!--<meta charset="iso-8859-1"/> -->
-    	<meta charset="utf-8"/>
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-    	<meta name="keywords" content="ichose, provider, baladas, eventos, festas, shows, comanda, digital, danceteria, software, balcão"/>
-    	<meta name="author" content="Fabio Lenine, Jadson Mezzari, Jesualdo Pinheiro and Lucas Assis."/>
-        
-        <link rel="author"                      href="https://google.com/+FabioLenine"/>
-        <link rel="stylesheet"                  href= "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" >       
-        <link rel="stylesheet"                  href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/normalize.min.css" >
-        <link rel="stylesheet"      href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/main.css">
-        <title>iChose - verão 2014/2015</title>
-    </head>
+                        html    : '
     <body>	 	
 			<div class="row-fluid clearfix">
 				<div class="col-md-4 column">
@@ -89,7 +73,6 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
             </li>
         </ul>
     </footer>
-
         </body>'
                         },function emailverao(error){ if(error) {   console.log(error);
                                                                 callback(false);}
