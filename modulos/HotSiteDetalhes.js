@@ -35,46 +35,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Verão 2015.',
-                        html    : '
-    <body>	 	
-			<div class="row-fluid clearfix">
-				<div class="col-md-4 column">
-				</div>
-			    <div class="col-md-4 column" id="glass">
-			        <h3>Olá,</h3>
-			        <h4>Muito legal você ter fornecido o seu e-mail ao iChose.</h4>
-			        <a href="' + confirmarEmailUrl + '" target="_blank">
-                        <h4>Confirme clicando aqui e participe das promoções e sorteios.</h4>
-                    </a>
-                    <h4>Se você não fez esta mudança e acredita que sua conta do Twitter foi comprometida, por favor contate o suporte do Twitter clicando <a href="' + cancelarEmailUrl + '" target="_blank">aqui</a>.</h4>
-                    <h4>Obrigado,</h4>
-                    <h4>iChose</h4>
-		        </div>
-				<div class="col-md-4 column">
-			    </div>
-            </div>
-    <footer>
-        <ul class="footer-area">
-            <li>
-                <img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/logo_desc_footer.png" />
-            </li>
-            <li>
-                <a href="mailto:hello@ichose.com.br" target="_blank">hello@ichose.com.br</a>
-                <span>+55 48 8822 9472</span>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/ichoseapp" target="_blank">
-                    <img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/facebook.png" />
-                </a>
-                <a href="https://twitter.com/ichoseapp" target="_blank">
-                    <img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/twitter.png" />
-                </a>
-                <a href="https://plus.google.com/105051016492501659885" rel="publisher">Google+</a>
-            </li>
-        </ul>
-    </footer>
-        </body>'
-                        },function emailverao(error){ if(error) {   console.log(error);
+                        html    : '<p><b>Olá</b>,</p><p>Muito legal você ter fornecido o seu e-mail ao iChose.</p><p>Confirme clicando aqui e participe das promoções e sorteios: </p>' + confirmarEmailUrl + ' <p>Se você não forneceu o seu email, por favor, cancele a notificação do iChose clicando aqui: </p>' + cancelarEmailUrl + ' <p>Obrigado, iChose.</p>'},function emailverao(error){ if(error) {   console.log(error);
                                                                 callback(false);}
 								                    else    {callback(true);}                                                                                                                });    
                                                                     }
