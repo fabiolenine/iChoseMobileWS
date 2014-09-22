@@ -35,9 +35,8 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Verão 2015.',
-                        html    : '<p><b>Olá</b>,</p><p>Muito legal você ter fornecido o seu e-mail ao iChose.</p><p>Confirme clicando aqui e participe das promoções e sorteios: </p>' + confirmarEmailUrl + ' <p>Se você não forneceu o seu email, por favor, cancele a notificação do iChose clicando aqui: </p>' + cancelarEmailUrl + ' <p>Obrigado, iChose.</p>'},function emailverao(error){ if(error) {   console.log(error);
-                                                                callback(false);}
-								                    else    {callback(true);}                                                                                                                });    
+                        html    : '<p><b>Olá</b>,</p><p>Muito legal você ter fornecido o seu e-mail ao iChose.</p><p><a href="' + confirmarEmailUrl + '" target="_blank">Confirme clicando aqui e participe das promoções e sorteios:</a></p><p>Se você não forneceu o seu email, por favor, cancele a notificação do iChose clicando <a href="' + cancelarEmailUrl + '" target="_blank">aqui</a>.</p><p>Obrigado,</p><p><b>iChose.</b></p>'},function emailverao(error){ if(error) { callback(false);}
+								                                    else {callback(true);}                                                                                                       });    
                                                                     }
                                                          });    
 						}
