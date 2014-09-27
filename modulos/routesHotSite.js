@@ -1,6 +1,8 @@
 // app/routesWS.js
 module.exports = function(app, passport, hotsitedetalhes) {
     
+    var ObjectID 		= mongoose.Types.ObjectId;
+    
     app.set('views', '../iChoseWebSite');
 
 	// =====================================
