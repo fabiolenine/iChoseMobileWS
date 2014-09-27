@@ -62,7 +62,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
         var accountId   = req.param('accountId',null);
         var condition   = { _id: new ObjectID(accountId), utilizou: false };
         console.log('Inicio');
-        res.render('verao2015confirmado.ejs')
+        res.render('verao2015confirmado.ejs');
         
 		//if(null  != accountId){
         //    hotsitedetalhes.confirmaremail(condition,function(success){
@@ -75,7 +75,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
         //            res.render('verao2015confirmado.ejs');
         //        }
         //    });
-        }            
+        //}            
     });
 
 	// =====================================
