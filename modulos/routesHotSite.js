@@ -61,13 +61,15 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     app.get('/emailverao2015/confirmaremail',function(req, res) {
         var accountId   = req.param('accountId',null);
         var condition   = { _id: new ObjectID(accountId), utilizou: false };
-
+        console.log('Inicio');
 		if(null  != accountId){
             hotsitedetalhes.confirmaremail(condition,function(success){
                 if(success){
+                    console.log('Sucesso');
                     res.render('verao2015confirmado.ejs');
                 }
                 else {
+                    console.log('Erro');
                     res.render('verao2015confirmado.ejs');
                 }
             });
