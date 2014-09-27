@@ -61,8 +61,28 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     app.get('/emailverao2015/confirmaremail',function(req, res) {
         var accountId   = req.param('accountId',null);
         var condition   = { _id: new ObjectID(accountId), utilizou: false };
-        console.log('Inicio');
+        console.log(accountId);
         res.render('verao2015confirmado.ejs');
+        
+		//if(null  != accountId){
+        //    hotsitedetalhes.confirmaremail(condition,function(success){
+        //        if(success){
+        //            console.log('Sucesso');
+        //            res.render('verao2015confirmado.ejs');
+        //        }
+        //        else {
+        //            console.log('Erro');
+        //            res.render('verao2015confirmado.ejs');
+        //        }
+        //    });
+        //}            
+    });
+    
+    app.get('/emailverao2015/cancelaremail',function(req, res) {
+        var accountId   = req.param('accountId',null);
+        var condition   = { _id: new ObjectID(accountId), utilizou: false };
+        console.log(condition);
+        res.render('verao2015cancelado.ejs');
         
 		//if(null  != accountId){
         //    hotsitedetalhes.confirmaremail(condition,function(success){
