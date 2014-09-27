@@ -1,5 +1,5 @@
 // app/routesWS.js
-module.exports = function(app, passport, hotsitedetalhes) {
+module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     
     var ObjectID 		= mongoose.Types.ObjectId;
     

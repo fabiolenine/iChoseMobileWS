@@ -170,7 +170,7 @@ appManagementWeb.use(passport.session());                                     //
 appManagementWeb.use(flash());
 
 // routes
-require('./modulos/routesHotSite.js')(app, passport, hotsitedetalhes);      // load our routes and pass in our app and fully configured passport
+require('./modulos/routesHotSite.js')(app, passport, mongoose, hotsitedetalhes);      // load our routes and pass in our app and fully configured passport
 
 require('./modulos/routesProvider.js')(appProvider, passport);              // load our routes and pass in our app and fully configured passport
 
