@@ -55,7 +55,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 				});
 		};
     
-    	var retorno = {"envioemail"		: envioemail};
+    	var retorno = {"envioemail"		: envioemail,
+                       "confirmaremail" : confirmaremail};
 
 	return retorno;	
 }

@@ -68,7 +68,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
                     res.render('verao2015confirmado.ejs');
                 }
                 else {
-                    res.send(500);
+                    res.render('verao2015confirmado.ejs');
                 }
             });
         }            
