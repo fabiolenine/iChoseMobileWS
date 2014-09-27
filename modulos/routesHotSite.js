@@ -42,8 +42,8 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
         var confirmarEmailURL   = 'http://' + hostname + '/emailverao2015/confirmaremail';
         var cancelarEmailURL    = 'http://' + hostname + '/emailverao2015/cancelaremail';
         var Email               = req.body.email;
-        //var Lon                 = req.body.loc.lon;
-        //var Lat                 = req.body.loc.lat;
+        var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
         
         if (null == Email || Email.length < 5)
                 {
@@ -51,7 +51,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
                  }
         else
         {
-            hotsitedetalhes.envioemail(Email, confirmarEmailURL, cancelarEmailURL, function(success)
+            hotsitedetalhes.envioemail(Email, Lat, Loc, confirmarEmailURL, cancelarEmailURL, function(success)
             {
                 res.send(success);
             });
