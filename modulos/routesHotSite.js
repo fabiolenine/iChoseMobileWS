@@ -56,7 +56,7 @@ module.exports = function(app, passport, hotsitedetalhes) {
         }
     });
     
-    app.post('/emailverao2015/confirmaremail',function(req, res) {
+    app.get('/emailverao2015/confirmaremail',function(req, res) {
         var accountId   = req.param('accountId',null);
         var condition   = { _id: new ObjectID(accountId), utilizou: false };
 
