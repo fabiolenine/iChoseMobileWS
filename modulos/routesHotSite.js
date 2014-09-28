@@ -64,9 +64,10 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     
     app.get('/emailverao2015/confirmaremail',function(req, res) {
         var accountId   = req.param('accountId',null);
-        var condition   = { _id: new ObjectID(accountId), utilizou: false };
+        var condition   = { _id: new ObjectID(accountId), confirmado: false };
         console.log(accountId);
         console.log(condition);
+        console.log(req.param('account',null));
         
 		if(null  != accountId){
             hotsitedetalhes.confirmaremail(condition,function(success){
@@ -82,7 +83,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     
     app.get('/emailverao2015/cancelaremail',function(req, res) {
         var accountId   = req.param('accountId',null);
-        var condition   = { _id: new ObjectID(accountId), utilizou: false };
+        var condition   = { _id: new ObjectID(accountId), cancelado: false };
         console.log(condition);
         res.render('verao2015cancelado.ejs');
         
