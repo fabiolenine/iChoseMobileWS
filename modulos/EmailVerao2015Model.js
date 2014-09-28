@@ -4,8 +4,9 @@ var emailverao2015Schema;
 emailverao2015Schema = new mongoose.Schema({
                                        		email: 		String,
                                         	timestamp: 	{type: Date, default: Date.now},
-											loc: 		{type: {type: 			String},
-                                            					coordinates: 	[Number]},
+											loc: 		{type: {type: 	String,
+                                                               enum:    ['Point']},
+                                                         coordinates: 	[Number]},
 											utilizado: 	Boolean,
                                             confirmado: Boolean,
                                             cancelado:  Boolean
