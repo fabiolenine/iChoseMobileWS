@@ -45,6 +45,10 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
         
+        console.log(Loc);
+        console.log(Lat);
+        console.log(Email);
+        
         if (null == Email || Email.length < 5)
                 {
                         res.send(false);

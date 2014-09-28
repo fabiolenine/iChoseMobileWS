@@ -33,7 +33,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
                       						console.log('Erro, ' + err + ', ao tentar salvar a tentativa de envio repetido a conta: ' + Email);}});
 							callback(false);
 						} 
-						else {   
+						else {   console.log('Chegou aqui');
                             var verao = new emailverao2015.model ({   email   : Email,
 												                      loc     : {type: 'Point', coordinates: [Lon,Lat]},
 																      utilizado: false,
