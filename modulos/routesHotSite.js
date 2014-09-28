@@ -63,7 +63,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     });
     
     app.get('/emailverao2015/confirmaremail',function(req, res) {
-        var accountId   = req.param('accountId',null);
+        var accountId   = req.param('account',null);
         var condition   = { _id: new ObjectID(accountId), confirmado: false };
         console.log(accountId);
         console.log(condition);
