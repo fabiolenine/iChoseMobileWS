@@ -15,6 +15,17 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
             });
     };
     
+    var cancelaremail = function(condition, callback)
+    {
+       emailverao2015.model.update(condition,{$set:{cancelado:true}},{upsert:false, multi:true},function(erro,doc){
+                if(erro){callback(false);}
+				else {
+                    if(doc==0){callback(false);}
+				    else {callback(true);}
+                }
+            });
+    };
+    
     var envioemail = function(Email, Lat, Lon, confirmarEmailUrl, cancelarEmailUrl, callback)
         { 
             //Verificar se o e-mail já foi cadastrado
@@ -58,7 +69,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 		};
     
     	var retorno = {"envioemail"		: envioemail,
-                       "confirmaremail" : confirmaremail};
+                       "confirmaremail" : confirmaremail,
+                       "cancelaremail"  : cancelaremail};
 
 	return retorno;	
 }
