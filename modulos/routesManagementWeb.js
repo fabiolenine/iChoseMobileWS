@@ -111,7 +111,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             
         // We'll use the unique header class as a starting point.
 
-        $('.desc_evento_lista').filter(function(){
+        $('.titulo_evento_lista').filter(function(){
 
            // Let's store the data we filter into a variable so we can easily see what's going on.
 
@@ -143,7 +143,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 		        json.dataevento = dataevento;
 	       });
             
-        $('.item_evento item_evento_1').filter(function(){
+        $('src').filter(function(){
 
            // Let's store the data we filter into a variable so we can easily see what's going on.
 
@@ -152,7 +152,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
            // In examining the DOM we notice that the title rests within the first child element of the header tag. 
            // Utilizing jQuery we can easily navigate and get the text by writing the following code:
 
-		        imagembanner = data.children().first().text();
+		        imagembanner = data.attr();
 
            // Once we have our title, we'll store it to the our json object.
 
