@@ -74,7 +74,7 @@ var db;              // our MongoDb database
 
 var account             = require('./modulos/Account.js')(configmail, mongoose, nodemailer, sesTransport);
 var hotsitedetalhes     = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer, sesTransport);
-var ManagementDetalhes  = require('./modulos/ManagementDetalhes.js')(mongoose);
+var ManagementDetalhes  = require('./modulos/ManagementDetalhes.js')(mongoose, resquest);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 
