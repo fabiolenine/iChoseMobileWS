@@ -105,83 +105,18 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         urlyoutube         : "",
                         urlscrapedetalhes  : "",
                         tag                : []};
-            
-            $('span .titulo_evento_lista').each(function(i,elem) {
-              
-                evento = $(this).text();
-                
-                json.evento = evento;
-                
-                lista.unshift(json);
-            });
-
-            console.log(lista.json(', '));
-              
-            res.render(body);
-            
-/*            
-<ul id="fruits">
-  <li class="apple">Apple</li>
-  <li class="orange">Orange</li>
-  <li class="pear">Pear</li>
-</ul>
-            
-            // Finally, we'll define the variables we're going to capture
-
-			
-            
-        // We'll use the unique header class as a starting point.
 
         $('.titulo_evento_lista').filter(function(){
 
-           // Let's store the data we filter into a variable so we can easily see what's going on.
-
 		        var data = $(this);
 
-           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
-           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
-
-		        evento = data.children().first().text();
-
-           // Once we have our title, we'll store it to the our json object.
+		        evento = data.text();
 
 		        json.evento = evento;
 	       });
             
-        $('.data_evento_lista').filter(function(){
-
-           // Let's store the data we filter into a variable so we can easily see what's going on.
-
-		        var data = $(this);
-
-           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
-           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
-
-		        dataevento = data.children().first().text();
-
-           // Once we have our title, we'll store it to the our json object.
-
-		        json.dataevento = dataevento;
-	       });
-            
-        $('src').filter(function(){
-
-           // Let's store the data we filter into a variable so we can easily see what's going on.
-
-		        var data = $(this);
-
-           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
-           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
-
-		        imagembanner = data.attr();
-
-           // Once we have our title, we'll store it to the our json object.
-
-		        json.imagembanner = imagembanner;
-	       });
-            
         console.log(json);
-*/       
+
        }
 
     });
