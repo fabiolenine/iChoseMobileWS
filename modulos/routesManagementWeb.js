@@ -68,28 +68,24 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
 	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6'}, function(error, response, body){
         
-        var self = this;
-        self.items = new Array(); //I feel like I want to save my results in a array;
         
         // Just a basic error check
         if(!error && response.statuscode === 200){ 
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
-            var $ = cheerio.load(body);
-
             //Use jQuery just as in any regular HTML page
             var $ = cheerio.load(body)
                     , $body = $('body')
-                    , $eventos = $body.find('.lista_eventos');
+                    , $eventos = $body.find('.item_evento_1');
 		    //I know .video-entry elements contain the regular sized thumbnails
  
+            var titulos = [];
+            
             $eventos.each(function(i, item){
-                var $titulo = $(item).find('.titulo_evento_lista').text();
-                
-                self.items[i] = {titulo: $titulo.trim()};
+                titulos[i] = $(item).find('.titulo_evento_lista').text();
             });
                 
-            console.log(self.items);
+            console.log(titulos);
 /*            
 <ul id="fruits">
   <li class="apple">Apple</li>
@@ -184,10 +180,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     });
 
             
-    res.render('list', {
-      items: self.items
+    res.render(titulos
       //user : req.user // get the user out of session and pass to template
-    });
+    );
       
   });    
     
