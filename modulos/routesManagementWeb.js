@@ -161,6 +161,7 @@ module.exports = function(app, passport, mongoose, request, ManagementDetalhes) 
             
         console.log(json);
         }
+    };
   });    
     
 // =====================================
