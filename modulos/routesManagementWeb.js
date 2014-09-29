@@ -85,7 +85,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 titulos[i] = $(item).find('.titulo_evento_lista').text();
             });
                 
-            console.log(titulos);
+            console.log(titulos[1]);
+            
+            res.sender(200);
 /*            
 <ul id="fruits">
   <li class="apple">Apple</li>
