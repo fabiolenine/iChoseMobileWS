@@ -184,8 +184,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     });
 
             
-    res.render(json, {
-      user : req.user // get the user out of session and pass to template
+    res.render('list', {
+      items: self.items
+      //user : req.user // get the user out of session and pass to template
     });
       
   });    
