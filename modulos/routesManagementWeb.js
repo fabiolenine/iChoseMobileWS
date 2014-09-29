@@ -1,5 +1,5 @@
 //RoutesManagement.js
-module.exports = function(app, passport, mongoose, ManagementDetalhes) {
+module.exports = function(app, passport, mongoose, request, ManagementDetalhes) {
 
     app.set('views', '../iChoseManagementWeb');
     
