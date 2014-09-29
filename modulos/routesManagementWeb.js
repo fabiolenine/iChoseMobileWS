@@ -178,9 +178,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 	       });
             
         console.log(json);
-        }
+*/       
+       }
+
     });
-  */
+
             
     res.render(json, {
       user : req.user // get the user out of session and pass to template
