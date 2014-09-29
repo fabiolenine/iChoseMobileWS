@@ -32,7 +32,8 @@ var cookieParser        = require('cookie-parser');
 var bodyParser          = require('body-parser');
 var session             = require('express-session');
 var vhost               = require('vhost');
-//var MemoryStore         = require('connect').session.MemoryStore;
+var request             = require('request');
+var cheerio             = require('cheerio');
 var MemoryStore         = require('connect').session;
 var usuariomobile       = require('./modulos/UsuarioMobileModel.js');
 var restorepassword	    = require('./modulos/RestorePasswordModel.js');
@@ -71,8 +72,9 @@ var dbPath  = "mongodb://" +    config.USER + ":" +
 
 var db;              // our MongoDb database
 
-var account         = require('./modulos/Account.js')(configmail, mongoose, nodemailer, sesTransport);
-var hotsitedetalhes = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer, sesTransport);
+var account             = require('./modulos/Account.js')(configmail, mongoose, nodemailer, sesTransport);
+var hotsitedetalhes     = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer, sesTransport);
+var ManagementDetalhes  = require('./modulos/ManagementDetalhes.js')(mongoose);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 
@@ -178,7 +180,7 @@ require('./modulos/routesMobileWS.js')(appMobileWS, passport);              // l
 
 require('./modulos/RoutesCounter.js')(appCounter, passport);                // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesManagementWeb.js')(appManagementWeb, passport);    // load our routes and pass in our app and fully configured passport
+require('./modulos/routesManagementWeb.js')(appManagementWeb, passport, mongoose, ManagementDetalhes);    // load our routes and pass in our app and fully configured passport
 
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio do Usuário.

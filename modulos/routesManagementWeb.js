@@ -1,5 +1,5 @@
 //RoutesManagement.js
-module.exports = function(app, passport) {
+module.exports = function(app, passport, mongoose, ManagementDetalhes) {
 
     app.set('views', '../iChoseManagementWeb');
     
@@ -55,6 +55,114 @@ module.exports = function(app, passport) {
     });
   });
 
+// =====================================
+// Scrape ==============================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/scrape', isLoggedIn, function(req, res) {
+      
+    // The URL we will scrape from BlueTicket.
+
+	url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
+
+    // The structure of our request call
+    // The first parameter is our URL
+    // The callback function takes 4 parameters, an error, response status code and the html
+
+	request(url, function(error, response, body){
+
+        // First we'll check to make sure no errors occurred when making the request
+
+        if(!error){
+            // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
+
+            var $ = cheerio.load(body);
+
+            // Finally, we'll define the variables we're going to capture
+
+			var estabelecimento, 
+                evento, 
+                dataevento, 
+                fornecedorid, 
+                esteblecimentoid, 
+                usuariocadastroid, 
+                imagembanner, 
+                abertura, 
+                inicio, 
+                classificacao, 
+                descricao, 
+                urlyoutube, 
+                urlscrapedetalhes;
+            
+			var json = {estabelecimento    : "",
+					    evento             : "",
+					    dataevento         : "",
+                        fornecedorid       : "",
+                        esteblecimentoid   : "",
+					    usuariocadastroid  : "",
+					    imagembanner       : "",
+                        abertura           : "", 
+                        inicio             : "",
+                        classificacao      : "",
+                        descricao          : "",
+                        urlyoutube         : "",
+                        urlscrapedetalhes  : ""};
+            
+        // We'll use the unique header class as a starting point.
+
+        $('.desc_evento_lista').filter(function(){
+
+           // Let's store the data we filter into a variable so we can easily see what's going on.
+
+		        var data = $(this);
+
+           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
+           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
+
+		        evento = data.children().first().text();
+
+           // Once we have our title, we'll store it to the our json object.
+
+		        json.evento = evento;
+	       });
+            
+        $('.data_evento_lista').filter(function(){
+
+           // Let's store the data we filter into a variable so we can easily see what's going on.
+
+		        var data = $(this);
+
+           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
+           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
+
+		        dataevento = data.children().first().text();
+
+           // Once we have our title, we'll store it to the our json object.
+
+		        json.dataevento = dataevento;
+	       });
+            
+        $('.item_evento item_evento_1').filter(function(){
+
+           // Let's store the data we filter into a variable so we can easily see what's going on.
+
+		        var data = $(this);
+
+           // In examining the DOM we notice that the title rests within the first child element of the header tag. 
+           // Utilizing jQuery we can easily navigate and get the text by writing the following code:
+
+		        imagembanner = data.children().first().text();
+
+           // Once we have our title, we'll store it to the our json object.
+
+		        json.imagembanner = imagembanner;
+	       });
+            
+        console.log(json);
+        }
+  });    
+    
 // =====================================
 // SIGNUP ==============================
 // =====================================

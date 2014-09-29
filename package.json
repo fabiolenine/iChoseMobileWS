@@ -27,6 +27,8 @@
                         "cookie-parser"             : "~1.0.0"    ,
                         "method-override"           : "~1.0.0"    ,
                         "express-session"           : "~1.0.0"    ,
-                        "vhost"                     : "~2.0.0"
+                        "vhost"                     : "~2.0.0"    ,
+                        "request"                   : "lastest"   ,
+                        "cheerio"                   : "lastest"
                         }
 }

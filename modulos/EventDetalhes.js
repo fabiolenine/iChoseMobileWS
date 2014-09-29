@@ -6,9 +6,7 @@ module.exports = function(mongoose)
 
 
 
-	var retorno =  {
-					"listbalad"			: listbalad
-					};
-	
+    var retorno = {"eventoscrape"	: eventoscrape};
+
 	return retorno;	
 	}
