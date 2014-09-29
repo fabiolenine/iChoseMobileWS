@@ -63,10 +63,15 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   app.get('/scrape', function(req, res) {
       
     url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
+    
+    console.log(url);
       
 	request(url, function(error, response, body){
 
-        if(!error && response.statuscode === 200){ 
+    
+    console.log(error);
+        
+        if(!error){ 
 
             var $ = cheerio.load(body);
             
@@ -110,9 +115,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 lista.unshift(json);
             });
 
-            console.log(lista);
+            console.log(lista.json(', '));
               
-            res.send(lista);
+            res.render(body);
             
 /*            
 <ul id="fruits">
