@@ -82,10 +82,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             var titulos = [];
             
             $eventos.each(function(i, item){
-                titulos[i] = $(item).find('.titulo_evento_lista').text();
+                titulos[i] = $(this).find('.titulo_evento_lista').text();
             });
                 
-            console.log(titulos[1]);
+            console.log(titulos);
             
             res.sender(200);
 /*            
