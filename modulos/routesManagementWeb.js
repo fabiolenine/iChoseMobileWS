@@ -67,27 +67,27 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     // The callback function takes 4 parameters, an error, response status code and the html
 
 	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6'}, function(error, response, body){
-        
-        
-        // Just a basic error check
-        if(!error && response.statuscode === 200){ 
-            // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
-            //Use jQuery just as in any regular HTML page
+        if(!error && response.statuscode === 200){ 
+
             var $ = cheerio.load(body)
-                    , $body = $('body')
-                    , $eventos = $body.find('.item_evento_1');
-		    //I know .video-entry elements contain the regular sized thumbnails
- 
+            
             var titulos = [];
             
-            $eventos.each(function(i, item){
-                titulos[i] = $(this).find('.titulo_evento_lista').text();
-            });
-                
-            console.log(titulos.json(', '));
+            console.log(body);
             
-            res.sender(200);
+            $('.titulo_evento_lista').each(function(i,elem) {
+                console.log(i);
+                console.log(elem);
+                console.log(this);
+                
+                titulos[i] = $(this).text();
+            });
+
+            console.log(titulos.join(', '));
+              
+            res.sender(titulos.join(', '));
+            
 /*            
 <ul id="fruits">
   <li class="apple">Apple</li>
