@@ -60,44 +60,17 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
-  app.get('/scrape', function(req, res) {
+  app.post('/scrape', function(req, res) {
       
-    // The structure of our request call
-    // The first parameter is our URL
-    // The callback function takes 4 parameters, an error, response status code and the html
-
-	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6'}, function(error, response, body){
+    url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
+      
+	request(url, function(error, response, body){
 
         if(!error && response.statuscode === 200){ 
 
-            var $ = cheerio.load(body)
+            var $ = cheerio.load(body);
             
-            var titulos = [];
-            
-            console.log(body);
-            
-            $('.titulo_evento_lista').each(function(i,elem) {
-                console.log(i);
-                console.log(elem);
-                console.log(this);
-                
-                titulos[i] = $(this).text();
-            });
-
-            console.log(titulos.join(', '));
-              
-            res.sender(titulos.join(', '));
-            
-/*            
-<ul id="fruits">
-  <li class="apple">Apple</li>
-  <li class="orange">Orange</li>
-  <li class="pear">Pear</li>
-</ul>
-            
-            // Finally, we'll define the variables we're going to capture
-
-			var estabelecimento, 
+            var estabelecimento, 
                 evento, 
                 dataevento, 
                 fornecedorid, 
@@ -109,7 +82,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 classificacao, 
                 descricao, 
                 urlyoutube, 
-                urlscrapedetalhes;
+                urlscrapedetalhes,
+                tag = [],
+                lista = [];
             
 			var json = {estabelecimento    : "",
 					    evento             : "",
@@ -123,7 +98,32 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         classificacao      : "",
                         descricao          : "",
                         urlyoutube         : "",
-                        urlscrapedetalhes  : ""};
+                        urlscrapedetalhes  : "",
+                        tag                : []};
+            
+            $('span .titulo_evento_lista').each(function(i,elem) {
+              
+                evento = $(this).text();
+                
+                json.evento = evento;
+                
+                lista.unshift(json);
+            });
+
+            console.log(lista);
+              
+            res.send(lista);
+            
+/*            
+<ul id="fruits">
+  <li class="apple">Apple</li>
+  <li class="orange">Orange</li>
+  <li class="pear">Pear</li>
+</ul>
+            
+            // Finally, we'll define the variables we're going to capture
+
+			
             
         // We'll use the unique header class as a starting point.
 
