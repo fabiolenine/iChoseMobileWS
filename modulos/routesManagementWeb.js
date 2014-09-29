@@ -60,7 +60,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
-  app.get('/scrape', isLoggedIn, function(req, res) {
+  app.get('/scrape', function(req, res) {
       
     // The structure of our request call
     // The first parameter is our URL
@@ -84,9 +84,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 		    //I know .video-entry elements contain the regular sized thumbnails
  
             $eventos.each(function(i, item){
-                var $evento = $(item).find('.titulo_evento_lista').text();
+                var $titulo = $(item).find('.titulo_evento_lista').text();
                 
-                self.items[i] = {evento: $evento.trim()};
+                self.items[i] = {titulo: $titulo.trim()};
             });
                 
             console.log(self.items);
