@@ -62,23 +62,41 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', isLoggedIn, function(req, res) {
       
-    // The URL we will scrape from BlueTicket.
-
-	url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
-
     // The structure of our request call
     // The first parameter is our URL
     // The callback function takes 4 parameters, an error, response status code and the html
 
-	request(url, function(error, response, body){
-
-        // First we'll check to make sure no errors occurred when making the request
-
-        if(!error){
+	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6'}, function(error, response, body){
+        
+        var self = this;
+        self.items = new Array(); //I feel like I want to save my results in a array;
+        
+        // Just a basic error check
+        if(!error && response.statuscode === 200){ 
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
             var $ = cheerio.load(body);
 
+            //Use jQuery just as in any regular HTML page
+            var $ = cheerio.load(body)
+                    , $body = $('body')
+                    , $eventos = $body.find('.lista_eventos');
+		    //I know .video-entry elements contain the regular sized thumbnails
+ 
+            $eventos.each(function(i, item){
+                var $evento = $(item).find('.titulo_evento_lista').text();
+                
+                self.items[i] = {evento: $evento.trim());
+            });
+                
+            console.log(self.items);
+/*            
+<ul id="fruits">
+  <li class="apple">Apple</li>
+  <li class="orange">Orange</li>
+  <li class="pear">Pear</li>
+</ul>
+            
             // Finally, we'll define the variables we're going to capture
 
 			var estabelecimento, 
@@ -162,6 +180,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         console.log(json);
         }
     });
+  */
+            
+    res.render(json, {
+      user : req.user // get the user out of session and pass to template
+    });
+      
   });    
     
 // =====================================
