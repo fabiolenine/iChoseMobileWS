@@ -180,7 +180,7 @@ require('./modulos/routesMobileWS.js')(appMobileWS, passport);              // l
 
 require('./modulos/RoutesCounter.js')(appCounter, passport);                // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesManagementWeb.js')(appManagementWeb, passport, mongoose, request, ManagementDetalhes);    // load our routes and pass in our app and fully configured passport
+require('./modulos/routesManagementWeb.js')(appManagementWeb, passport, mongoose, request, cheerio, ManagementDetalhes);    // load our routes and pass in our app and fully configured passport
 
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio do Usuário.
