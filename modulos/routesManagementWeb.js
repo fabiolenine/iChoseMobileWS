@@ -178,11 +178,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
        }
 
     });
-
-            
-    res.render(titulos
-      //user : req.user // get the user out of session and pass to template
-    );
       
   });    
     
