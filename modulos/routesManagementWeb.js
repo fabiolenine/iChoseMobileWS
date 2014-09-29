@@ -85,7 +85,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 titulos[i] = $(this).find('.titulo_evento_lista').text();
             });
                 
-            console.log(titulos);
+            console.log(titulos.json(', '));
             
             res.sender(200);
 /*            
