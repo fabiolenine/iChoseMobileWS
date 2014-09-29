@@ -28,7 +28,7 @@
                         "method-override"           : "~1.0.0"    ,
                         "express-session"           : "~1.0.0"    ,
                         "vhost"                     : "~2.0.0"    ,
-                        "request"                   : "lastest"   ,
-                        "cheerio"                   : "lastest"
+                        "request"                   : "~2.44.0"   ,
+                        "cheerio"                   : "~0.17.0"
                         }
 }
