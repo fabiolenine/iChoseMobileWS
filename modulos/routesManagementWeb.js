@@ -86,7 +86,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             $eventos.each(function(i, item){
                 var $evento = $(item).find('.titulo_evento_lista').text();
                 
-                self.items[i] = {evento: $evento.trim());
+                self.items[i] = {evento: $evento.trim()};
             });
                 
             console.log(self.items);
