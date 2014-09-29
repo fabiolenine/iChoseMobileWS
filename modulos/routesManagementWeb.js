@@ -60,7 +60,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
-  app.post('/scrape', function(req, res) {
+  app.get('/scrape', function(req, res) {
       
     url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
       
