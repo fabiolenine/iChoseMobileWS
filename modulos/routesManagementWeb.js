@@ -85,13 +85,19 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 urlpersonaevento,
                 urlscrapedetalhes,
                 tag = [];
-        
+/*
+<ul id="fruits">
+  <li class="apple">Apple</li>
+  <li class="orange">Orange</li>
+  <li class="pear">Pear</li>
+</ul>
+*/
             $('.item_evento_1').each(function(){
                 urlscrapedetalhes   = $(this).find('a').attr('href').trim();
                 imagembanner        = $(this).find('img').attr('src').trim();
-                evento              = $(this).find('.titulo_evento_lista').html().trim();
-                estabelecimento     = $(this).find('.desc_evento_lista strong').html().trim();
-                dataevento          = $(this).find('.data_evento_lista').html().trim();
+                evento              = $(this).find('.titulo_evento_lista').text().trim();
+                estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
+                dataevento          = $(this).find('.data_evento_lista').text().trim();
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
@@ -102,7 +108,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         var $D = cheerio.load(bodyD);
                         
                         $D('.interna').each(function(){
-                            cidade = $D(this).find('.bloco1 .desc_basica_evento p span').text().trim();
+                            cidade = $D(this).find('.desc_basica_evento p span').html().trim();
                         });
                     }
                     
@@ -112,6 +118,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 console.log('--------------------------');
                 console.log(urlscrapedetalhes);
                 console.log(imagembanner);
+                console.log(evento);
                 console.log(estabelecimento);
                 console.log(dataevento);
                 console.log(cidade);
