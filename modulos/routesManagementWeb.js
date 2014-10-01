@@ -87,11 +87,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 tag = [];
         
             $('.item_evento_1').each(function(){
-                urlscrapedetalhes   = $(this).find('a').attr('href');
-                imagembanner        = $(this).find('img').attr('src');
-                evento              = $(this).find('.titulo_evento_lista').html();
-                estabelecimento     = $(this).find('.desc_evento_lista strong').html();
-                dataevento          = $(this).find('.data_evento_lista').html();
+                urlscrapedetalhes   = $(this).find('a').attr('href').trim();
+                imagembanner        = $(this).find('img').attr('src').trim();
+                evento              = $(this).find('.titulo_evento_lista').html().trim();
+                estabelecimento     = $(this).find('.desc_evento_lista strong').html().trim();
+                dataevento          = $(this).find('.data_evento_lista').html().trim();
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
@@ -102,7 +102,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         var $D = cheerio.load(bodyD);
                         
                         $D('.interna').each(function(){
-                            cidade = $D(this).find('.bloco1 .desc_basica_evento p span').html();
+                            cidade = $D(this).find('.bloco1 .desc_basica_evento p span').text().trim();
                         });
                     }
                     
