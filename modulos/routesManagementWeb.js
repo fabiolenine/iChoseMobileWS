@@ -72,18 +72,19 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             
             var estabelecimento, 
                 evento, 
-                dataevento,
-                esteblecimento, 
+                dataevento, 
                 usuariocadastroid, 
                 imagembanner, 
+                cidade,
+                uf,
                 abertura, 
                 inicio, 
                 classificacao, 
                 descricao, 
-                urlyoutube, 
+                urlyoutube,
+                urlpersonaevento,
                 urlscrapedetalhes,
-                tag = [],
-                lista = [];
+                tag = [];
         
             $('.item_evento_1').each(function(){
                 urlscrapedetalhes   = $(this).find('a').attr('href');
@@ -92,14 +93,36 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 estabelecimento     = $(this).find('.desc_evento_lista strong').html();
                 dataevento          = $(this).find('.data_evento_lista').html();
                 
-                console.log('--------');
-                console.log(evento);
+                urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
+                
+                request(urlscrapedetalhes, function(errorD, responseD, bodyD){
+                    
+                    if(!errorD && responseD.statusCode == 200){
+                        
+                        var $D = cheerio.load(bodyD);
+                        
+                        $D('.interna').each(function(){
+                            cidade = $D(this).find('.bloco1 .desc_basica_evento p span').html();
+                        });
+                    }
+                    
+                });
+                
+                //chamada para salvar o evento.
+                console.log('--------------------------');
+                console.log(urlscrapedetalhes);
+                console.log(imagembanner);
+                console.log(estabelecimento);
+                console.log(dataevento);
+                console.log(cidade);
+                
             });
             
         }
 
     });
       
+    res.send(200);
   });    
     
 // =====================================
