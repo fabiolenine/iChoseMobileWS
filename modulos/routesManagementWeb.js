@@ -63,23 +63,17 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   app.get('/scrape', function(req, res) {
       
     url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
-    
-    console.log(url);
       
 	request(url, function(error, response, body){
-
-    
-    console.log(error);
         
-        if(!error){ 
+        if(!error && response.statusCode == 200){ 
 
             var $ = cheerio.load(body);
             
             var estabelecimento, 
                 evento, 
-                dataevento, 
-                fornecedorid, 
-                esteblecimentoid, 
+                dataevento,
+                esteblecimento, 
                 usuariocadastroid, 
                 imagembanner, 
                 abertura, 
@@ -90,34 +84,19 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 urlscrapedetalhes,
                 tag = [],
                 lista = [];
+        
+            $('.item_evento_1').each(function(){
+                urlscrapedetalhes   = $(this).find('a').attr('href');
+                imagembanner        = $(this).find('img').attr('src');
+                evento              = $(this).find('.titulo_evento_lista').html();
+                estabelecimento     = $(this).find('.desc_evento_lista strong').html();
+                dataevento          = $(this).find('.data_evento_lista').html();
+                
+                console.log('--------');
+                console.log(evento);
+            });
             
-			var json = {estabelecimento    : "",
-					    evento             : "",
-					    dataevento         : "",
-                        fornecedorid       : "",
-                        esteblecimentoid   : "",
-					    usuariocadastroid  : "",
-					    imagembanner       : "",
-                        abertura           : "", 
-                        inicio             : "",
-                        classificacao      : "",
-                        descricao          : "",
-                        urlyoutube         : "",
-                        urlscrapedetalhes  : "",
-                        tag                : []};
-
-        $('.titulo_evento_lista').filter(function(){
-
-		        var data = $(this);
-
-		        evento = data.text();
-
-		        json.evento = evento;
-	       });
-            
-        console.log(json);
-
-       }
+        }
 
     });
       
