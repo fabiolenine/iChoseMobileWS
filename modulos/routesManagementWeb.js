@@ -105,10 +105,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     
                     if(!errorD && responseD.statusCode == 200){
                         
-                        var $D = cheerio.load(bodyD);
+                        var d = cheerio.load(bodyD);
                         
-                        $D('.interna').each(function(){
-                            cidade = $D(this).find('.desc_basica_evento p span').html().trim();
+                        d('.interna').each(function(){
+                            cidade = d(this).find('.desc_basica_evento p span').html().trim();
                         });
                     }
                     
