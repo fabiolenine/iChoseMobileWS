@@ -61,9 +61,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
+    
+    var subrequest = request;  
       
     url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
-      
+    
 	request(url, function(error, response, body){
         
         if(!error && response.statusCode == 200){ 
@@ -101,7 +103,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
-                request(urldetalhes, function(errorD, responseD, bodyD){
+                subrequest(urldetalhes, function(errorD, responseD, bodyD){
                     
                     console.log(errorD);
                     console.log(responseD);
