@@ -101,6 +101,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
+                console.log(urldetalhes);
+                
                 request(urldetalhes, function(errorD, responseD, bodyD){
                     
                     if(!errorD && responseD.statusCode == 200){
