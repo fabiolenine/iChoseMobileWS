@@ -101,15 +101,13 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
-                request(urlscrapedetalhes, function(errorD, responseD, bodyD){
+                request(urldetalhes, function(errorD, responseD, bodyD){
                     
                     if(!errorD && responseD.statusCode == 200){
                         
-                        var d = cheerio.load(bodyD);
+                        var $d = cheerio.load(bodyD);
                         
-                        consle.log('passei por aqui.');
-                        
-                        cidade = d(this).find('.desc_basica_evento p span').html().children('strong').text().trim();
+                        cidade = $d(this).find('.desc_basica_evento p span').html(); //.children('strong').text().trim();
                     }
                     
                 });
