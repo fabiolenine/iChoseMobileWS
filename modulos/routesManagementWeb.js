@@ -101,9 +101,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
                 
-                console.log(urldetalhes);
-                
                 request(urldetalhes, function(errorD, responseD, bodyD){
+                    
+                    console.log(errorD);
+                    console.log(responseD);
+                    console.log(bodyD);
                     
                     if(!errorD && responseD.statusCode == 200){
                         
@@ -112,7 +114,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         $d('.desc_basica_evento p span').filter(function(){
                             
                             var data = $d(this);
-                            console.log('passei');
                             cidade = data.html(); //.children('strong').text().trim();
                         });
                     }
