@@ -107,9 +107,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         
                         var d = cheerio.load(bodyD);
                         
-                        d('.interna').each(function(){
-                            cidade = d(this).find('.desc_basica_evento p span').html().trim();
-                        });
+                        cidade = d(this).find('.desc_basica_evento p span strong').html().trim();
                     }
                     
                 });
