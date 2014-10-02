@@ -107,6 +107,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         
                         var d = cheerio.load(bodyD);
                         
+                        consle.log('passei por aqui.');
+                        
                         cidade = d(this).find('.desc_basica_evento p span').html().children('strong').text().trim();
                     }
                     
