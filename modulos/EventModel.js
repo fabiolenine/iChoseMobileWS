@@ -14,10 +14,14 @@ eventSchema = new mongoose.Schema({estabelecimento    : String,
 					               imagembanner       : String,
                                    abertura           : String, 
                                    inicio             : String,
-                                   classificacao      : Number,
+                                   classificacao      : String,
                                    descricao          : String,
                                    urlyoutube         : String,
-                                   urlscrapedetalhes  : String
+                                   urlscrapedetalhes  : String,
+                                   cidade             : String,
+                                   uf                 : String,
+                                   urlpersonaevento   : String,
+                                   tags               : []
 				});
 
 exports.model = mongoose.model('event',eventSchema);

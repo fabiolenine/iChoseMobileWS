@@ -105,14 +105,22 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         var $d = cheerio.load(bodyb);
                         
                         scrape.abertura     = $d('.desc_basica_evento p span').text().trim();
-                        scrapes.push(scrape);
+                        
+                        scrapevent.envioemail(scrape, function(success) {
+                            if(success){
+                                 scrapes.push(scrape);
+                            }
+                            else { 
+                                res.send(404);
+                            }   
+                        });
                     }
                 });
             });
             
-            console.log(scrapes);
         }
     });
+    
     res.send(200);
   });    
     
