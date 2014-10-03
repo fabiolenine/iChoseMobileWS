@@ -103,7 +103,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 request({url: urldetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
                     if(!errorb && responseb.statusCode == 200){
-                        console('passei pelo segundo request');
+                        console.log('passei pelo segundo request');
                     } 
                 });
                 
