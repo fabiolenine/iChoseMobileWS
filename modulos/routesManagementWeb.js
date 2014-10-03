@@ -93,7 +93,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
                 
                 var dt              = $(this).find('.data_evento_lista').text().trim().split(",");
-                dataevento          = dt[1].replace("de outrubro de","/10/");
+                dataevento          = dt[1].replace(" de Outubro de ","/10/");
                 
                 //chamada para salvar o evento.
                 console.log('--------------------------');
