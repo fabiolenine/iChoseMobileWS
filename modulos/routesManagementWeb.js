@@ -61,30 +61,29 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
-    
+
+      var scrape  = {   estabelecimento     : "", 
+                        evento              : "", 
+                        dataevento          : "", 
+                        imagembanner        : "", 
+                        cidade              : "",
+                        uf                  : "",
+                        abertura            : "", 
+                        inicio              : "", 
+                        classificacao       : "", 
+                        descricao           : "", 
+                        urlyoutube          : "",
+                        urlpersonaevento    : "",
+                        urlscrapedetalhes   : "",
+                        tags                : [$('.cabecalho .titulo').text().trim()]},
+          scrapes = [];
+      
 	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6', encoding: 'binary'}, function(error, response, body){
         
         if(!error && response.statusCode == 200){ 
 
             var $ = cheerio.load(body);
-            
-            var scrape  = { estabelecimento     : "", 
-                            evento              : "", 
-                            dataevento          : "", 
-                            imagembanner        : "", 
-                            cidade              : "",
-                            uf                  : "",
-                            abertura            : "", 
-                            inicio              : "", 
-                            classificacao       : "", 
-                            descricao           : "", 
-                            urlyoutube          : "",
-                            urlpersonaevento    : "",
-                            urlscrapedetalhes   : "",
-                            tags                : [$('.cabecalho .titulo').text().trim()]},
-                scrapes = [];
 
-            
             //tags.push($('.cabecalho .titulo').text().trim());
             
             $('.item_evento_1').each(function(){
@@ -124,7 +123,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 //                    } 
 //                });
 
-      console.log(scrapes.json);
+      console.log(scrapes);
       res.send(200);
   });    
     
