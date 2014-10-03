@@ -86,6 +86,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 urlscrapedetalhes,
                 tag = [];
 
+            
+            tag.push($('.cabecalho .titulo').text().trim());
+            
             $('.item_evento_1').each(function(){
                 urlscrapedetalhes   = $(this).find('a').attr('href').trim();
                 imagembanner        = $(this).find('img').attr('src').trim();
@@ -107,6 +110,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 console.log(cidade);
                 console.log(uf);
                 console.log(dataevento);
+                console.log(tag);
                 
             });
             
