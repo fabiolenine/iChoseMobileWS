@@ -103,30 +103,16 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             });
         }
         
-        for (i = 0; i < scrapes.length;) {
+        for (i = 0; i < scrapes.length; i++) {
             scrape = scrapes[i];
+            console.log(i, scrapes.length, scrape);
             request({url: scrape.urlscrapedetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
-                console.log(i, scrapes.length, scrape);
-                i++;
+                if(!errorb && responseb.statusCode == 200){
+                    console.log(i);
+                } 
             });
         }
-                
     });
-//                    if(!errorb && responseb.statusCode == 200){
-//                //chamada para salvar o evento.
-//                console.log('--------------------------');
-//                console.log(urlscrapedetalhes);
-//                console.log(imagembanner);
-//                console.log(evento);
-//                console.log(estabelecimento);
-//                console.log(cidade);
-//                console.log(uf);
-//                console.log(dataevento);
-//                console.log(tag);
-//                console.log('--------------------------');        
-//                        console.log(urldetalhes);
-//                    } 
-
       res.send(200);
   });    
     
