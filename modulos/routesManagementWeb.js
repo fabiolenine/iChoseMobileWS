@@ -125,7 +125,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 //                    } 
 //                });
 
-      console.log(scrapes.json('! '));
+      console.log(scrapes.length);
       res.send(200);
   });    
     
