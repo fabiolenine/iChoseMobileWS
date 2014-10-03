@@ -92,8 +92,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 evento              = $(this).find('.titulo_evento_lista').text().trim();
                 estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
                 cidade              = $(this).find('.desc_evento_lista').text().trim();
-                var dt              = $(this).find('.data_evento_lista').text().split(",").trim();
-                dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/");
+                var dt              = $(this).find('.data_evento_lista').text().split(",");
+                dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
                 
                 //chamada para salvar o evento.
                 console.log('--------------------------');
