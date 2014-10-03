@@ -104,8 +104,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         }
         
         for (i = 0; i < scrapes.length; i++) {
-            request({url: scrapes[i].urlscrapedetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
-                console.log(i, scrapes.length, scrapes[i].urlscrapedetalhes);
+            scrape = scrapes[i];
+            request({url: scrape.urlscrapedetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
+                console.log(i, scrapes.length, scrape);
             });
         }
                 
