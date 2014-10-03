@@ -88,7 +88,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             scrape.tags.push($('.cabecalho .titulo').text().trim());
             
             $('.item_evento_1').each(function(){
-                scrape.urlscrapedetalhes   = $(this).find('a').attr('href').trim();
+                scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
                 scrape.imagembanner        = $(this).find('img').attr('src').trim();
                 scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
                 scrape.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
@@ -102,14 +102,14 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 scrapes.push(scrape);
             });
         }
-    //console.log(scrapes);        
+        
+        for (i = 0; i < scrapes.length; i++) {
+            request({url: scrapes[i].urlscrapedetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
+                console.log(i, scrapes.length, scrapes[i].urlscrapedetalhes);
+            });
+        }
+                
     });
-      
-    console.log(scrapes);        
-      
-//        var urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes; 
-//                
-//                request({url: urldetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
 //                    if(!errorb && responseb.statusCode == 200){
 //                //chamada para salvar o evento.
 //                console.log('--------------------------');
@@ -124,9 +124,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 //                console.log('--------------------------');        
 //                        console.log(urldetalhes);
 //                    } 
-//                });
 
-      console.log(scrapes.length);
       res.send(200);
   });    
     
