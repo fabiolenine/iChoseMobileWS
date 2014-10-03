@@ -75,7 +75,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         urlyoutube          : "",
                         urlpersonaevento    : "",
                         urlscrapedetalhes   : "",
-                        tags                : [$('.cabecalho .titulo').text().trim()]},
+                        tags                : []},
           scrapes = [];
       
 	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6', encoding: 'binary'}, function(error, response, body){
@@ -85,6 +85,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             var $ = cheerio.load(body);
 
             //tags.push($('.cabecalho .titulo').text().trim());
+            scrape.tags.push($('.cabecalho .titulo').text().trim());
             
             $('.item_evento_1').each(function(){
                 scrape.urlscrapedetalhes   = $(this).find('a').attr('href').trim();
