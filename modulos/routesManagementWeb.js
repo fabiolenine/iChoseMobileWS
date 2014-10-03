@@ -62,9 +62,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
     
-    url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
-    
-	request(url, function(error, response, body){
+	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6', encoding: 'binary'}, function(error, response, body){
         
         if(!error && response.statusCode == 200){ 
 
