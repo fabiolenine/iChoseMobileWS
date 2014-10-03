@@ -103,10 +103,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 
                 request({url: urldetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
                     if(!errorb && responseb.statusCode == 200){
-                        console.log(urldetalhes);
-                    } 
-                });
-                
                 //chamada para salvar o evento.
                 console.log('--------------------------');
                 console.log(urlscrapedetalhes);
@@ -117,6 +113,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 console.log(uf);
                 console.log(dataevento);
                 console.log(tag);
+                console.log('--------------------------');        
+                        console.log(urldetalhes);
+                    } 
+                });
+                
+
                 
             });
             
