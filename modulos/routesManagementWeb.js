@@ -62,21 +62,21 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
 
-      var scrape  = {   estabelecimento     : "", 
-                        evento              : "", 
-                        dataevento          : "", 
-                        imagembanner        : "", 
-                        cidade              : "",
-                        uf                  : "",
-                        abertura            : "", 
-                        inicio              : "", 
-                        classificacao       : "", 
-                        descricao           : "", 
-                        urlyoutube          : "",
-                        urlpersonaevento    : "",
-                        urlscrapedetalhes   : "",
-                        tags                : []},
-          scrapes = [];
+    var scrape  = { estabelecimento     : "", 
+                    evento              : "", 
+                    dataevento          : "", 
+                    imagembanner        : "", 
+                    cidade              : "",
+                    uf                  : "",
+                    abertura            : "", 
+                    inicio              : "", 
+                    classificacao       : "", 
+                    descricao           : "", 
+                    urlyoutube          : "",
+                    urlpersonaevento    : "",
+                    urlscrapedetalhes   : "",
+                    tags                : []};
+    var scrapes = [];
       
 	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6', encoding: 'binary'}, function(error, response, body){
         
@@ -100,9 +100,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
                                 
                 scrapes.push(scrape);
-                //console.log(scrape);
             });
         }
+    console.log(scrapes);        
     });
       
       
