@@ -106,7 +106,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         
                         scrape.abertura     = $d('.desc_basica_evento p span').text().trim();
                         
-                        scrapevent.envioemail(scrape, function(success) {
+                        ManagementDetalhes.scrapevent(scrape, function(success) {
                             if(success){
                                  scrapes.push(scrape);
                             }
