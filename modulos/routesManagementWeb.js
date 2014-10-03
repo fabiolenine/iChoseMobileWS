@@ -68,65 +68,64 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
             var $ = cheerio.load(body);
             
-            var estabelecimento, 
-                evento, 
-                dataevento, 
-                usuariocadastroid, 
-                imagembanner, 
-                cidade,
-                uf,
-                abertura, 
-                inicio, 
-                classificacao, 
-                descricao, 
-                urlyoutube,
-                urlpersonaevento,
-                urlscrapedetalhes,
-                tag = [];
+            var scrape  = { estabelecimento     : "", 
+                            evento              : "", 
+                            dataevento          : "", 
+                            imagembanner        : "", 
+                            cidade              : "",
+                            uf                  : "",
+                            abertura            : "", 
+                            inicio              : "", 
+                            classificacao       : "", 
+                            descricao           : "", 
+                            urlyoutube          : "",
+                            urlpersonaevento    : "",
+                            urlscrapedetalhes   : "",
+                            tags                : [$('.cabecalho .titulo').text().trim()]},
+                scrapes = [];
 
             
-            tag.push($('.cabecalho .titulo').text().trim());
+            //tags.push($('.cabecalho .titulo').text().trim());
             
             $('.item_evento_1').each(function(){
-                urlscrapedetalhes   = $(this).find('a').attr('href').trim();
-                imagembanner        = $(this).find('img').attr('src').trim();
-                evento              = $(this).find('.titulo_evento_lista').text().trim();
-                estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
-                var order           = $(this).find('.desc_evento_lista').text().split("|");
-                var city            = order[1].split("-");
-                cidade              = city[0].trim();
-                uf                  = city[1].trim();
-                var dt              = $(this).find('.data_evento_lista').text().split(",");
-                dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
-                
-                var urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes; 
-                
-                request({url: urldetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
-                    if(!errorb && responseb.statusCode == 200){
-                //chamada para salvar o evento.
-                console.log('--------------------------');
-                console.log(urlscrapedetalhes);
-                console.log(imagembanner);
-                console.log(evento);
-                console.log(estabelecimento);
-                console.log(cidade);
-                console.log(uf);
-                console.log(dataevento);
-                console.log(tag);
-                console.log('--------------------------');        
-                        console.log(urldetalhes);
-                    } 
-                });
-                
-
-                
+                scrape.urlscrapedetalhes   = $(this).find('a').attr('href').trim();
+                scrape.imagembanner        = $(this).find('img').attr('src').trim();
+                scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
+                scrape.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
+                var order                  = $(this).find('.desc_evento_lista').text().split("|");
+                var city                   = order[1].split("-");
+                scrape.cidade              = city[0].trim();
+                scrape.uf                  = city[1].trim();
+                var dt                     = $(this).find('.data_evento_lista').text().split(",");
+                scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
+                                
+                scrapes.push(scrape);
             });
-            
         }
-
     });
       
-    res.send(200);
+      
+//        var urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes; 
+//                
+//                request({url: urldetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
+//                    if(!errorb && responseb.statusCode == 200){
+//                //chamada para salvar o evento.
+//                console.log('--------------------------');
+//                console.log(urlscrapedetalhes);
+//                console.log(imagembanner);
+//                console.log(evento);
+//                console.log(estabelecimento);
+//                console.log(cidade);
+//                console.log(uf);
+//                console.log(dataevento);
+//                console.log(tag);
+//                console.log('--------------------------');        
+//                        console.log(urldetalhes);
+//                    } 
+//                });
+
+      console.log(scrapes.json);
+      res.send(200);
   });    
     
 // =====================================
