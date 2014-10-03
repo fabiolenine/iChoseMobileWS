@@ -62,8 +62,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
     
-    var subrequest = request;  
-      
     url = 'http://www.blueticket.com.br/?secao=Eventos&tipo=6';
     
 	request(url, function(error, response, body){
@@ -87,40 +85,15 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 urlpersonaevento,
                 urlscrapedetalhes,
                 tag = [];
-/*
-<ul id="fruits">
-  <li class="apple">Apple</li>
-  <li class="orange">Orange</li>
-  <li class="pear">Pear</li>
-</ul>
-*/
+
             $('.item_evento_1').each(function(){
                 urlscrapedetalhes   = $(this).find('a').attr('href').trim();
                 imagembanner        = $(this).find('img').attr('src').trim();
                 evento              = $(this).find('.titulo_evento_lista').text().trim();
                 estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
-                dataevento          = $(this).find('.data_evento_lista').text().trim();
                 
-                urldetalhes = 'http://www.blueticket.com.br' + urlscrapedetalhes;
-                
-                subrequest(urldetalhes, function(errorD, responseD, bodyD){
-                    
-                    console.log(errorD);
-                    console.log(responseD);
-                    console.log(bodyD);
-                    
-                    if(!errorD && responseD.statusCode == 200){
-                        
-                        var $d = cheerio.load(bodyD);
-                        
-                        $d('.desc_basica_evento p span').filter(function(){
-                            
-                            var data = $d(this);
-                            cidade = data.html(); //.children('strong').text().trim();
-                        });
-                    }
-                    
-                });
+                var dt              = $(this).find('.data_evento_lista').text().trim().split(",");
+                dataevento          = dt[1].replace("de outrubro de","/10/");
                 
                 //chamada para salvar o evento.
                 console.log('--------------------------');
