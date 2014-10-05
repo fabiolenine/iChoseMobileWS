@@ -6,9 +6,9 @@ module.exports = function(mongoose, request, cheerio)
     var scrapevent = function(scrape, callback){ 
         
         request({url: scrape.urlscrapedetalhes, enconding: 'binary'}, function(error, response, body){
-            if(!errorb && response.statusCode == 200){
+            if(!error && response.statusCode == 200){
                         
-                var d = cheerio.load(body);
+                var $ = cheerio.load(body);
                         
                         //"Cidade/UF: Florian�polis - SCAbertura: 21:00hClassifica��o:  - 16 anos"
                         
