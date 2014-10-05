@@ -98,15 +98,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 scrape.uf                  = city[1].trim();
                 var dt                     = $(this).find('.data_evento_lista').text().split(",");
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
-                                                
-                //request({url: scrape.urlscrapedetalhes, enconding: 'binary'}, function(errorb, responseb, bodyb){
-                    //if(!errorb && responseb.statusCode == 200){
-                        
-                        //var $d = cheerio.load(bodyb);
-                        
-                        //"Cidade/UF: Florian�polis - SCAbertura: 21:00hClassifica��o:  - 16 anos"
-                        
-                        //scrape.abertura     = $d('.desc_basica_evento p span').text().trim();
                         
                         ManagementDetalhes.scrapevent(scrape, function(success) {
                             if(success){
