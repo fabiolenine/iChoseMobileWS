@@ -78,14 +78,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     tags                : []};
     var scrapes = [];
       
-	request({url: 'http://www.blueticket.com.br/?secao=Eventos&tipo=6', encoding: 'binary'}, function(error, response, body){
+    ManagementDetalhes.scrapelink('http://www.blueticket.com.br/?secao=Eventos&tipo=6', function(body) {
+            
+            var $ = body;
         
-        if(!error && response.statusCode == 200){ 
-
-            var $ = cheerio.load(body);
-
-            //tags.push($('.cabecalho .titulo').text().trim());
-            scrape.tags.push($('.cabecalho .titulo').text().trim());
+	        scrape.tags.push($('.cabecalho .titulo').text().trim());
             
             $('.item_evento_1').each(function(){
                 scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
@@ -98,23 +95,21 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 scrape.uf                  = city[1].trim();
                 var dt                     = $(this).find('.data_evento_lista').text().split(",");
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
-                        
-                        ManagementDetalhes.scrapevent(scrape, function(success) {
-                            if(success){
-                                 scrapes.push(scrape);
-                            }
-                            else { 
-                                res.send(404);
-                            }   
-                        });
-                    //}
-                //});
+                
+                scrapes.push(scrape);
+                    
             });
-            
-        }
     });
+  
+      console.log(scrapes);
+      
+//    ManagementDetalhes.scrapevent(scrape, function(success) {
+//        if(success){
+            res.send(200);
+//        }
+//        else {res.send(404);}   
+//    });                  
     
-    res.send(200);
   });    
     
 // =====================================

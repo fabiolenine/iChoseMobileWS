@@ -3,27 +3,32 @@ module.exports = function(mongoose, request, cheerio)
 {
     var event = require('./EventModel.js');
     
-    var scrapevent = function(scrape, callback){ 
+    var scrapelink = function(link, callback){ 
         
-        request({url: scrape.urlscrapedetalhes, enconding: 'binary'}, function(error, response, body){
+        request({url: link, enconding: 'binary'}, function(error, response, body){
             if(!error && response.statusCode == 200){
                         
-                var $ = cheerio.load(body);
-                        
-                        //"Cidade/UF: Florian�polis - SCAbertura: 21:00hClassifica��o:  - 16 anos"
-                        
-                scrape.abertura     = $('.desc_basica_evento p span').text().trim();
-        
-                var eventscrap = new event.model(scrape);
-                eventscrap.save(function(err,doc){  
-                    if(err) {callback(false);}
-                    else    {callback(true);}
-                });
+                var html = cheerio.load(body);
+                                                    
+                callback(html);    
+            }
+            else {
+                throw error;
             }
         });
     };
     
-    var retorno = {"scrapevent"	: scrapevent};
+    var scrapesave = function(scrape, callback) {
+        var eventscrap = new event.model(scrape);
+        eventscrap.save(function(err,doc){  
+            if(err) {callback(false);}
+            else    {callback(true);}
+                });       
+    };
+    
+    
+    var retorno = { "scrapsave"	    : scrapesave,
+                    "scrapelink"    : scrapelink};
 
 	return retorno;	
 
