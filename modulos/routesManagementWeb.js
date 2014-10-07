@@ -99,9 +99,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 scrapes.push(scrape);
                     
             });
+        
+        console.log(scrapes);
+        
     });
   
-      console.log(scrapes);
+      
       
 //    ManagementDetalhes.scrapevent(scrape, function(success) {
 //        if(success){
