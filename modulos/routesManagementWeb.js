@@ -103,7 +103,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     self.scrapes[i] = scrape;
         });  
         
-        console.log(selft.scrapes);
+        console.log(self.scrapes);
         
     });
   
