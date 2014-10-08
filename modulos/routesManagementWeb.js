@@ -102,7 +102,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     
                     scrapes.push(scrape);
                     counter--;
-                    for(counter==0){console.log(scrapes);}
+                    if(counter==0){console.log(scrapes);}
         
         }; 
                                        })());
