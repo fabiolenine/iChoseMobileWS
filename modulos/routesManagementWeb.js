@@ -104,7 +104,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     console.log(self.scrapes[i]);
         });  
         
-        //console.log(self.scrapes);
+        console.log(self.scrapes);
         
     });
   
