@@ -77,7 +77,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         urlpersonaevento    : "",
                         urlscrapedetalhes   : "",
                         tags                : []};
-    };
+    }
     
     scrape();
       
