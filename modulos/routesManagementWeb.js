@@ -84,7 +84,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         
 	        scrape.tags.push($('.cabecalho .titulo').text().trim());
             
-            $('.item_evento_1').each(function(){
+            $('.item_evento_1').each(function(i){
                 scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
                 scrape.imagembanner        = $(this).find('img').attr('src').trim();
                 scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
@@ -96,8 +96,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                 var dt                     = $(this).find('.data_evento_lista').text().split(",");
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
                 
-                scrapes.push(scrape);
-                    
+                scrapes[i] = scrape;
             });
         
         console.log(scrapes);
