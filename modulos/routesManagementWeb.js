@@ -62,6 +62,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
     
+    var self    = this;
     var scrape  = { estabelecimento     : "", 
                     evento              : "", 
                     dataevento          : "", 
@@ -76,7 +77,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     urlpersonaevento    : "",
                     urlscrapedetalhes   : "",
                     tags                : []};
-    var scrapes = [];
+    
+    self.scrapes = [];
 
     ManagementDetalhes.scrapelink('http://www.blueticket.com.br/?secao=Eventos&tipo=6', function(html) {
         
@@ -85,23 +87,24 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         scrape.tags.push($('.cabecalho .titulo').text().trim());
                 
         var eventos = $('.item_evento_1');
-        var counter = eventos.length;
-                
-        eventos.each(function(){
-                    scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
-                    scrape.imagembanner        = $(this).find('img').attr('src').trim();
-                    scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
-                    scrape.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
-                    var order                  = $(this).find('.desc_evento_lista').text().split("|");
+        
+        eventos.each(function(i,item){
+                    scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(item).find('a').attr('href').trim();
+                    scrape.imagembanner        = $(item).find('img').attr('src').trim();
+                    scrape.evento              = $(item).find('.titulo_evento_lista').text().trim();
+                    scrape.estabelecimento     = $(item).find('.desc_evento_lista strong').text().trim();
+                    var order                  = $(item).find('.desc_evento_lista').text().split("|");
                     var city                   = order[1].split("-");
                     scrape.cidade              = city[0].trim();
                     scrape.uf                  = city[1].trim();
-                    var dt                     = $(this).find('.data_evento_lista').text().split(",");
+                    var dt                     = $(item).find('.data_evento_lista').text().split(",");
                     scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
-                    scrapes.push(scrape);
-                    counter--;
-                    if(counter==0){console.log(scrapes);}
+                    
+                    self.scrapes[i] = scrape;
         });  
+        
+        console.log(selft.scrapes);
+        
     });
   
       
