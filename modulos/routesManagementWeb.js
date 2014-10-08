@@ -101,10 +101,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
                     
                     self.scrapes[i] = scrape;
-                    console.log(self.scrapes[i]);
+                   // console.log(self.scrapes[i]);
         });  
         
-        console.log(self.scrapes);
+        console.log(self.scrapes[2]);
         
     });
   
