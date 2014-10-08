@@ -64,6 +64,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       
     ManagementDetalhes.scrapelink('http://www.blueticket.com.br/?secao=Eventos&tipo=6', function(scrapes) {
         
+        
         console.log(scrapes);
         
     });
