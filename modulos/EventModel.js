@@ -3,7 +3,7 @@ var eventSchema;
 
 eventSchema = new mongoose.Schema({estabelecimento    : String,
 					               evento             : String,
-					               dataevento         : Date,
+					               dataevento         : String,
                                    timestamp          : {type: Date, default: Date.now},
 								   loc                : {type: {type: 	String,
                                                                 enum:    ['Point']},
