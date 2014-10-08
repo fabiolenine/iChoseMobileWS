@@ -77,7 +77,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                         urlpersonaevento    : "",
                         urlscrapedetalhes   : "",
                         tags                : []};
-    }
+    };
     
     scrape();
       
@@ -105,10 +105,11 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             scrape();                
         }); 
                      
-    });
+        });
     
     res.send(200);
-  });    
+    });
+  });
     
 // =====================================
 // SIGNUP ==============================
