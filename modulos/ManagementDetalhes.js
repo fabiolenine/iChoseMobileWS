@@ -26,7 +26,7 @@ module.exports = function(mongoose, request, cheerio)
     };
     
     
-    var retorno = { "scrapsave"	    : scrapesave,
+    var retorno = { "scrapesave"	: scrapesave,
                     "scrapelink"    : scrapelink};
 
 	return retorno;	
