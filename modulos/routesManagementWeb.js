@@ -64,7 +64,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     
     var scrape  = { estabelecimento     : "",
                     evento              : "", 
-                    dataevento          : {type:Date}, 
+                    dataevento          : Date, 
                     imagembanner        : "", 
                     cidade              : "",
                     uf                  : "",
