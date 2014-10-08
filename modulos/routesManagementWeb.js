@@ -93,11 +93,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     scrape.cidade              = city[0].trim();
                     scrape.uf                  = city[1].trim();
                     var dt                     = $(this).find('.data_evento_lista').text().split(",");
-                    scrape.dataevento          = dt[1].replace(" de Janeiro de ","/10/").replace(" de Fevereiro de ","/10/").replace(" de Março de ","/10/").replace(" de Abril de ","/10/").replace(" de Maio de ","/10/").replace(" de Junho de ","/10/").replace(" de Julho de ","/10/").replace(" de Agosto de ","/10/").replace(" de Setembro de ","/10/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/10/").replace(" de Dezembro de ","/10/").trim();
+                    scrape.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
                     
-        ManagementDetalhes.scrapesave(scrape, function(success) {
-            if(success){console.log(scrape);} else {console.log('error');}                
-        });           
+        ManagementDetalhes.scrapesave(scrape);           
         });
     });
     res.send(200);

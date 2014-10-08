@@ -17,12 +17,9 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
     
-    var scrapesave = function(scrape, callback) {
+    var scrapesave = function(scrape) {
         var eventscrap = new event.model(scrape);
-        eventscrap.save(function(err,doc){  
-            if(err) {callback(false);}
-            else    {callback(true);}
-                });       
+        eventscrap.save();       
     };
     
     
