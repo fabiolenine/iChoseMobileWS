@@ -99,10 +99,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         });
     });
       
-    ManagementDetalhes.scrapeloaddetails(function(callback){
-        console.log(callback);
-    });
-    
+    var teste = ManagementDetalhes.scrapeloaddetails();
+    console.log(teste);
     res.send(200);
   });
     
