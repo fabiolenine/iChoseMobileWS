@@ -22,35 +22,36 @@ module.exports = function(mongoose, request, cheerio)
         eventscrap.save();
     };
     
-    var scrapeloaddetails = function(){
+    var scrapeloaddetails = function(callback){
         event.model.find({},{urlscrapedetalhes: 1},function(error,docs){
             if(error){
                 console.log('Erro apresentado: ' + error);
             }
             else {
-                for(doc in docs){
-                    var url = docs[doc].urlscrapedetalhes;
-                    var Id  = docs[doc]._id;
-                    
-                    scrapelink(url, function(html) {
-        
-                        var $ = html;
-                        
-                        var idade = $('.desc_basica_evento p span strong').text().trim();
-                        
-                        event.model.update({urlscrapedetalhes:url},{$set: {classificacao:idade}},{upsert:false},
-                        function(err){
-						  if(err)
-						  {
-							console.log('Atualização da senha falhou, ID: ' + Id);
-						  }
-						  else
-						  {
-							console.log('Senha alterada do ID de usuário: ' + Id);
-						  }
-					   });                       
-                    });
-                }
+                callback(docs);
+//                for(doc in docs){
+//                    var url = docs[doc].urlscrapedetalhes;
+//                    var Id  = docs[doc]._id;
+//                    
+//                    scrapelink(url, function(html) {
+//        
+//                        var $ = html;
+//                        
+//                        var idade = $('.desc_basica_evento p span strong').text().trim();
+//                        
+//                        event.model.update({urlscrapedetalhes:url},{$set: {classificacao:idade}},{upsert:false},
+//                        function(err){
+//						  if(err)
+//						  {
+//							console.log('Atualização da senha falhou, ID: ' + Id);
+//						  }
+//						  else
+//						  {
+//							console.log('Senha alterada do ID de usuário: ' + Id);
+//						  }
+//					   });                       
+//                    });
+//                }
             }
         });
     };
