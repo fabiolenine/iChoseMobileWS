@@ -98,6 +98,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         ManagementDetalhes.scrapesave(scrape);           
         });
     });
+      
+    ManagementDetalhes.scrapeloaddetails();
+    
     res.send(200);
   });
     

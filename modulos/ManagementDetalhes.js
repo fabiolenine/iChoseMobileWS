@@ -22,6 +22,11 @@ module.exports = function(mongoose, request, cheerio)
         eventscrap.save();       
     };
     
+    var scrapeloaddetails = function(){
+        event.model.find({abertura: ''},{urlscrapedetalhes: 1},function(error,scrapes){
+            console.log(scrapes);
+        });
+    };
     
     var retorno = { "scrapesave"	: scrapesave,
                     "scrapelink"    : scrapelink};
