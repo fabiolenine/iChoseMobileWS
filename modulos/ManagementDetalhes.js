@@ -23,8 +23,13 @@ module.exports = function(mongoose, request, cheerio)
     };
     
     var scrapeloaddetails = function(){
-        event.model.find({abertura: ''},{urlscrapedetalhes: 1},function(error,scrapes){
-            console.log(scrapes);
+        event.model.find({},{urlscrapedetalhes: 1},function(error,docs){
+            if(error){
+                console.log('Erro apresentado: ' + error);
+            }
+            else {
+                console.log(docs);
+            }
         });
     };
     
