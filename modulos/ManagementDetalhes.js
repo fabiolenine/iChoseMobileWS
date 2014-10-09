@@ -17,9 +17,10 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
     
-    var scrapesave = function(scrape) {
+    var scrapesave = function(scrape,callback) {
         var eventscrap = new event.model(scrape);
         eventscrap.save();
+        callback(true);
     };
     
     var scrapeloaddetails = function(){
