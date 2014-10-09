@@ -19,7 +19,7 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapesave = function(scrape) {
         var eventscrap = new event.model(scrape);
-        eventscrap.save();       
+        eventscrap.save();
     };
     
     var scrapeloaddetails = function(){
@@ -28,8 +28,9 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
     
-    var retorno = { "scrapesave"	: scrapesave,
-                    "scrapelink"    : scrapelink};
+    var retorno = { "scrapesave"	    : scrapesave,
+                    "scrapelink"        : scrapelink,
+                    "scrapeloaddetails" : scrapeloaddetails};
 
 	return retorno;	
 
