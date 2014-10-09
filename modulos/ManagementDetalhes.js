@@ -30,12 +30,15 @@ module.exports = function(mongoose, request, cheerio)
             else {
                 for(doc in docs){
                     var url = docs[doc].urlscrapedetalhes;
-                    request(url, function(err, resp, body) {
+                    var id  = docs(doc]._id;
+                                   
+                    scrapelink(url, function(html) {
+        
+                        var $ = html;
                     
-                    if(err){throw err;}
-                    
-                    $ = cheerio.load(body);
-                    console.log(url);
+                        console.log(url);
+                        -----------------
+                        console.log(doc);
                         // TODO: scraping goes here!
                     });
                 }
