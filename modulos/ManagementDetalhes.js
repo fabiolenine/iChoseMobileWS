@@ -31,12 +31,14 @@ module.exports = function(mongoose, request, cheerio)
                 for(doc in docs){
                     var url = docs[doc].urlscrapedetalhes;
                     request(url, function(err, resp, body) {
-                    if (err) throw err;
+                    
+                    if(err){throw err;}
                     
                     $ = cheerio.load(body);
                     console.log(url);
                         // TODO: scraping goes here!
                     });
+                }
             }
         });
     };
