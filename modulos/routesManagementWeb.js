@@ -101,7 +101,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       
     ManagementDetalhes.scrapeloaddetails(function(itens){
         for(item in itens){
-        console.log(itens.[item]);
+        console.log(itens[item]);
         }
     });
     
