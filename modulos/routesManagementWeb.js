@@ -99,11 +99,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         });
     });
       
-    ManagementDetalhes.scrapeloaddetails(function(itens){
-        for(item in itens){
-        console.log(itens[item]);
-        }
-    });
+    ManagementDetalhes.scrapeloaddetails();
+//        function(itens){
+//        for(item in itens){
+//        console.log(itens[item]);
+//        }
+//    });
     
     res.send(200);
   });

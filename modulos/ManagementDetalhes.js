@@ -22,16 +22,17 @@ module.exports = function(mongoose, request, cheerio)
         eventscrap.save();
     };
     
-    var scrapeloaddetails = function(callback){
+    var scrapeloaddetails = function(){
         event.model.find({},{urlscrapedetalhes: 1},function(error,docs){
             if(error){
                 console.log('Erro apresentado: ' + error);
             }
             else {
-                callback(docs);
-//                for(doc in docs){
-//                    var url = docs[doc].urlscrapedetalhes;
-//                    var Id  = docs[doc]._id;
+                for(doc in docs){
+                    var url = docs[doc].urlscrapedetalhes;
+                    var Id  = docs[doc]._id;
+                    
+                    console.log(url);
 //                    
 //                    scrapelink(url, function(html) {
 //        
@@ -51,7 +52,7 @@ module.exports = function(mongoose, request, cheerio)
 //						  }
 //					   });                       
 //                    });
-//                }
+                }
             }
         });
     };
