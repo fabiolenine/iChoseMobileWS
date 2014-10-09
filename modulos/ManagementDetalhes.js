@@ -22,13 +22,13 @@ module.exports = function(mongoose, request, cheerio)
         eventscrap.save();
     };
     
-    var scrapeloaddetails = function(){
+    var scrapeloaddetails = function(callback){
         event.model.find({},{urlscrapedetalhes: 1},function(error,docs){
             if(error){
                 console.log('Erro apresentado: ' + error);
             }
             else {
-                return docs;
+                callback(docs);
 //                for(doc in docs){
 //                    var url = docs[doc].urlscrapedetalhes;
 //                    var Id  = docs[doc]._id;
