@@ -29,25 +29,25 @@ module.exports = function(mongoose, request, cheerio)
             }
             else {
                 for(doc in docs){
-                    var link = docs[doc].urlscrapedetalhes;
-                    var id  = docs[doc]._id;
+                    var url = docs[doc].urlscrapedetalhes;
+                    var Id  = docs[doc]._id;
                     
-                    request({url: link, enconding: 'binary'}, function(error, response, body){
-                        if(!error && response.statusCode == 200){
+                    scrapelink(url, function(html) {
+        
+                        var $ = html;
                         
-                            var $ = cheerio.load(body);
-
-                            var classificacao = $('.desc_basica_evento p span strong').text().trim();
+                        var idade = $('.desc_basica_evento p span strong').text().trim();
                         
-                            console.log(link);
-                            console.log(id);
-                            console.log('-----------');
-                            consolo.log(classificacao);
-
-                        }
-                        else {
-                            throw error;
-                        }
+                        event.model.update({_id:Id},{$set: {classificacao:idade}},{upsert:false},function changePasswordCallback(err){
+						  if(err)
+						  {
+							console.log('Atualização da senha falhou, ID: ' + Id);
+						  }
+						  else
+						  {
+							console.log('Senha alterada do ID de usuário: ' + Id);
+						  }
+					   });                       
                     });
                 }
             }
