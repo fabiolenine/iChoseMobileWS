@@ -30,7 +30,7 @@ module.exports = function(mongoose, request, cheerio)
             else {
                 for(doc in docs){
                     var url = docs[doc].urlscrapedetalhes;
-                    var id  = docs(doc]._id;
+                    var id  = docs[doc]._id;
                                    
                     scrapelink(url, function(html) {
         
