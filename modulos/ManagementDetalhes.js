@@ -33,8 +33,6 @@ module.exports = function(mongoose, request, cheerio)
                     var id  = docs[doc]._id;
                                                        
                         console.log(url);
-                        -----------------
-                        console.log(doc);
 
                 }
             }
