@@ -29,19 +29,25 @@ module.exports = function(mongoose, request, cheerio)
             }
             else {
                 for(doc in docs){
-                    var url = docs[doc].urlscrapedetalhes;
+                    var link = docs[doc].urlscrapedetalhes;
                     var id  = docs[doc]._id;
                     
-                    scrapelink(url, function(html) {
-        
-                        var $ = html;
+                    request({url: link, enconding: 'binary'}, function(error, response, body){
+                        if(!error && response.statusCode == 200){
                         
-                        var classificacao = $('.desc_basica_evento p span strong').text().trim();
+                            var $ = cheerio.load(body);
+
+                            var classificacao = $('.desc_basica_evento p span strong').text().trim();
                         
-                        console.log(url);
-                        console.log(id);
-                        console.log('-----------');
-                        consolo.log(classificacao);
+                            console.log(link);
+                            console.log(id);
+                            console.log('-----------');
+                            consolo.log(classificacao);
+
+                        }
+                        else {
+                            throw error;
+                        }
                     });
                 }
             }
