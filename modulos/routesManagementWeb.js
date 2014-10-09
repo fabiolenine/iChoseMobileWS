@@ -76,14 +76,17 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
                     urlpersonaevento    : "",
                     urlscrapedetalhes   : "",
                     tags                : []};
-      
+    
     ManagementDetalhes.scrapelink('http://www.blueticket.com.br/?secao=Eventos&tipo=6', function(html) {
         
         var $ = html;
         
         scrape.tags = $('.cabecalho .titulo').text().trim();
-                
-        $('.item_evento_1').each(function(){
+        
+        var events  = $('.item_evento_1');
+        var counter = events.length;
+        
+        events.each(function(){
             scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
             scrape.imagembanner        = $(this).find('img').attr('src').trim();
             scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
@@ -95,8 +98,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             var dt                     = $(this).find('.data_evento_lista').text().split(",");
             scrape.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
             
-        ManagementDetalhes.scrapesave(scrape,function(callback){ManagementDetalhes.scrapeloaddetails();});
-            
+            ManagementDetalhes.scrapesave(scrape,function(callback){
+                counter--;
+                if(counter==0) {ManagementDetalhes.scrapeloaddetails();}
+            });
         });
     });
       
