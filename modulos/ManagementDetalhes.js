@@ -31,16 +31,11 @@ module.exports = function(mongoose, request, cheerio)
                 for(doc in docs){
                     var url = docs[doc].urlscrapedetalhes;
                     var id  = docs[doc]._id;
-                                   
-                    scrapelink(url, function(html) {
-        
-                        var $ = html;
-                    
+                                                       
                         console.log(url);
                         -----------------
                         console.log(doc);
-                        // TODO: scraping goes here!
-                    });
+
                 }
             }
         });
