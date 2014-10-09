@@ -38,7 +38,8 @@ module.exports = function(mongoose, request, cheerio)
                         
                         var idade = $('.desc_basica_evento p span strong').text().trim();
                         
-                        event.model.update({_id:Id},{$set: {classificacao:idade}},{upsert:false},function changePasswordCallback(err){
+                        event.model.update({urlscrapedetalhes:url},{$set: {classificacao:idade}},{upsert:false},
+                        function(err){
 						  if(err)
 						  {
 							console.log('Atualização da senha falhou, ID: ' + Id);
