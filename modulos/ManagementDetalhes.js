@@ -31,9 +31,18 @@ module.exports = function(mongoose, request, cheerio)
                 for(doc in docs){
                     var url = docs[doc].urlscrapedetalhes;
                     var id  = docs[doc]._id;
-                                                       
+                    
+                    scrapelink(url, function(html) {
+        
+                        var $ = html;
+                        
+                        var classificacao = $('.desc_basica_evento p span strong').text().trim();
+                        
                         console.log(url);
-
+                        console.log(id);
+                        console.log('-----------');
+                        consolo.log(classificacao);
+                    });
                 }
             }
         });
