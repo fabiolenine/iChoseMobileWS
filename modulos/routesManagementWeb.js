@@ -61,46 +61,14 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
-    
-//    var scrape  = { estabelecimento     : "",
-//                    evento              : "", 
-//                    dataevento          : "", 
-//                    imagembanner        : "", 
-//                    cidade              : "",
-//                    uf                  : "",
-//                    urlscrapedetalhes   : "",
-//                    tags                : []};
-    
+        
     ManagementDetalhes.scrapepartone('http://www.blueticket.com.br/?secao=Eventos&tipo=6',function(success){
         if(success){
-            ManagementDetalhes.scrapeloaddetails();
             res.send(200);
         }
         else {res.send(400);}
     });
-      
-//    ManagementDetalhes.scrapelink('http://www.blueticket.com.br/?secao=Eventos&tipo=6', function(html) {
-//        
-//       var $ = html;
-//       
-//        scrape.tags = $('.cabecalho .titulo').text().trim();
-//        
-//        $('.item_evento_1').each(function(){
-//            scrape.urlscrapedetalhes   = 'http://www.blueticket.com.br' +  $(this).find('a').attr('href').trim();
-//            scrape.imagembanner        = $(this).find('img').attr('src').trim();
-//            scrape.evento              = $(this).find('.titulo_evento_lista').text().trim();
-//            scrape.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
-//            var order                  = $(this).find('.desc_evento_lista').text().split("|");
-//            var city                   = order[1].split("-");
-//            scrape.cidade              = city[0].trim();
-//            scrape.uf                  = city[1].trim();
-//            var dt                     = $(this).find('.data_evento_lista').text().split(",");
-//            scrape.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
-//            
-//            ManagementDetalhes.scrapesave(scrape);
-//        });
-//    });
-//    res.send(200);
+
   });
     
 // =====================================

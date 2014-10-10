@@ -17,10 +17,36 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
     
-    var scrapesave = function(scrape) {
+    var scrapesave = function(scrape,callback) {
         var eventscrap = new event.model(scrape);
-        eventscrap.save();
+        eventscrap.save(function(err,doc) {
+            if(err){
+                console.log('Não foi possível salvar o evento: ' + scrape.evento);
+                callback(false);
+            }
+            else {
+                scrapeparttwo(scrape.urlscrapedetalhes, function(success){
+                    if(success){ callback(true);}
+                    else {callback(false);}
+                });
+            }
+        });
     };
+
+    var scrapeparttwo = function(link,callback){
+        event.model.find({urlscrapedetalhes: link},{urlscrapedetalhes: 1},function(error,docs){
+            if(error){
+                console.log('Erro apresentado: ' + error);
+                callback(false);
+            }
+            else {
+                console.log(docs.urlscrapedetalhes);
+                console.log(docs._id);
+                callback(true)
+            }
+        });
+    };
+    
     
     var scrapepartone = function(link, callback){
         
@@ -54,10 +80,10 @@ module.exports = function(mongoose, request, cheerio)
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
             
                 scrapesave(scrape);
-                counter--;
-                if(counter==0){callback(true);}
+            
             });
         });
+        callback(true);
     };
     
     var scrapeloaddetails = function(){
