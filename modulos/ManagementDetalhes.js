@@ -19,12 +19,9 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapesave = function(scrape, callback) {
         var eventscrape = new event.model(scrape);
-        var events = [];
+        eventscrape.save();
         
-        events.push(scrape);
-        
-        eventscrape.save(function(err){
-            if(!err){console.log(scrape.urlscrapedetalhes);}});
+        return console.log(eventscrape);
     };
 
     var scrapeparttwo = function(link){
