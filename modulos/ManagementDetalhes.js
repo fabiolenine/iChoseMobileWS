@@ -24,7 +24,7 @@ module.exports = function(mongoose, request, cheerio)
         events.push(scrape);
         
         eventscrape.save(function(err){
-            if(!err){console.log(events);}});
+            if(!err){console.log(scrape.urlscrapedetalhes);}});
     };
 
     var scrapeparttwo = function(link){
