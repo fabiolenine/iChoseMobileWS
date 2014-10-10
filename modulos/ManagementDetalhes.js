@@ -21,12 +21,10 @@ module.exports = function(mongoose, request, cheerio)
         var eventscrape = new event.model(scrape);
         var events = [];
         
-        
+        events.push(scrape);
         
         eventscrape.save(function(err){
-            if(!err){events.push(scrape);}});
-    
-        console.log(events);
+            if(!err){console.log(events);}});
     };
 
     var scrapeparttwo = function(link){
