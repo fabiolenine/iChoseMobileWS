@@ -19,15 +19,14 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapesave = function(scrape, callback) {
         var eventscrap = new event.model(scrape);
-        eventscrap.save(function validsave(err) {
-            if(err){
+        eventscrap.save(function(error){
+            if(error){
                 console.log('Não foi possível salvar o evento: ' + scrape.evento);
                 callback(false);
             }
             else {
                 scrapeparttwo(scrape.urlscrapedetalhes);
                 callback(true);
-
             }
         });
     };
