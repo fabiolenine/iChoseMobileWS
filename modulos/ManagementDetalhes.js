@@ -19,25 +19,24 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapesave = function(scrape, callback) {
         var eventscrape = new event.model(scrape);
-        var events = [];
-        
-        events.push(eventscrape);
         
         eventscrape.save();
         
-        console.log(events);
     };
 
-    var scrapeparttwo = function(link){
-        event.model.find({urlscrapedetalhes: link},{urlscrapedetalhes: 1},function(error,docs){
-            if(error){
-                console.log('Erro apresentado: ' + error);
-            }
-            else {
-                console.log(docs.urlscrapedetalhes);
-                console.log(docs._id);
-            }
+    var scrapeparttwo = function(scrape){
+        var eventscrape = new event.model(scrape);
+        
+        scrapelink(eventscrape.urlscrapedetalhes, function(html) {
+        
+            var $ = html;
+        
+            eventscrape.classificacao = $('.desc_basica_evento p span strong').text().trim();
+            
+            scrapesave(eventscrape);
+            
         });
+        
     };
     
     
@@ -72,7 +71,7 @@ module.exports = function(mongoose, request, cheerio)
                 var dt                     = $(this).find('.data_evento_lista').text().split(",");
                 scrape.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
             
-                scrapesave(scrape);
+                scrapeparttwo(scrape);
             
             });
         });
