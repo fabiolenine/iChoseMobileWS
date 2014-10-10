@@ -31,7 +31,13 @@ module.exports = function(mongoose, request, cheerio)
         
             var $ = html;
         
-            eventscrape.classificacao = $('.desc_basica_evento p span img').text().trim();
+//<ul id="fruits">
+//  <li class="apple">Apple</li>
+//  <li class="orange">Orange</li>
+//  <li class="pear">Pear</li>
+//</ul>
+  
+            eventscrape.classificacao = $('.desc_basica_evento p span').text().trim();
             
             scrapesave(eventscrape);
             
