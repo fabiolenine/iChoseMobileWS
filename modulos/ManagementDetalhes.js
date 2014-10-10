@@ -34,8 +34,8 @@ module.exports = function(mongoose, request, cheerio)
             var extracao               = $('.desc_basica_evento p span').text().trim(); 
             var estruturacao           = extracao.replace("Cidade/UF: Florian�polis - SCAbertura: " , "").replace("Classifica��o:  - " , "|");       
             var separar                = estruturacao.split("|");
-            eventscrape.abertura       = separar[0].trim();
-            eventscrape.classificacao  = separar[1].trim();
+            eventscrape.abertura       = separar[0];
+            eventscrape.classificacao  = separar[1];
                 
             scrapesave(eventscrape);
             
