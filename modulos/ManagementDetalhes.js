@@ -17,7 +17,7 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
     
-    var scrapesave = function(scrape,callback) {
+    var scrapesave = function(scrape, callback) {
         var eventscrap = new event.model(scrape);
         eventscrap.save(function(err,doc) {
             if(err){
@@ -25,24 +25,21 @@ module.exports = function(mongoose, request, cheerio)
                 callback(false);
             }
             else {
-                scrapeparttwo(scrape.urlscrapedetalhes, function(success){
-                    if(success){callback(true);}
-                    else {callback(false);}
-                });
+                scrapeparttwo(scrape.urlscrapedetalhes);
+                callback(true);
+
             }
         });
     };
 
-    var scrapeparttwo = function(link,callback){
+    var scrapeparttwo = function(link){
         event.model.find({urlscrapedetalhes: link},{urlscrapedetalhes: 1},function(error,docs){
             if(error){
                 console.log('Erro apresentado: ' + error);
-                callback(false);
             }
             else {
                 console.log(docs.urlscrapedetalhes);
                 console.log(docs._id);
-                callback(true);
             }
         });
     };
