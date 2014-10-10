@@ -18,10 +18,15 @@ module.exports = function(mongoose, request, cheerio)
     };
     
     var scrapesave = function(scrape, callback) {
-        var eventscrap = new event.model(scrape);
-        eventscrap.save(function teste(){
-                scrapeparttwo(scrape.urlscrapedetalhes);
-        });
+        var eventscrape = new event.model(scrape);
+        var events = [];
+        
+        
+        
+        eventscrape.save(function(err){
+            if(!err){events.push(scrape);}});
+    
+        console.log(events);
     };
 
     var scrapeparttwo = function(link){
