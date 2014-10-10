@@ -36,9 +36,11 @@ module.exports = function(mongoose, request, cheerio)
 //  <li class="orange">Orange</li>
 //  <li class="pear">Pear</li>
 //</ul>
-  
-            eventscrape.classificacao = $('.desc_basica_evento p span').text().trim();
             
+            var extracao               = $('.desc_basica_evento p span').text().trim(); 
+            var estruturacao           = extracao.replace("Cidade/UF: Florian�polis - SCAbertura: " , "").replace("Classifica��o:  - " , "|").split("|");       
+            eventscrape.classificacao  = estruturacao[1].trim();
+                
             scrapesave(eventscrape);
             
         });
