@@ -26,7 +26,7 @@ module.exports = function(mongoose, request, cheerio)
             }
             else {
                 scrapeparttwo(scrape.urlscrapedetalhes, function(success){
-                    if(success){ callback(true);}
+                    if(success){callback(true);}
                     else {callback(false);}
                 });
             }
@@ -42,7 +42,7 @@ module.exports = function(mongoose, request, cheerio)
             else {
                 console.log(docs.urlscrapedetalhes);
                 console.log(docs._id);
-                callback(true)
+                callback(true);
             }
         });
     };
@@ -124,7 +124,8 @@ module.exports = function(mongoose, request, cheerio)
     var retorno = { "scrapesave"	    : scrapesave,
                     "scrapelink"        : scrapelink,
                     "scrapeloaddetails" : scrapeloaddetails,
-                    "scrapepartone"     : scrapepartone};
+                    "scrapepartone"     : scrapepartone,
+                    "scrapeparttwo"     : scrapeparttwo};
 
 	return retorno;	
 
