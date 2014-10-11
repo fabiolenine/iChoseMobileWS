@@ -50,7 +50,7 @@ module.exports = function(mongoose, request, cheerio)
             var $ = html;
             
             var extracao                = $('.desc_basica_evento p span').text().trim();       
-            var cidadeext               = $('.desc_basica_evento p span strong').first().text();
+            var cidadeext               = $('.desc_basica_evento p span').first().text();
             
             var xclassificacao          = extracao.search("Classifica��o:") + 18;
             var xabertura               = extracao.search("Abertura:") + 10;
@@ -67,7 +67,7 @@ module.exports = function(mongoose, request, cheerio)
             //var order                  = $('.desc_evento_lista').text().split("|");
             //var city                   = order[1].split("-");
             
-            local.imagembanner         = $('.div_img').find('a').attr('href');
+            local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
             local.logradouro           = $('.desc_basica_evento p span strong').first().next().text();
             local.cidade               = cidadeext.replace('Cidade/UF:','').trim(); 
