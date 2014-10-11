@@ -64,8 +64,8 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
             
-            var order                  = $('.desc_evento_lista').text().split("|");
-            var city                   = order[1].split("-");
+            //var order                  = $('.desc_evento_lista').text().split("|");
+            //var city                   = order[1].split("-");
             
             local.imagembanner         = $('.div_img').find('a').attr('href');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
