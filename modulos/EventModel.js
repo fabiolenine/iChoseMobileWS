@@ -16,7 +16,7 @@ eventSchema = new mongoose.Schema({evento             : String,
                                    urlscrapedetalhes  : String,
                                    website            : String,
                                    tags               : [],
-                                   forauso            : Boolean,
+                                   forauso            : {type: Boolean, default: false},
                                    situacao           : String});
 
 exports.model = mongoose.model('event',eventSchema);
