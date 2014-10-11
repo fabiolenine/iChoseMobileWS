@@ -31,11 +31,12 @@ module.exports = function(mongoose, request, cheerio)
         
             var $ = html;
             
-            var extracao               = $('.desc_basica_evento p span').text().trim(); 
-            var estruturacao           = extracao.replace("Cidade/UF: Florian�polis - SCAbertura: " , "").replace("Classifica��o:  - " , "|");       
-            var separar                = estruturacao.split("|");
-            eventscrape.abertura       = separar[0];
-            eventscrape.classificacao  = separar[1];
+            var extracao               = $('.desc_basica_evento p span').text().trim();       
+            
+            var xclassificacao         = extracao.search("Classifica��o:")+ 19;
+            var xabertura              = extracao.search("Abertura:")+11;
+            eventscrape.abertura       = extracao.substr(xabertura,5);
+            eventscrape.classificacao  = extracao.substr(xclassificacao,7);
                 
             scrapesave(eventscrape);
             
