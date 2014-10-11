@@ -32,8 +32,7 @@ module.exports = function(mongoose, request, cheerio)
             var $ = html;
             
             var extracao                    = $('.desc_basica_evento p span').text().trim();       
-            eventscrape.descricao           = extracao;
-            
+           
             var xclassificacao              = extracao.search("Classifica��o:") + 18;
             var xabertura                   = extracao.search("Abertura:") + 10;
             var xinicio                     = extracao.search("In�cio:") + 8;
@@ -42,6 +41,7 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.classificacao       = extracao.substr(xclassificacao,7);
             if(xinicio > 8){eventscrape.inicio = extracao.substr(xinicio,5);}
             eventscrape.urlpersonaevento    = $('.desc_basica_evento p span').find('a').attr('href');
+            eventscrape.descricao           = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
             scrapesave(eventscrape);
             
@@ -64,6 +64,7 @@ module.exports = function(mongoose, request, cheerio)
                         inicio              : "",
                         descricao           : "",
                         urlpersonaevento    : "",
+                        descricao           : "",
                         tags                : []};
         
         scrapelink(link, function(html) {
