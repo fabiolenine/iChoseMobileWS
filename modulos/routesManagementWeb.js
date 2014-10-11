@@ -62,7 +62,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/scrape', function(req, res) {
         
-    ManagementDetalhes.scrapepartone('http://www.blueticket.com.br/?secao=Eventos&tipo=6',function(success){
+    ManagementDetalhes.scrapeevent('http://www.blueticket.com.br/?secao=Eventos&tipo=6',function(success){
         if(success){
             res.send(200);
         }
