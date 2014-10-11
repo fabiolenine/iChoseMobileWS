@@ -32,6 +32,7 @@ module.exports = function(mongoose, request, cheerio)
             var $ = html;
             
             var extracao               = $('.desc_basica_evento p span').text().trim();       
+            eventscrape.descricao      = extracao;
             
             var xclassificacao         = extracao.search("Classifica��o:") + 18;
             var xabertura              = extracao.search("Abertura:") + 10;
@@ -60,6 +61,7 @@ module.exports = function(mongoose, request, cheerio)
                         abertura            : "",
                         classificacao       : "",
                         inicio              : "",
+                        descricao           : "",
                         tags                : []};
         
         scrapelink(link, function(html) {
