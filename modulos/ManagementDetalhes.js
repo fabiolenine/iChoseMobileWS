@@ -41,7 +41,7 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.abertura            = extracao.substr(xabertura,5);
             eventscrape.classificacao       = extracao.substr(xclassificacao,7);
             eventscrape.inicio              = extracao.substr(xinicio,5);
-            eventscrape.urlpersonaevento    = $('.desc_basica_evento p span').find('a').attr('href').trim();
+            eventscrape.urlpersonaevento    = $('.desc_basica_evento p span').find('a').attr('href');
             
             scrapesave(eventscrape);
             
