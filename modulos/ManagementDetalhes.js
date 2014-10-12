@@ -90,7 +90,9 @@ module.exports = function(mongoose, request, cheerio)
             
             eventscrape.abertura        = extracao.substr(xabertura,5);
             eventscrape.classificacao   = extracao.substr(xclassificacao,7);
-            if(xinicio > 8){eventscrape.inicio = extracao.substr(xinicio,5);}
+            if(xinicio > 8){
+                eventscrape.inicio = extracao.substr(xinicio,5);
+            }
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
@@ -101,6 +103,12 @@ module.exports = function(mongoose, request, cheerio)
             local.cidade               = city[0].trim();
             local.estado               = city[1].trim();
             local.website              = $('.local_evento p').find('a').attr('href');
+            
+            $('.thead_titulo').each(function (){
+                var vgenero = $(this).find('.titulo_laranja').text().trim();
+                
+                eventscrape.ingresso.push({genero: vgenero});
+            });
             
             scrapesave(eventscrape,local);
             
@@ -123,9 +131,10 @@ module.exports = function(mongoose, request, cheerio)
                         website             : "",
                         descricao           : "",
                         tags                : [],
-                        ingresso            : [{genero  : "",
-                                                produto : [{setor : "",
-                                                            valor : ""}]}]};
+                        ingresso            : [{genero  : ""
+                                                //,produto : [{setor : "",
+                                                //            valor : ""}]
+                                               }]};
         
         scrapelink(link, function(html) {
         
