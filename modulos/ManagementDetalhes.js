@@ -67,15 +67,15 @@ module.exports = function(mongoose, request, cheerio)
             var vgenero        = $(this).find('.titulo_laranja').text();
             var vsetor         = "";
             var vvalor         = "";
-                
+                    
             var ingressodetail = { genero   : vgenero,
                                    produto  : [{setor : vsetor,
                                                 valor : vvalor}]};
                 
-            eventscrape.ingresso.push(ingressodetail);  
+            return ingressodetail;
             });
 
-
+            eventscrape.ingresso.push(ingressodetail);  
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
