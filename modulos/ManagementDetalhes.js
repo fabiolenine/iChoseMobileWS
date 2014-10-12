@@ -64,7 +64,15 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
             $('.thead_titulo').each(function(){
-                eventscrape.ingresso.genero = $(this).find('.titulo_laranja').text();    
+            var vgenero        = $(this).find('.titulo_laranja').text();
+            var vsetor         = "";
+            var vvalor         = "";
+                
+            var ingressodetail = { genero   : vgenero,
+                                   produto  : [{setor : vsetor,
+                                                valor : vvalor}]};
+                
+            eventscrape.ingresso.push(ingressodetail);  
             });
 
 
