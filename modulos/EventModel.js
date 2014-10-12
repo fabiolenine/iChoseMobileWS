@@ -4,7 +4,7 @@ var eventSchema;
 eventSchema = new mongoose.Schema({evento             : String,
 					               dataevento         : String,
                                    timestamp          : {type: Date, default: Date.now},
-					               fornecedorid       : Object,
+					               fornecedorid       : String,
                                    esteblecimentoid   : Object,
 					               usuariocadastroid  : Object,
 					               imagembanner       : String,
