@@ -107,21 +107,7 @@ module.exports = function(mongoose, request, cheerio)
             $('.thead_titulo').each(function (){
                 var vgenero = $(this).find('.titulo_laranja').text().trim();
                 
-                var vprodutos = [];
-                $('tr td').each(function (){
-                    var vsetor      = $(this).find('b .lote_atual').text().trim();
-                    var vvalor      = $(this).find('td .lote_atual').text().trim();
-                    
-                    var vproduto    = {setor: vsetor,
-                                       valor: vvalor};
-                    
-                    vprodutos.push(vproduto);
-                });
- 
-                var vingresso   = {genero  : vgenero,
-                                   produto : vprodutos};               
-                
-                eventscrape.ingresso.push(vingresso);
+                eventscrape.ingresso.push({genero: vgenero});
                 
             });
             
@@ -147,8 +133,8 @@ module.exports = function(mongoose, request, cheerio)
                         descricao           : "",
                         tags                : [],
                         ingresso            : [{genero  : ""
-                                                ,produto : [{setor : "",
-                                                             valor : ""}]
+                                                //,produto : [{setor : "",
+                                                  //           valor : ""}]
                                                }]};
         
         scrapelink(link, function(html) {
