@@ -63,8 +63,8 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
-            $('tr').each(function(){
-                eventscrape.ingresso.genero = $(this).find('.thead_titulo td .titulo_laranja').text();    
+            $('.thead_titulo').each(function(){
+                eventscrape.ingresso.genero = $(this).find('.titulo_laranja').text();    
             });
 
 
