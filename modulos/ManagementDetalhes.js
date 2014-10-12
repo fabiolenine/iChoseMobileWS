@@ -21,6 +21,7 @@ module.exports = function(mongoose, request, cheerio)
     var scrapesave = function(event, local, callback) {
         var eventscrape = new eventmodel.model(event);
         var localscrape = new localmodel.model(local);
+        var ObjectID 	= mongoose.Types.ObjectId;
         
         var user = localmodel.model.findOne({
 					'estabelecimento'  : localscrape.estabelecimento,
