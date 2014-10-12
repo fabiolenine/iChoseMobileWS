@@ -33,16 +33,18 @@ module.exports = function(mongoose, request, cheerio)
 					}
 					else {
 						if (doc){                    
+                            
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
+                            
                             var eventf = eventscrape.model.findOne({
                                 'evento'            : eventscrape.evento,
                                 'dataevento'        : eventscrape.dataevento,
-                                'estabelecimentoid' : eventscrape.estabelecimentoid},
-                            function findevento(err,doc){
-                                if(err){
-                                    callback(false);
-                                } 
-                                else {eventscrape.save();}});
+                                'estabelecimentoid' : doc._id},
+                                function findevento(err,doc){
+                                    if(err){
+                                        callback(false);
+                                    } 
+                                    else {eventscrape.save();}});
                         }
                         else {
                             localscrape.save(function savelocal(err,doc){
