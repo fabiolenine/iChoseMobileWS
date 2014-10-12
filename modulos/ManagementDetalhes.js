@@ -34,11 +34,13 @@ module.exports = function(mongoose, request, cheerio)
 					else {
 						if (doc){                    
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
+                            console.log(doc._id);
                             eventscrape.save();
                         }
                         else {
                             localscrape.save(function savelocal(err,doc){
                                 eventscrape.estabelecimentoid = new ObjectID(doc._id);
+                                console.log(doc._id);
                                 eventscrape.save();
                             });
                         }
@@ -98,7 +100,7 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapeevent = function(link, callback){
         
-        var event  = {  estabelecimentoid   : "",
+        var event  = {  estabelecimentoid   : Object,
                         evento              : "", 
                         dataevento          : "", 
                         imagembanner        : "",
