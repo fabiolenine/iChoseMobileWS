@@ -15,10 +15,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
     
-    app.get('*', function(req, res) {
-		res.render('index.ejs'); // load the single view file (angular will handle the page changes on the front-end)
-	});
-    
     // process the login form
 	app.post('/login', passport.authenticate('local-login-management', {
 		successRedirect   : '/dashboard',     // redirect to the secure profile section
