@@ -63,19 +63,15 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
+            $('.table_ingressos tbody').each(function(){
+                eventscrape.ingresso.genero = $(this).find('.titulo_laranja').text();    
+            });
 
-//<ul id="fruits">
-//  <li class="apple">Apple</li>
-//  <li class="orange">Orange</li>
-//  <li class="pear">Pear</li>
-//</ul>
-            
-            //var order                  = $('.desc_evento_lista').text().split("|");
-            //var city                   = order[1].split("-");
+
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
-            local.logradouro           = $('.local_evento p').eq(1).text().replace('Endere�o' , '').replace(/\t/g , '').replace(/\n/g , '').replace(/\r/g , ',').replace(cidadeext.replace('Cidade/UF:','').replace(/-/g , '/').trim() , '').trim();
+            local.logradouro           = $('.local_evento p').eq(1).text().replace('Endere�o' , '').replace(/\t/g , '').replace(/\n/g , '').replace(/\r/g , ',').trim();
             var city                   = cidadeext.replace('Cidade/UF:','').trim().split('-');        
             local.cidade               = city[0].trim();
             local.estado               = city[1].trim();
@@ -101,7 +97,10 @@ module.exports = function(mongoose, request, cheerio)
                         descricao           : "",
                         website             : "",
                         descricao           : "",
-                        tags                : []};
+                        tags                : [],
+                        ingresso            : [{genero  : "",
+                                                produto : [{setor : "",
+                                                            valor : ""}]}]};
         
         scrapelink(link, function(html) {
         
