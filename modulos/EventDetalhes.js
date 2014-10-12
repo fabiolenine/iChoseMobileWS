@@ -32,11 +32,12 @@ module.exports = function(mongoose)
     var update = function(evento, callback){
         eventmodel.model.update({
 					_id: evento.id
-        },{$set: {
+        },{$set: 
             evento //Verificar se é adequado para update.
-                }},{
-					upsert:false
-				    },function updateCallback(err) {
+                
+          },{
+             upsert:false
+            },function updateCallback(err) {
 						if(err){
 							console.log('Atualização do evento falhou, ID: ' + evento.id);
 							callback(false);
