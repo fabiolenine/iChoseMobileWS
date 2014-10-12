@@ -22,10 +22,27 @@ module.exports = function(mongoose, request, cheerio)
         var eventscrape = new eventmodel.model(event);
         var localscrape = new localmodel.model(local);
         
-        localscrape.save(function(err){
-            if(!err){eventscrape.save();}
+        var user = localmodel.model.findOne({
+					'estabelecimento'  : localscrape.estabelecimento,
+                    'cidade'           : localscrape.cidade
+				},
+				function findAccount(err,doc){
+					if (err){
+						callback(false);
+					}
+					else {
+						if (doc){                    
+                            eventscrape.estabelecimentoid = doc._id;
+                            eventscrape.save();
+                        }
+                        else {
+                            localscrape.save(function savelocal(err,doc){
+                                eventscrape.estabelecimentoid = doc._id;
+                                eventscrape.save();
+                            });
+                        }
+                    }
         });
-        
     };
 
     var scrapeparttwo = function(scrape){
@@ -62,20 +79,6 @@ module.exports = function(mongoose, request, cheerio)
             if(xinicio > 8){eventscrape.inicio = extracao.substr(xinicio,5);}
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
-            
-            var details = $('.thead_titulo').each(function(){
-            var vgenero        = $(this).find('.titulo_laranja').text();
-            var vsetor         = "";
-            var vvalor         = "";
-                    
-            var ingressodetail = { genero   : vgenero,
-                                   produto  : [{setor : vsetor,
-                                                valor : vvalor}]};
-                
-            return ingressodetail;
-            });
-
-            eventscrape.ingresso.push(details);  
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
