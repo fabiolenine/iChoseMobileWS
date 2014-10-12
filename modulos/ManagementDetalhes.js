@@ -32,12 +32,12 @@ module.exports = function(mongoose, request, cheerio)
 					}
 					else {
 						if (doc){                    
-                            eventscrape.estabelecimentoid = doc._id;
+                            eventscrape.estabelecimentoid = new ObjectID(doc._id);
                             eventscrape.save();
                         }
                         else {
                             localscrape.save(function savelocal(err,doc){
-                                eventscrape.estabelecimentoid = doc._id;
+                                eventscrape.estabelecimentoid = new ObjectID(doc._id);
                                 eventscrape.save();
                             });
                         }
