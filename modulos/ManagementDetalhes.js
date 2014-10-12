@@ -112,7 +112,6 @@ module.exports = function(mongoose, request, cheerio)
                     var vsetor      = $(this).find('b .lote_atual').text().trim();
                     var vvalor      = $(this).find('td .lote_atual').text().trim();
                     
-                    if()
                     var vproduto    = {setor: vsetor,
                                        valor: vvalor};
                     
