@@ -63,7 +63,7 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
-            $('.thead_titulo').each(function(){
+            var details = $('.thead_titulo').each(function(){
             var vgenero        = $(this).find('.titulo_laranja').text();
             var vsetor         = "";
             var vvalor         = "";
@@ -75,7 +75,7 @@ module.exports = function(mongoose, request, cheerio)
             return ingressodetail;
             });
 
-            eventscrape.ingresso.push(ingressodetail);  
+            eventscrape.ingresso.push(details);  
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
