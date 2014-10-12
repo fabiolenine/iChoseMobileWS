@@ -23,26 +23,30 @@ module.exports = function(mongoose, request, cheerio)
         var localscrape = new localmodel.model(local);
         var ObjectID 	= mongoose.Types.ObjectId;
         
-        var user = localmodel.model.findOne({
+        var localf = localmodel.model.findOne({
 					'estabelecimento'  : localscrape.estabelecimento,
                     'cidade'           : localscrape.cidade
 				},
-				function findAccount(err,doc){
+				function findestabelecimento(err,doc){
 					if (err){
 						callback(false);
 					}
 					else {
 						if (doc){                    
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
-                            console.log(doc._id);
-                            //eventscrape.estabelecimentoid = doc._id;
-                            eventscrape.save();
+                            var eventf = eventscrape.model.findOne({
+                                'evento'            : eventscrape.evento,
+                                'dataevento'        : eventscrape.dataevento,
+                                'estabelecimentoid' : eventscrape.estabelecimentoid},
+                            function findevento(err,doc){
+                                if(err){
+                                    callback(false);
+                                } 
+                                else {eventscrape.save();}});
                         }
                         else {
                             localscrape.save(function savelocal(err,doc){
                                 eventscrape.estabelecimentoid = new ObjectID(doc._id);
-                                console.log(doc._id);
-                                //eventscrape.estabelecimentoid = doc._id;
                                 eventscrape.save();
                             });
                         }
