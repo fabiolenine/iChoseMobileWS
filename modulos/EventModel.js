@@ -19,8 +19,8 @@ eventSchema = new mongoose.Schema({evento             : String,
                                    forauso            : {type: Boolean, default: false},
                                    situacao           : String,
                                    ingresso           : [{  genero  : String
-                                                            //,produto : [{setor : String,
-                                                            //valor : String}]
+                                                            ,produto : [{setor : String,
+                                                                         valor : String}]
                                                          }]});
 
 exports.model = mongoose.model('event',eventSchema);
