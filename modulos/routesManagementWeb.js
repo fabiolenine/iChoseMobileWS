@@ -1,5 +1,5 @@
 //RoutesManagement.js
-module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes) {
+module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes) {
 
     app.set('views', '../iChoseManagementWeb');
     
@@ -14,6 +14,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     app.get('/', function(req, res) {
         res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
+    
+    app.get('*', function(req, res) {
+		res.render('index.ejs'); // load the single view file (angular will handle the page changes on the front-end)
+	});
     
     // process the login form
 	app.post('/login', passport.authenticate('local-login-management', {
@@ -55,6 +59,17 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     });
   });
 
+// =====================================
+// Eventos SECTION =====================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/fornecedorevento', isLoggedIn, function(req, res) {
+    res.render('fornecedorevento.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+    
 // =====================================
 // Scrape ==============================
 // =====================================
