@@ -69,7 +69,7 @@ module.exports = function(mongoose, request, cheerio)
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
-            local.logradouro           = $('.local_evento p strong br').text();
+            local.logradouro           = $('.local_evento p').text();
             var city                   = cidadeext.replace('Cidade/UF:','').trim().split('-');        
             local.cidade               = city[0].trim();
             local.estado               = city[1].trim();
