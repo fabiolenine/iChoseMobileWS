@@ -44,7 +44,10 @@ module.exports = function(mongoose, request, cheerio)
                                     if(err){
                                         callback(false);
                                     } 
-                                    else {eventscrape.save();}});
+                                    else {
+                                        if(!doc){eventscrape.save();}
+                                    }
+                                });
                         }
                         else {
                             localscrape.save(function savelocal(err,doc){
