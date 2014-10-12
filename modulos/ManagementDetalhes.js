@@ -36,7 +36,7 @@ module.exports = function(mongoose, request, cheerio)
                             
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
                             
-                            var eventf = eventscrape.model.findOne({
+                            var eventf = eventmodel.model.findOne({
                                 'evento'            : eventscrape.evento,
                                 'dataevento'        : eventscrape.dataevento,
                                 'estabelecimentoid' : doc._id},
