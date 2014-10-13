@@ -65,6 +65,42 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       user : req.user // get the user out of session and pass to template
     });
   });
+
+  app.get('/event/list', function(req, res) {
+      EventDetalhes.list(req.body, function(success){
+        res.send('passei por aqui');
+        res.json(success);
+      });
+  });    
+
+  app.post('/event/insert', function(req, res) {   
+      EventDetalhes.insert(req.body, function(success){
+        res.json(success);
+        res.send(200);
+      });
+  });
+
+  app.post('/event/update', function(req, res) {   
+      EventDetalhes.update(req.body, function(success){
+        if(success){
+            res.send(200)
+        } 
+        else {
+            res.send(404)
+        };
+      });
+  });
+
+  app.post('/event/erase/:event_id', function(req, res) {   
+      EventDetalhes.erase(req.body, function(success){
+        if(success){
+            res.send(200)
+        } 
+        else {
+            res.send(404)
+        };
+      });
+  });
     
 // =====================================
 // Scrape ==============================

@@ -1,6 +1,6 @@
 module.exports = function(mongoose)
 	{
-	var eventmodel  			= require('./EventModel.js');
+	var eventmodel  = require('./EventModel.js');
 
 	//chamar o model e acima fazer um require;
 
@@ -8,7 +8,7 @@ module.exports = function(mongoose)
     
         eventmodel.model.find(function(err, doc){
             if(err){
-                callback(err);
+                console.log('Erro na busca de eventos');
             }
             else {
                 callback(doc);
@@ -49,9 +49,29 @@ module.exports = function(mongoose)
         });    
     };
     
+    var erase = function(evento, callback){
+        eventmodel.model.update({
+					_id: evento.id
+        },{$set: 
+           {forauso: true} 
+          },{
+             upsert:false
+            },function updateCallback(err) {
+						if(err){
+							console.log('Atualização do evento falhou, ID: ' + evento.id);
+							callback(false);
+						}
+						else {
+							console.log(': ' + evento.id);
+							callback(true);
+						}
+        });    
+    };
+    
     var retorno = {"list"	  : list,
                    "insert"   : insert,
-                   "update"   : update};
+                   "update"   : update,
+                   "erase"    : erase};
 
 	return retorno;	
 	}
