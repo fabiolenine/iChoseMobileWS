@@ -68,8 +68,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
   app.get('/event/list', function(req, res) {
       EventDetalhes.list(req.body, function(success){
-        res.send('passei por aqui');
-        res.json(success);
+        //res.send('passei por aqui');
+        res.send(success);
       });
   });    
 
