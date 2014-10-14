@@ -1,5 +1,5 @@
 //RoutesManagement.js
-module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes) {
+module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes) {
 
     app.set('views', '../iChoseManagementWeb');
     
@@ -68,7 +68,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
   app.get('/event/list', function(req, res) {
       EventDetalhes.list(req.body, function(success){
-        //res.send('passei por aqui');
         res.send(success);
       });
   });    
@@ -93,6 +92,52 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
   app.post('/event/erase/:event_id', function(req, res) {   
       EventDetalhes.erase(req.body, function(success){
+        if(success){
+            res.send(200)
+        } 
+        else {
+            res.send(404)
+        };
+      });
+  });
+
+// =====================================
+// Locais SECTION ======================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/fornecedorlocal', isLoggedIn, function(req, res) {
+    res.render('fornecedorlocal.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+
+  app.get('/local/list', function(req, res) {
+      LocalDetalhes.list(req.body, function(success){
+        res.send(success);
+      });
+  });    
+
+  app.post('/local/insert', function(req, res) {   
+      LocalDetalhes.insert(req.body, function(success){
+        res.json(success);
+        res.send(200);
+      });
+  });
+
+  app.post('/local/update', function(req, res) {   
+      LocalDetalhes.update(req.body, function(success){
+        if(success){
+            res.send(200)
+        } 
+        else {
+            res.send(404)
+        };
+      });
+  });
+
+  app.post('/local/erase/:local_id', function(req, res) {   
+      LocalDetalhes.erase(req.body, function(success){
         if(success){
             res.send(200)
         } 

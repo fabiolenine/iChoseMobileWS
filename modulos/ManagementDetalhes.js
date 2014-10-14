@@ -2,7 +2,7 @@
 module.exports = function(mongoose, request, cheerio)
 {
     var eventmodel = require('./EventModel.js');
-    var localmodel = require('./LocalEventModel.js');
+    var localmodel = require('./LocalModel.js');
     
     var scrapelink = function(link, callback){ 
                 

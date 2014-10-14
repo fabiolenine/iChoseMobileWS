@@ -76,6 +76,7 @@ var account             = require('./modulos/Account.js')(configmail, mongoose, 
 var hotsitedetalhes     = require('./modulos/HotSiteDetalhes.js')(configmail, mongoose, nodemailer, sesTransport);
 var ManagementDetalhes  = require('./modulos/ManagementDetalhes.js')(mongoose, request, cheerio);
 var EventDetalhes       = require('./modulos/EventDetalhes.js')(mongoose);
+var LocalDetalhes       = require('./modulos/LocalDetalhes.js')(mongoose);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 
@@ -181,7 +182,7 @@ require('./modulos/routesMobileWS.js')(appMobileWS, passport);              // l
 
 require('./modulos/RoutesCounter.js')(appCounter, passport);                // load our routes and pass in our app and fully configured passport
 
-require('./modulos/routesManagementWeb.js')(appManagementWeb, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes);    // load our routes and pass in our app and fully configured passport
+require('./modulos/routesManagementWeb.js')(appManagementWeb, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes);    // load our routes and pass in our app and fully configured passport
 
 // ------------------------------------------------------------------------
 // Início das rotas para a área de negocio do Usuário.
