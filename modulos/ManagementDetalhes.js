@@ -9,7 +9,7 @@ module.exports = function(mongoose, request, cheerio)
         //<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         request({url: link, enconding: 'binary'}, function(error, response, body){
             if(!error && response.statusCode == 200){
-                var utf8String = iconv.decode(new Buffer(body),"UTF-8");
+                var utf8String = iconv.decode(new Buffer(body),"UTF8");
                 var html = cheerio.load(utf8String);
                 callback(html);
             }
