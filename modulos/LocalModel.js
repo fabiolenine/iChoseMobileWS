@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var localeventSchema;
+var localSchema;
 
 localSchema = new mongoose.Schema({ estabelecimento    : String,
                                     timestamp          : {type: Date, default: Date.now},
