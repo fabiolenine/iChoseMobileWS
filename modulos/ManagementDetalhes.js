@@ -5,8 +5,9 @@ module.exports = function(mongoose, request, cheerio)
     var localmodel = require('./LocalModel.js');
     
     var scrapelink = function(link, callback){ 
-                
-        request({url: link, enconding: 'binary'}, function(error, response, body){
+        
+        //enconding: 'binary'
+        request({url: link, enconding: null}, function(error, response, body){
             if(!error && response.statusCode == 200){
                         
                 var html = cheerio.load(body);
