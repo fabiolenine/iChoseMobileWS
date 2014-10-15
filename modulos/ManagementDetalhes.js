@@ -7,7 +7,7 @@ module.exports = function(mongoose, request, cheerio)
     
     var scrapelink = function(link, callback){ 
         //<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        request({url: link, enconding: 'binary'}, function(error, response, body){
+        request({url: link, enconding: null}, function(error, response, body){
             if(!error && response.statusCode == 200){
                 var utf8String = iconv.decode(new Buffer(body),"ISO-8859-1");
                 var html = cheerio.load(utf8String);
