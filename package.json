@@ -29,7 +29,6 @@
                         "express-session"           : "~1.0.0"    ,
                         "vhost"                     : "~2.0.0"    ,
                         "request"                   : "~2.44.0"   ,
-                        "cheerio"                   : "~0.17.0"   ,
-                        "iconv-lite"                : "~0.4.4"
+                        "cheerio"                   : "~0.17.0"  
                         }
 }

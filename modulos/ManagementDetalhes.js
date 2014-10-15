@@ -3,14 +3,11 @@ module.exports = function(mongoose, request, cheerio)
 {
     var eventmodel = require('./EventModel.js');
     var localmodel = require('./LocalModel.js');
-    var iconv      = require('iconv-lite');
     
     var scrapelink = function(link, callback){ 
-        //<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         request({url: link, enconding: 'binary'}, function(error, response, body){
             if(!error && response.statusCode == 200){
-                var utf8String = iconv.decode(new Buffer(body),"UTF8");
-                var html = cheerio.load(utf8String);
+                var html = cheerio.load(body);
                 callback(html);
             }
             else {
