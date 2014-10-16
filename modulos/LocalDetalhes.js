@@ -37,10 +37,11 @@ module.exports = function(mongoose)
             console.log('--------');
             console.log('Update');
             console.log('--------');
-            console.log(local);
-            localmodel.model.update(condition,{$set: 
+            console.log(vlocal);
+            localmodel.model.update(condition,//{$set: 
                 local //Verificar se é adequado para update.
-            },{
+            //}
+                                    ,{
             upsert:false
             },function updateCallback(err) {
 						if(err){
