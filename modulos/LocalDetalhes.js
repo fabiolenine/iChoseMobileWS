@@ -20,36 +20,50 @@ module.exports = function(mongoose)
     
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
+                           
         if(!local._id){
-            console.log('Save');
             vlocal.save(function(err, doc){
                 if(err){
                     callback(err);
                 }
                 else {
-                    callback(doc._id);
+                    callback(doc);
                 }
             });
         }
         else {
-            var condition   = { _id: new ObjectID(local._id)}
-            console.log(condition);
-            console.log('--------');
-            console.log('Update');
-            console.log('--------');
-            console.log(vlocal);
             localmodel.model.update(condition,{$set: 
-                                               {telefone: local.telefone}
+                                    {estabelecimento   : local.estabelecimento,
+                                    loc                : local.loc,
+					                fornecedorid       : ObjectID(local.fornecedorid),
+                                    usuariocadastroid  : ObjectID(local.usuariocadastroid),
+					                imagembanner       : local.imagembanner,
+                                    razaosocial        : local.razaosocial,
+                                    cnpj               : local.cnpj,
+                                    inscricaoestadual  : local.inscricaoestadual,
+                                    inscricaomunicipal : local.inscricaomunicipal,
+                                    logradouro         : local.logradouro,
+                                    complemento        : local.complemento,
+                                    bairro             : local.bairro,
+                                    cidade             : local.cidade,
+                                    estado             : local.estado,
+                                    cep                : local.cep,
+                                    email              : local.email,
+                                    telefone           : local.telefone,
+                                    website            : local.website,
+                                    forauso            : local.forauso,
+                                    situacao           : local.situacao}
             },{
             upsert:false
             },function updateCallback(err) {
 						if(err){
 							console.log('Atualização do local falhou, ID: ' + local._id);
+                            console.log(err);
 							callback(false);
 						}
 						else {
-							console.log(': ' + local.id);
-							callback(true);
+							console.log('Sucesso ao atualizar o ID: ' + local._id);
+							callback(local);
 						}
             });    
         }
