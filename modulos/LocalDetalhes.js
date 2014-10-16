@@ -17,11 +17,12 @@ module.exports = function(mongoose)
         });
     };
     
-    var salvar = function(local, callback){
-        
+    var salvar = function(local, callback){ 
+        var vlocal = new localmodel.model(local);
         if(!local._id){
-            var vlocal = new localmodel.model(local);
-        
+            
+            console.log('Save');
+            
             vlocal.save(function(err, doc){
                 if(err){
                     callback(err);
@@ -32,11 +33,12 @@ module.exports = function(mongoose)
             });
         }
         else {
+            
+            console.log('Update');
             localmodel.model.update({
 					_id: local._id
             },{$set: 
                 local //Verificar se é adequado para update.
-                
             },{
             upsert:false
             },function updateCallback(err) {
