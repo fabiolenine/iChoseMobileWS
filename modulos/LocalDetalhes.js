@@ -35,8 +35,8 @@ module.exports = function(mongoose)
             localmodel.model.update(condition,{$set: 
                                     {estabelecimento   : local.estabelecimento,
                                     loc                : local.loc,
-					                fornecedorid       : ObjectID(local.fornecedorid),
-                                    usuariocadastroid  : ObjectID(local.usuariocadastroid),
+					                fornecedorid       : local.fornecedorid,
+                                    usuariocadastroid  : local.usuariocadastroid,
 					                imagembanner       : local.imagembanner,
                                     razaosocial        : local.razaosocial,
                                     cnpj               : local.cnpj,
