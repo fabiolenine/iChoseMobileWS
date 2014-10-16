@@ -43,7 +43,7 @@ module.exports = function(mongoose)
             upsert:false
             },function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + evento.id);
+							console.log('Atualização do local falhou, ID: ' + local._id);
 							callback(false);
 						}
 						else {
