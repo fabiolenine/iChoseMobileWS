@@ -33,9 +33,13 @@ module.exports = function(mongoose)
         }
         else {
             var condition   = { _id: new ObjectID(local._id)}
+            console.log(condition);
+            console.log('--------');
             console.log('Update');
+            console.log('--------');
+            console.log(local);
             localmodel.model.update(condition,{$set: 
-                vlocal //Verificar se é adequado para update.
+                local //Verificar se é adequado para update.
             },{
             upsert:false
             },function updateCallback(err) {
