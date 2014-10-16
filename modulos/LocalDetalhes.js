@@ -18,6 +18,8 @@ module.exports = function(mongoose)
     };
     
     var salvar = function(local, callback){
+        console.log(local.id);
+        
         if(!local.id){
             var vlocal = new localmodel.model(local);
         
