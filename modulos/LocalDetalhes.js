@@ -2,7 +2,8 @@
 module.exports = function(mongoose)
 	{
 	var localmodel  = require('./LocalModel.js');
-
+    var ObjectID 	= mongoose.Types.ObjectId;
+            
 	//chamar o model e acima fazer um require;
 
     var list = function(local, callback){
@@ -19,10 +20,8 @@ module.exports = function(mongoose)
     
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
-        if(!vlocal._id){
-            
+        if(!local._id){
             console.log('Save');
-            
             vlocal.save(function(err, doc){
                 if(err){
                     callback(err);
@@ -33,21 +32,19 @@ module.exports = function(mongoose)
             });
         }
         else {
-            
+            var condition   = { _id: new ObjectID(local._id)}
             console.log('Update');
-            localmodel.model.update({
-					_id: vlocal._id
-            },{$set: 
+            localmodel.model.update(condition,{$set: 
                 vlocal //Verificar se é adequado para update.
             },{
             upsert:false
             },function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + vlocal._id);
+							console.log('Atualização do local falhou, ID: ' + local._id);
 							callback(false);
 						}
 						else {
-							console.log(': ' + vlocal.id);
+							console.log(': ' + local.id);
 							callback(true);
 						}
             });    
