@@ -118,23 +118,23 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });    
 
-  app.post('/local/insert', function(req, res) {   
-      LocalDetalhes.insert(req.body, function(success){
+  app.post('/local/salvar', function(req, res) {   
+      LocalDetalhes.salvar(req.body, function(success){
         res.json(success);
         res.send(200);
       });
   });
 
-  app.post('/local/update', function(req, res) {   
-      LocalDetalhes.update(req.body, function(success){
-        if(success){
-            res.send(200)
-        } 
-        else {
-            res.send(404)
-        };
-      });
-  });
+//  app.post('/local/update', function(req, res) {   
+//      LocalDetalhes.update(req.body, function(success){
+//        if(success){
+//            res.send(200)
+//        } 
+//        else {
+//            res.send(404)
+//        };
+//      });
+//  });
 
   app.post('/local/erase/:local_id', function(req, res) {   
       LocalDetalhes.erase(req.body, function(success){
