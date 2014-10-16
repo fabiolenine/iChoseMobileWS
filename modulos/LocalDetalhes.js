@@ -18,9 +18,8 @@ module.exports = function(mongoose)
     };
     
     var salvar = function(local, callback){
-        console.log(local);
         
-        if(!local.id){
+        if(!local._id){
             var vlocal = new localmodel.model(local);
         
             vlocal.save(function(err, doc){
@@ -34,7 +33,7 @@ module.exports = function(mongoose)
         }
         else {
             localmodel.model.update({
-					_id: local.id
+					_id: local._id
             },{$set: 
                 local //Verificar se é adequado para update.
                 
