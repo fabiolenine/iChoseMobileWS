@@ -38,10 +38,9 @@ module.exports = function(mongoose)
             console.log('Update');
             console.log('--------');
             console.log(vlocal);
-            localmodel.model.update(condition,//{$set: 
-                local //Verificar se é adequado para update.
-            //}
-                                    ,{
+            localmodel.model.update(condition,{$set: 
+                                               {telefone: local.telefone}
+            },{
             upsert:false
             },function updateCallback(err) {
 						if(err){
