@@ -19,7 +19,7 @@ module.exports = function(mongoose)
     
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
-        if(!local._id){
+        if(!vlocal._id){
             
             console.log('Save');
             
@@ -36,18 +36,18 @@ module.exports = function(mongoose)
             
             console.log('Update');
             localmodel.model.update({
-					_id: local._id
+					_id: vlocal._id
             },{$set: 
-                local //Verificar se é adequado para update.
+                vlocal //Verificar se é adequado para update.
             },{
             upsert:false
             },function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + local._id);
+							console.log('Atualização do local falhou, ID: ' + vlocal._id);
 							callback(false);
 						}
 						else {
-							console.log(': ' + local.id);
+							console.log(': ' + vlocal.id);
 							callback(true);
 						}
             });    
