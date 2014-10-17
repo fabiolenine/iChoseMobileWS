@@ -66,7 +66,7 @@ module.exports = function(mongoose)
                
             console.log(vlocalsid);
             console.log('---------------');
-            localmodel.model.update(condition,{$set: vlocalsid},{
+            localmodel.model.update(condition,vlocalsid,{
             upsert:false
             },function updateCallback(err) {
 						if(err){
