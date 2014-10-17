@@ -33,7 +33,7 @@ module.exports = function(mongoose)
         }
         else {
             localmodel.model.update(condition,{$set: 
-local
+vlocal
             },{
             upsert:false
             },function updateCallback(err) {
