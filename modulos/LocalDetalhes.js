@@ -32,11 +32,9 @@ module.exports = function(mongoose)
             });
         }
         else {
-            localmodel.model.update(condition,{$set: 
+            localmodel.model.update(condition,//{$set: 
                                     {estabelecimento   : local.estabelecimento,
-                                    loc                : {type: {type: 	String,
-                                                                enum:    ['Point']},
-                                                        coordinates: 	[Number]},
+                                    loc                : local.loc,
 					                fornecedorid       : local.fornecedorid,
                                     usuariocadastroid  : local.usuariocadastroid,
 					                imagembanner       : local.imagembanner,
@@ -54,7 +52,7 @@ module.exports = function(mongoose)
                                     telefone           : local.telefone,
                                     website            : local.website,
                                     forauso            : local.forauso,
-                                    situacao           : local.situacao}
+                                    situacao           : local.situacao //}
             },{
             upsert:false
             },function updateCallback(err) {
