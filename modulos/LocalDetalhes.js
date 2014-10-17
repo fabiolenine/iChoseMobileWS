@@ -69,16 +69,14 @@ module.exports = function(mongoose)
                                 forauso            : vlocal.forauso,
                                 situacao           : vlocal.situacao}; 
                
-            console.log(vlocalsid);
-            console.log('---------------');
             localmodel.model.update(condition,{ $set: vlocalsid},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + vlocal._id);
-                            console.log(err);
+							//console.log('Atualização do local falhou, ID: ' + vlocal._id);
+                            //console.log(err);
 							callback(false);
 						}
 						else {
-							console.log('Sucesso ao atualizar o ID: ' + vlocal._id);
+							//console.log('Sucesso ao atualizar o ID: ' + vlocal._id);
 							callback(local);
 						}
             });    
@@ -107,7 +105,7 @@ module.exports = function(mongoose)
     
     var erase = function(local, callback){
         localmodel.model.update({
-					_id: local.id
+					_id: local._id
         },{$set: 
            {forauso: true} 
           },{
