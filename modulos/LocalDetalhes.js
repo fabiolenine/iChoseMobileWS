@@ -58,9 +58,9 @@ module.exports = function(mongoose)
                                 //cidade             : vlocal.cidade,
                                 //estado             : vlocal.estado,
                                 //cep                : vlocal.cep,
-                                //email              : vlocal.email,
-                                //telefone           : vlocal.telefone,
-                                //website            : vlocal.website,
+                                email              : vlocal.email,
+                                telefone           : vlocal.telefone,
+                                website            : vlocal.website,
                                 forauso            : vlocal.forauso,
                                 situacao           : vlocal.situacao}; 
                
