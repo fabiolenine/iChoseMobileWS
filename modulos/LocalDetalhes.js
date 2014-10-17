@@ -32,27 +32,8 @@ module.exports = function(mongoose)
             });
         }
         else {
-            localmodel.model.update(condition,//{$set: 
-                                    {estabelecimento   : local.estabelecimento,
-                                    loc                : local.loc,
-					                fornecedorid       : local.fornecedorid,
-                                    usuariocadastroid  : local.usuariocadastroid,
-					                imagembanner       : local.imagembanner,
-                                    razaosocial        : local.razaosocial,
-                                    cnpj               : local.cnpj,
-                                    inscricaoestadual  : local.inscricaoestadual,
-                                    inscricaomunicipal : local.inscricaomunicipal,
-                                    logradouro         : local.logradouro,
-                                    complemento        : local.complemento,
-                                    bairro             : local.bairro,
-                                    cidade             : local.cidade,
-                                    estado             : local.estado,
-                                    cep                : local.cep,
-                                    email              : local.email,
-                                    telefone           : local.telefone,
-                                    website            : local.website,
-                                    forauso            : local.forauso,
-                                    situacao           : local.situacao //}
+            localmodel.model.update(condition,{$set: 
+local
             },{
             upsert:false
             },function updateCallback(err) {
