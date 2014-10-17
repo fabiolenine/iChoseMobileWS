@@ -21,6 +21,27 @@ module.exports = function(mongoose)
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
         var condition   = { _id: new ObjectID(local._id)};
+        var vlocalsid   = { estabelecimento    : vlocal.estabelecimento,
+                            loc                : vlocal.loc,
+					        fornecedorid       : vlocal.fornecedorid,
+                            usuariocadastroid  : vlocal.usuariocadastroid,
+					        imagembanner       : vlocal.imagembanner,
+                            razaosocial        : vlocal.razaosocial,
+                            cnpj               : vlocal.cnpj,
+                            inscricaoestadual  : vlocal.inscricaoestadual,
+                            inscricaomunicipal : vlocal.inscricaomunicipal,
+                            logradouro         : vlocal.logradouro,
+                            complemento        : vlocal.complemento,
+                            bairro             : vlocal.bairro,
+                            cidade             : vlocal.cidade,
+                            estado             : vlocal.estado,
+                            cep                : vlocal.cep,
+                            email              : vlocal.email,
+                            telefone           : vlocal.telefone,
+                            website            : vlocal.website,
+                            forauso            : vlocal.forauso,
+                            situacao           : vlocal.situacao};
+        
         if(!local._id){
             vlocal.save(function(err, doc){
                 if(err){
@@ -32,9 +53,9 @@ module.exports = function(mongoose)
             });
         }
         else {
-            console.log(vlocal);
+            console.log(vlocalsid);
             console.log('---------------');
-            localmodel.model.findByIdAndUpdate(condition,{$set: vlocal},{
+            localmodel.model.findByIdAndUpdate(condition,{$set: vlocalsid},{
             upsert:false
             },function updateCallback(err) {
 						if(err){
