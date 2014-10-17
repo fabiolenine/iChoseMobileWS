@@ -111,11 +111,11 @@ module.exports = function(mongoose)
         
         localmodel.model.update(condition,{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + evento.id);
+							console.log('Atualização do local falhou, ID: ' + local._id);
 							callback(false);
 						}
 						else {
-							console.log(': ' + local.id);
+							console.log(': ' + local._id);
 							callback(true);
 						}
         });    
