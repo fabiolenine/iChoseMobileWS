@@ -32,7 +32,7 @@ module.exports = function(mongoose)
             });
         }
         else {
-            localmodel.model.update(condition,//{$set: 
+            localmodel.model.findByIdAndUpdate(condition,//{$set: 
 vlocal
             //}
                                     ,{
