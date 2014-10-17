@@ -104,13 +104,12 @@ module.exports = function(mongoose)
 //    };
     
     var erase = function(local, callback){
-        localmodel.model.update({
-					_id: local._id
-        },{$set: 
-           {forauso: true} 
-          },{
-             upsert:false
-            },function updateCallback(err) {
+        var condition   = { _id: new ObjectID(local._id)};
+        
+        console.log(local);
+        console.log(condition);
+        
+        localmodel.model.update(condition,{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
 						if(err){
 							console.log('Atualização do local falhou, ID: ' + evento.id);
 							callback(false);
