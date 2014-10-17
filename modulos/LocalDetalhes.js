@@ -32,10 +32,9 @@ module.exports = function(mongoose)
             });
         }
         else {
-            localmodel.model.findByIdAndUpdate(condition,//{$set: 
-vlocal
-            //}
-                                    ,{
+            console.log(vlocal);
+            console.log('---------------');
+            localmodel.model.findByIdAndUpdate(condition,{$set: vlocal},{
             upsert:false
             },function updateCallback(err) {
 						if(err){
