@@ -20,7 +20,7 @@ module.exports = function(mongoose)
     
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
-                           
+        var condition   = { _id: new ObjectID(local._id)};
         if(!local._id){
             vlocal.save(function(err, doc){
                 if(err){
@@ -34,7 +34,9 @@ module.exports = function(mongoose)
         else {
             localmodel.model.update(condition,{$set: 
                                     {estabelecimento   : local.estabelecimento,
-                                    loc                : local.loc,
+                                    loc                : {type: {type: 	String,
+                                                                enum:    ['Point']},
+                                                        coordinates: 	[Number]},
 					                fornecedorid       : local.fornecedorid,
                                     usuariocadastroid  : local.usuariocadastroid,
 					                imagembanner       : local.imagembanner,
