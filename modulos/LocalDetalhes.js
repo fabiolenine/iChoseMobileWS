@@ -104,18 +104,13 @@ module.exports = function(mongoose)
 //    };
     
     var erase = function(local, callback){
-        var condition   = { _id: new ObjectID(local._id)};
-        
-        console.log(local);
-        console.log(condition);
-        
-        localmodel.model.update(condition,{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
+        localmodel.model.update({_id: local.id},{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + local._id);
+							console.log('Atualização do local falhou, ID: ' + local.id);
 							callback(false);
 						}
 						else {
-							console.log(': ' + local._id);
+							console.log(': ' + local.id);
 							callback(true);
 						}
         });    
