@@ -21,7 +21,7 @@ module.exports = function(mongoose)
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
         var condition   = { _id: new ObjectID(local._id)};
-        var vlocalsid   = { estabelecimento    : vlocal.estabelecimento,
+        var vlocalsid   = new localmodel.model({ estabelecimento    : vlocal.estabelecimento,
                             loc                : vlocal.loc,
 					        fornecedorid       : vlocal.fornecedorid,
                             usuariocadastroid  : vlocal.usuariocadastroid,
@@ -40,7 +40,7 @@ module.exports = function(mongoose)
                             telefone           : vlocal.telefone,
                             website            : vlocal.website,
                             forauso            : vlocal.forauso,
-                            situacao           : vlocal.situacao};
+                            situacao           : vlocal.situacao});
         
         if(!local._id){
             vlocal.save(function(err, doc){
