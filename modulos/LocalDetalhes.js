@@ -45,7 +45,7 @@ module.exports = function(mongoose)
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
                                 loc                : vlocal.loc,
-                                fornecedorid       : vlocal.fornecedoridid,
+                                fornecedorid       : vlocal.fornecedorid,
                                 usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
                                 razaosocial        : vlocal.razaosocial,
@@ -69,7 +69,7 @@ module.exports = function(mongoose)
             localmodel.model.update(condition,{ $set: 
                             {   estabelecimento    : vlocal.estabelecimento,
                                 loc                : vlocal.loc,
-                                fornecedorid       : vlocal.fornecedoridid,
+                                fornecedorid       : vlocal.fornecedorid,
                                 usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
                                 razaosocial        : vlocal.razaosocial,
