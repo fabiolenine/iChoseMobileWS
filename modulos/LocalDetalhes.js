@@ -32,9 +32,10 @@ module.exports = function(mongoose)
             });
         }
         else {
-            localmodel.model.update(condition,{$set: 
+            localmodel.model.update(condition,//{$set: 
 vlocal
-            },{
+            //}
+                                    ,{
             upsert:false
             },function updateCallback(err) {
 						if(err){
