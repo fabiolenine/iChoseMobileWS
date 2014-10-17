@@ -34,8 +34,8 @@ module.exports = function(mongoose)
         }
         else {
             
-            var latitude  = -35.717680;
-            var longitude = -9.644430;
+            var latitude    = vlocal.loc.coordinates[1];
+            var longitude   = vlocal.loc.coordinates[0];
             
             if(vlocal.razaosocial           === undefined){vlocal.razaosocial           = '';}
             if(vlocal.cnpj                  === undefined){vlocal.cnpj                  = '';}
@@ -45,10 +45,11 @@ module.exports = function(mongoose)
             if(vlocal.website               === undefined){vlocal.website               = '';}
             if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
-            if(vlocal.loc.coordinates.length == 0 )       {vlocal.loc.coordinates.push(longitude,latitude);}
+            if(vlocal.loc.coordinates.length == 0 )       {var latitude                 = -35.717680;
+                                                           var longitude                = -9.644430;}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
-                                loc                : { "type" : "Point", "coordinates" : [  -9.64443,  -35.71768 ] },
+                                loc                : { "type" : "Point", "coordinates" : [  longitude,  latitude ] },
                                 fornecedorid       : vlocal.fornecedorid,
                                 usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
