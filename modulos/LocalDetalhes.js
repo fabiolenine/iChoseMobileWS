@@ -45,7 +45,7 @@ module.exports = function(mongoose)
             if(vlocal.website               === undefined){vlocal.website               = '';}
             if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
-            if(vlocal.loc.coordinates.length == 0 )       {vlocal.loc                   = {type: 'Point', coordinates:[longitude,latitude]};}
+            if(vlocal.loc.coordinates.length == 0 )       {vlocal.loc.coordinates.push(longitude,latitude);}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
                                 loc                : vlocal.loc,
