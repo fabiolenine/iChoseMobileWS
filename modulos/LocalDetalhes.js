@@ -43,51 +43,30 @@ module.exports = function(mongoose)
             if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
             
-            var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
-                                loc                : vlocal.loc,
-                                fornecedorid       : vlocal.fornecedorid,
-                                usuariocadastroid  : vlocal.usuariocadastroid,
-					            imagembanner       : vlocal.imagembanner,
-                                razaosocial        : vlocal.razaosocial,
-                                cnpj               : vlocal.cnpj,
-                                inscricaoestadual  : vlocal.inscricaoestadual,
-                                inscricaomunicipal : vlocal.inscricaomunicipal,
-                                logradouro         : vlocal.logradouro,
-                                complemento        : vlocal.complemento,
-                                bairro             : vlocal.bairro,
-                                cidade             : vlocal.cidade,
-                                estado             : vlocal.estado,
-                                cep                : vlocal.cep,
-                                email              : vlocal.email,
-                                telefone           : vlocal.telefone,
-                                website            : vlocal.website,
+            var vlocalsid = {   //estabelecimento    : vlocal.estabelecimento,
+                                //loc                : vlocal.loc,
+                                //fornecedorid       : vlocal.fornecedorid,
+                                //usuariocadastroid  : vlocal.usuariocadastroid,
+					            //imagembanner       : vlocal.imagembanner,
+                                //razaosocial        : vlocal.razaosocial,
+                                //cnpj               : vlocal.cnpj,
+                                //inscricaoestadual  : vlocal.inscricaoestadual,
+                                //inscricaomunicipal : vlocal.inscricaomunicipal,
+                                //logradouro         : vlocal.logradouro,
+                                //complemento        : vlocal.complemento,
+                                //bairro             : vlocal.bairro,
+                                //cidade             : vlocal.cidade,
+                                //estado             : vlocal.estado,
+                                //cep                : vlocal.cep,
+                                //email              : vlocal.email,
+                                //telefone           : vlocal.telefone,
+                                //website            : vlocal.website,
                                 forauso            : vlocal.forauso,
                                 situacao           : vlocal.situacao}; 
                
             console.log(vlocalsid);
             console.log('---------------');
-            localmodel.model.update(condition,{ $set: 
-                            {   estabelecimento    : vlocal.estabelecimento,
-                                loc                : vlocal.loc,
-                                fornecedorid       : vlocal.fornecedorid,
-                                usuariocadastroid  : vlocal.usuariocadastroid,
-					            imagembanner       : vlocal.imagembanner,
-                                razaosocial        : vlocal.razaosocial,
-                                cnpj               : vlocal.cnpj,
-                                inscricaoestadual  : vlocal.inscricaoestadual,
-                                inscricaomunicipal : vlocal.inscricaomunicipal,
-                                logradouro         : vlocal.logradouro,
-                                complemento        : vlocal.complemento,
-                                bairro             : vlocal.bairro,
-                                cidade             : vlocal.cidade,
-                                estado             : vlocal.estado,
-                                cep                : vlocal.cep,
-                                email              : vlocal.email,
-                                telefone           : vlocal.telefone,
-                                website            : vlocal.website,
-                                forauso            : vlocal.forauso,
-                                situacao           : vlocal.situacao}
-                                              },{upsert:false},function updateCallback(err) {
+            localmodel.model.update(condition,{ $set: vlocalsid},{upsert:false},function updateCallback(err) {
 						if(err){
 							console.log('Atualização do local falhou, ID: ' + vlocal._id);
                             console.log(err);
