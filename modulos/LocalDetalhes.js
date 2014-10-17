@@ -34,12 +34,14 @@ module.exports = function(mongoose)
         }
         else {
             
-            if(vlocal.razaosocial === undefined){vlocal.razaosocial = '';}
-            if(vlocal.cnpj === undefined){vlocal.cnpj = '';}
-            if(vlocal.inscricaoestadual === undefined){vlocal.inscricaoestadual = '';}
-            if(vlocal.inscricaomunicipal === undefined){vlocal.inscricaomunicipal = '';}
-            if(vlocal.cep === undefined){vlocal.cep = '';}
-            if(vlocal.website === undefined){vlocal.website = '';}
+            if(vlocal.razaosocial           === undefined){vlocal.razaosocial           = '';}
+            if(vlocal.cnpj                  === undefined){vlocal.cnpj                  = '';}
+            if(vlocal.inscricaoestadual     === undefined){vlocal.inscricaoestadual     = '';}
+            if(vlocal.inscricaomunicipal    === undefined){vlocal.inscricaomunicipal    = '';}
+            if(vlocal.cep                   === undefined){vlocal.cep                   = '';}
+            if(vlocal.website               === undefined){vlocal.website               = '';}
+            if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
+            if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
                                 loc                : vlocal.loc,
