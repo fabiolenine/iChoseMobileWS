@@ -34,6 +34,9 @@ module.exports = function(mongoose)
         }
         else {
             
+            var latitude  = -35.717680;
+            var longitude = -9.644430;
+            
             if(vlocal.razaosocial           === undefined){vlocal.razaosocial           = '';}
             if(vlocal.cnpj                  === undefined){vlocal.cnpj                  = '';}
             if(vlocal.inscricaoestadual     === undefined){vlocal.inscricaoestadual     = '';}
@@ -42,11 +45,12 @@ module.exports = function(mongoose)
             if(vlocal.website               === undefined){vlocal.website               = '';}
             if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
+            if(vlocal.loc.coordinates       === undefined){vlocal.loc                   = {type: 'Point', coordinates:[longitude,latitude]};}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
                                 loc                : vlocal.loc,
-                                //fornecedorid       : vlocal.fornecedorid,
-                                //usuariocadastroid  : vlocal.usuariocadastroid,
+                                fornecedorid       : vlocal.fornecedorid,
+                                usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
                                 razaosocial        : vlocal.razaosocial,
                                 cnpj               : vlocal.cnpj,
