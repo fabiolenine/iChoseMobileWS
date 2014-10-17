@@ -44,7 +44,7 @@ module.exports = function(mongoose)
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
-                                //loc                : vlocal.loc,
+                                loc                : vlocal.loc,
                                 //fornecedorid       : vlocal.fornecedorid,
                                 //usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
