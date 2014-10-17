@@ -48,7 +48,7 @@ module.exports = function(mongoose)
             if(vlocal.loc.coordinates.length == 0 )       {vlocal.loc.coordinates.push(longitude,latitude);}
             
             var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
-                                loc                : vlocal.loc,
+                                loc                : { "type" : "Point", "coordinates" : [  -9.64443,  -35.71768 ] },
                                 fornecedorid       : vlocal.fornecedorid,
                                 usuariocadastroid  : vlocal.usuariocadastroid,
 					            imagembanner       : vlocal.imagembanner,
