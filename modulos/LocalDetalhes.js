@@ -43,15 +43,15 @@ module.exports = function(mongoose)
             if(vlocal.fornecedoridid        === undefined){vlocal.fornecedoridid        = '';}
             if(vlocal.imagembanner          === undefined){vlocal.imagembanner          = '';}
             
-            var vlocalsid = {   //estabelecimento    : vlocal.estabelecimento,
+            var vlocalsid = {   estabelecimento    : vlocal.estabelecimento,
                                 //loc                : vlocal.loc,
                                 //fornecedorid       : vlocal.fornecedorid,
                                 //usuariocadastroid  : vlocal.usuariocadastroid,
-					            //imagembanner       : vlocal.imagembanner,
-                                //razaosocial        : vlocal.razaosocial,
-                                //cnpj               : vlocal.cnpj,
-                                //inscricaoestadual  : vlocal.inscricaoestadual,
-                                //inscricaomunicipal : vlocal.inscricaomunicipal,
+					            imagembanner       : vlocal.imagembanner,
+                                razaosocial        : vlocal.razaosocial,
+                                cnpj               : vlocal.cnpj,
+                                inscricaoestadual  : vlocal.inscricaoestadual,
+                                inscricaomunicipal : vlocal.inscricaomunicipal,
                                 logradouro         : vlocal.logradouro,
                                 complemento        : vlocal.complemento,
                                 bairro             : vlocal.bairro,
