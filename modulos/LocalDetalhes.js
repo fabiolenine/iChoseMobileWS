@@ -66,16 +66,14 @@ module.exports = function(mongoose)
                
             console.log(vlocalsid);
             console.log('---------------');
-            localmodel.model.update(condition,vlocalsid,{
-            upsert:false
-            },function updateCallback(err) {
+            localmodel.model.update(condition,{ $set: vlocalsid},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + local._id);
+							console.log('Atualização do local falhou, ID: ' + vlocal._id);
                             console.log(err);
 							callback(false);
 						}
 						else {
-							console.log('Sucesso ao atualizar o ID: ' + local._id);
+							console.log('Sucesso ao atualizar o ID: ' + vlocal._id);
 							callback(local);
 						}
             });    
