@@ -80,6 +80,8 @@ module.exports = function(mongoose, request, cheerio)
         scrapelink(eventscrape.urlscrapedetalhes, function(html) {
         
             var $ = html;
+            var latitude  = -35.717680;
+            var longitude = -9.644430;
             
             var extracao                = $('.desc_basica_evento p span').text().trim();       
             var cidadeext               = $('.desc_basica_evento p span').first().text();
@@ -104,6 +106,7 @@ module.exports = function(mongoose, request, cheerio)
             local.cidade               = city[0].trim();
             local.estado               = city[1].trim();
             local.website              = $('.local_evento p').find('a').attr('href');
+            local.loc                  = {type: 'Point', coordinates: [longitude,latitude]};
             
             $('.thead_titulo').each(function (){
                 var vgenero = $(this).find('.titulo_laranja').text().trim();
