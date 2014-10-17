@@ -66,7 +66,28 @@ module.exports = function(mongoose)
                
             console.log(vlocalsid);
             console.log('---------------');
-            localmodel.model.update(condition,{ $set: vlocalsid},{upsert:false},function updateCallback(err) {
+            localmodel.model.update(condition,{ $set: 
+                            {   estabelecimento    : vlocal.estabelecimento,
+                                loc                : vlocal.loc,
+                                fornecedorid       : vlocal.fornecedoridid,
+                                usuariocadastroid  : vlocal.usuariocadastroid,
+					            imagembanner       : vlocal.imagembanner,
+                                razaosocial        : vlocal.razaosocial,
+                                cnpj               : vlocal.cnpj,
+                                inscricaoestadual  : vlocal.inscricaoestadual,
+                                inscricaomunicipal : vlocal.inscricaomunicipal,
+                                logradouro         : vlocal.logradouro,
+                                complemento        : vlocal.complemento,
+                                bairro             : vlocal.bairro,
+                                cidade             : vlocal.cidade,
+                                estado             : vlocal.estado,
+                                cep                : vlocal.cep,
+                                email              : vlocal.email,
+                                telefone           : vlocal.telefone,
+                                website            : vlocal.website,
+                                forauso            : vlocal.forauso,
+                                situacao           : vlocal.situacao}
+                                              },{upsert:false},function updateCallback(err) {
 						if(err){
 							console.log('Atualização do local falhou, ID: ' + vlocal._id);
                             console.log(err);
