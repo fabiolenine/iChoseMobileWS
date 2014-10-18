@@ -121,7 +121,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   app.post('/local/salvar', function(req, res) {   
       LocalDetalhes.salvar(req.body, function(success){
         res.json(success);
-        res.send(200);
       });
   });
 
@@ -137,7 +136,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 //  });
 
   app.post('/local/erase/:local_id', function(req, res) {   
-      LocalDetalhes.erase(req.body, function(success){
+      LocalDetalhes.erase(req.params.local_id, function(success){
         if(success){
             res.send(200)
         } 

@@ -104,13 +104,13 @@ module.exports = function(mongoose)
 //    };
     
     var erase = function(local, callback){
-        localmodel.model.update({_id: local.id},{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
+        localmodel.model.update({_id: local},{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do local falhou, ID: ' + local.id);
+							console.log('exclusão do ID: ' + local);
 							callback(false);
 						}
 						else {
-							console.log(': ' + local.id);
+							console.log('Sucesso ao excluir o ID: ' + local);
 							callback(true);
 						}
         });    
