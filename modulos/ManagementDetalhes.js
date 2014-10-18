@@ -1,9 +1,10 @@
 //ManagementDetalhes.js
 module.exports = function(mongoose, request, cheerio)
 {
-    var eventmodel = require('./EventModel.js');
-    var localmodel = require('./LocalModel.js');
-    var iconv      = require('iconv-lite');
+    var eventmodel          = require('./EventModel.js');
+    var localmodel          = require('./LocalModel.js');
+    var estadoscidadesmodel = require('./EstadosCidadesModel.js');
+    var iconv               = require('iconv-lite');
     
     var scrapelink = function(link, callback){ 
         //<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -164,12 +165,26 @@ module.exports = function(mongoose, request, cheerio)
         });
         callback(true);
     };
+    
+    var estadosecidadesList = function(local, callback){
+    
+        estadoscidadesmodel.model.find(function(err, doc){
+            if(err){
+                console.log('Erro na busca dos locais');
+            }
+            else {
+                callback(doc);
+            }
+        });
+    };
 
     
-    var retorno = { "scrapesave"	    : scrapesave,
-                    "scrapelink"        : scrapelink,
-                    "scrapeevent"       : scrapeevent,
-                    "scrapeparttwo"     : scrapeparttwo};
+    var retorno = { "scrapesave"	       : scrapesave,
+                    "scrapelink"           : scrapelink,
+                    "scrapeevent"          : scrapeevent,
+                    "scrapeparttwo"        : scrapeparttwo,
+                    "estadosecidadesList"  : estadosecidadesList
+                  };
 
 	return retorno;	
 

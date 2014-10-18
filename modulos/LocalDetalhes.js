@@ -82,26 +82,6 @@ module.exports = function(mongoose)
             });    
         }
     };
-
-//    var update = function(local, callback){
-//        localmodel.model.update({
-//					_id: local.id
-//        },{$set: 
-//            local //Verificar se é adequado para update.
-//                
-//          },{
-//             upsert:false
-//            },function updateCallback(err) {
-//						if(err){
-//							console.log('Atualização do local falhou, ID: ' + evento.id);
-//							callback(false);
-//						}
-//						else {
-//							console.log(': ' + local.id);
-//							callback(true);
-//						}
-//        });    
-//    };
     
     var erase = function(local, callback){
         localmodel.model.update({_id: local},{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
@@ -118,7 +98,6 @@ module.exports = function(mongoose)
     
     var retorno = {"list"	  : list,
                    "salvar"   : salvar,
-                   //"update"   : update,
                    "erase"    : erase};
 
 	return retorno;	
