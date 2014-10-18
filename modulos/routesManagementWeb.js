@@ -1,5 +1,5 @@
 //RoutesManagement.js
-module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes) {
+module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes, ProviderDetalhes) {
 
     app.set('views', '../iChoseManagementWeb');
     
@@ -82,10 +82,10 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   app.post('/event/update', function(req, res) {   
       EventDetalhes.update(req.body, function(success){
         if(success){
-            res.send(200)
+            res.send(200);
         } 
         else {
-            res.send(404)
+            res.send(404);
         };
       });
   });
@@ -93,24 +93,14 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   app.post('/event/erase/:event_id', function(req, res) {   
       EventDetalhes.erase(req.body, function(success){
         if(success){
-            res.send(200)
+            res.send(200);
         } 
         else {
-            res.send(404)
+            res.send(404);
         };
       });
   });
 
-// =====================================
-// Estados e cidades ===================
-// =====================================
-// we will want this protected so you have to be logged in to visit
-// we will use route middleware to verify this (the isLoggedIn function)
-  app.get('/fornecedor/list', function(req, res) {
-      ManagementDetalhes.providerList(req.body, function(success){
-        res.send(success);
-      });
-  });        
     
 // =====================================
 // Estados e cidades ===================
@@ -147,16 +137,52 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });
 
-  app.post('/local/erase/:local_id', function(req, res) {   
-      LocalDetalhes.erase(req.params.local_id, function(success){
+  app.post('/local/erase/:erase_id', function(req, res) {   
+      LocalDetalhes.erase(req.params.erase_id, function(success){
         if(success){
-            res.send(200)
+            res.send(200);
         } 
         else {
-            res.send(404)
+            res.send(404);
         };
       });
   });
+    
+    
+// =====================================
+// Provider SECTION ====================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/fornecedorcadastro', isLoggedIn, function(req, res) {
+    res.render('/fornecedorcadastro.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+
+  app.get('/fornecedor/list', function(req, res) {
+      ProviderDetalhes.list(req.body, function(success){
+        res.send(success);
+      });
+  });    
+
+  app.post('/fornecedor/salvar', function(req, res) {   
+      ProviderDetalhes.salvar(req.body, function(success){
+        res.json(success);
+      });
+  });
+
+  app.post('/fornecedor/erase/:erase_id', function(req, res) {   
+      ProviderDetalhes.erase(req.params.erase_id, function(success){
+        if(success){
+            res.send(200);
+        } 
+        else {
+            res.send(404);
+        };
+      });
+  });
+    
     
 // =====================================
 // Scrape ==============================

@@ -15,7 +15,6 @@ var providerSchema = mongoose.Schema({  razaosocial         : String
                                         ,cidade             : String
                                         ,estado             : String
                                         ,cep                : String
-                                        ,caixapostal        : String
                                         ,nomecontato        : String
                                         ,cargo              : String
                                         ,setor              : String
