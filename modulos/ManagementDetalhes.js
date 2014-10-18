@@ -4,6 +4,7 @@ module.exports = function(mongoose, request, cheerio)
     var eventmodel          = require('./EventModel.js');
     var localmodel          = require('./LocalModel.js');
     var estadoscidadesmodel = require('./EstadosCidadesModel.js');
+    var providermodel       = require('./ProviderModel.js');
     var iconv               = require('iconv-lite');
     
     var scrapelink = function(link, callback){ 
@@ -167,7 +168,6 @@ module.exports = function(mongoose, request, cheerio)
     };
     
     var estadosecidadesList = function(local, callback){
-    
         estadoscidadesmodel.model.find(function(err, doc){
             if(err){
                 console.log('Erro na busca dos locais');
@@ -178,12 +178,23 @@ module.exports = function(mongoose, request, cheerio)
         });
     };
 
+    var providerList = function(local, callback){
+        providermodel.model.find(function(err, doc){
+            if(err){
+                console.log('Erro na busca dos locais');
+            }
+            else {
+                callback(doc);
+            }
+        });
+    };
     
     var retorno = { "scrapesave"	       : scrapesave,
                     "scrapelink"           : scrapelink,
                     "scrapeevent"          : scrapeevent,
                     "scrapeparttwo"        : scrapeparttwo,
-                    "estadosecidadesList"  : estadosecidadesList
+                    "estadosecidadesList"  : estadosecidadesList,
+                    "providerList"         : providerList
                   };
 
 	return retorno;	

@@ -106,6 +106,17 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/fornecedor/list', function(req, res) {
+      ManagementDetalhes.providerList(req.body, function(success){
+        res.send(success);
+      });
+  });        
+    
+// =====================================
+// Estados e cidades ===================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
   app.get('/estadosecidades/list', function(req, res) {
       ManagementDetalhes.estadosecidadesList(req.body, function(success){
         res.send(success);
@@ -135,17 +146,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         res.json(success);
       });
   });
-
-//  app.post('/local/update', function(req, res) {   
-//      LocalDetalhes.update(req.body, function(success){
-//        if(success){
-//            res.send(200)
-//        } 
-//        else {
-//            res.send(404)
-//        };
-//      });
-//  });
 
   app.post('/local/erase/:local_id', function(req, res) {   
       LocalDetalhes.erase(req.params.local_id, function(success){
