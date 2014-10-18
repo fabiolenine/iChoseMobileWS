@@ -3,6 +3,6 @@ var estadoscidadesSchema;
 
 estadoscidadesSchema = new mongoose.Schema({sigla   : String,
                                             nome    : String,
-                                            cidades : []);
+                                            cidades : []});
 
 exports.model = mongoose.model('estadoscidade',estadoscidadesSchema);
