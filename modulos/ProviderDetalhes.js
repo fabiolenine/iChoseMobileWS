@@ -19,6 +19,8 @@ module.exports = function(mongoose)
     };
     
     var salvar = function(data, callback){ 
+        console.log('chegou aqui');
+        
         var vdata = new providermodel.model(data);
         var condition   = { _id: new ObjectID(data._id)};
         
