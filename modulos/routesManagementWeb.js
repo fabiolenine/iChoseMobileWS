@@ -45,17 +45,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   });
 
 // =====================================
-// Fornecedores SECTION ================
-// =====================================
-// we will want this protected so you have to be logged in to visit
-// we will use route middleware to verify this (the isLoggedIn function)
-  app.get('/fornecedorcadastro', isLoggedIn, function(req, res) {
-    res.render('fornecedorcadastro.ejs', {
-      user : req.user // get the user out of session and pass to template
-    });
-  });
-
-// =====================================
 // Eventos SECTION =====================
 // =====================================
 // we will want this protected so you have to be logged in to visit
@@ -72,26 +61,14 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });    
 
-  app.post('/event/insert', function(req, res) {   
-      EventDetalhes.insert(req.body, function(success){
+  app.post('/event/salvar', function(req, res) {   
+      EventDetalhes.salvar(req.body, function(success){
         res.json(success);
-        res.send(200);
       });
   });
 
-  app.post('/event/update', function(req, res) {   
-      EventDetalhes.update(req.body, function(success){
-        if(success){
-            res.send(200);
-        } 
-        else {
-            res.send(404);
-        };
-      });
-  });
-
-  app.post('/event/erase/:event_id', function(req, res) {   
-      EventDetalhes.erase(req.body, function(success){
+  app.post('/event/erase/:erase_id', function(req, res) {   
+      EventDetalhes.erase(req.params.erase_id, function(success){
         if(success){
             res.send(200);
         } 
