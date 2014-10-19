@@ -21,7 +21,6 @@ module.exports = function(mongoose)
     var salvar = function(data, callback){ 
         var vdata       = new providermodel.model(data);
         var condition   = {_id: new ObjectID(data._id)};
-        console.log(vdata);
         if(!data._id){
             vdata.save(function(err, doc){
                 if(err){
