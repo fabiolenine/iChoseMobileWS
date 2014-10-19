@@ -19,11 +19,12 @@ module.exports = function(mongoose)
     };
     
     var salvar = function(data, callback){ 
-        console.log(data);
-        var vdata = new providermodel.model(data);
-        var condition   = { _id: new ObjectID(data._id)};
+        var vdata       = new providermodel.model(data);
+        var condition   = {_id: new ObjectID(data._id)};
         
         if(!data._id){
+            
+            console.log(vdata);
             vdata.save(function(err, doc){
                 if(err){
                     callback(err);
