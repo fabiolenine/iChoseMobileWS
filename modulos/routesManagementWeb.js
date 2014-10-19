@@ -56,8 +56,9 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   });
 
   app.get('/event/list', function(req, res) {
-      console.log('passei pela rota');
       EventDetalhes.list(req.body, function(success){
+        console.log('passei pela rota');
+        console.log(success);
         res.send(success);
       });
   });    
