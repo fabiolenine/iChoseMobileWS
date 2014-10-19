@@ -1,8 +1,8 @@
 //ProviderDetalhes.js
 module.exports = function(mongoose)
 	{
-	var providermodel  = require('./ProviderModel.js');
-    var ObjectID 	= mongoose.Types.ObjectId;
+	var providermodel = require('./ProviderModel.js');
+    var ObjectID 	  = mongoose.Types.ObjectId;
             
 	//chamar o model e acima fazer um require;
 
@@ -19,8 +19,7 @@ module.exports = function(mongoose)
     };
     
     var salvar = function(data, callback){ 
-        console.log('chegou aqui');
-        
+        console.log(data);
         var vdata = new providermodel.model(data);
         var condition   = { _id: new ObjectID(data._id)};
         
