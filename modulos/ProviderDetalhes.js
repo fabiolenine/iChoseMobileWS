@@ -64,12 +64,12 @@ module.exports = function(mongoose)
                
             providermodel.model.update(condition,{ $set: vdatasid},{upsert:false},function updateCallback(err) {
 						if(err){
-							//console.log('Atualização do data falhou, ID: ' + vdata._id);
-                            //console.log(err);
+							console.log('Atualização do data falhou, ID: ' + vdata._id);
+                            console.log(err);
 							callback(false);
 						}
 						else {
-							//console.log('Sucesso ao atualizar o ID: ' + vdata._id);
+							console.log('Sucesso ao atualizar o ID: ' + vdata._id);
 							callback(data);
 						}
             });    
