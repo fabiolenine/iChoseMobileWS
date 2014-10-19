@@ -6,7 +6,7 @@ module.exports = function(mongoose)
 	//chamar o model e acima fazer um require;
 
     var list = function(data, callback){
-    
+        console.log('passei por aqui');
         eventmodel.model.find(function(err, doc){
             if(err){
                 console.log('Erro na busca dos locais');
