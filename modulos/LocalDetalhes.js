@@ -18,6 +18,18 @@ module.exports = function(mongoose)
         });
     };
     
+    var locallist = function(data, callback){
+    
+        localmodel.model.find({},{estabelecimento:1, cidade:1, estado:1},function(err, doc){
+            if(err){
+                console.log('Erro na busca dos locais');
+            }
+            else {
+                callback(doc);
+            }
+        });
+    };
+    
     var salvar = function(local, callback){ 
         var vlocal = new localmodel.model(local);
         var condition   = { _id: new ObjectID(local._id)};
@@ -96,9 +108,10 @@ module.exports = function(mongoose)
         });    
     };
     
-    var retorno = {"list"	  : list,
-                   "salvar"   : salvar,
-                   "erase"    : erase};
+    var retorno = {"list"	    : list,
+                   "locallist"  : locallist,
+                   "salvar"     : salvar,
+                   "erase"      : erase};
 
 	return retorno;	
 	}

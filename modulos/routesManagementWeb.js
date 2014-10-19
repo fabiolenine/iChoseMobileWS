@@ -110,6 +110,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });    
 
+  app.get('/local/locallist', function(req, res) {
+      LocalDetalhes.locallist(req.body, function(success){
+        res.send(success);
+      });
+  });    
+
   app.post('/local/salvar', function(req, res) {   
       LocalDetalhes.salvar(req.body, function(success){
         res.json(success);
@@ -144,6 +150,12 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         res.send(success);
       });
   });    
+
+  app.get('/fornecedor/providerlist', function(req, res) {
+      ProviderDetalhes.providerlist(req.body, function(success){
+        res.send(success);
+      });
+  }); 
 
   app.post('/fornecedor/salvar', function(req, res) {   
       ProviderDetalhes.salvar(req.body, function(success){

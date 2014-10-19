@@ -18,6 +18,18 @@ module.exports = function(mongoose)
         });
     };
     
+    var providerlist = function(data, callback){
+    
+        providermodel.model.find({},{nomefantasia:1},function(err, doc){
+            if(err){
+                console.log('Erro na busca dos locais');
+            }
+            else {
+                callback(doc);
+            }
+        });
+    };
+    
     var salvar = function(data, callback){ 
         var vdata       = new providermodel.model(data);
         var condition   = {_id: new ObjectID(data._id)};
@@ -90,9 +102,10 @@ module.exports = function(mongoose)
         });    
     };
     
-    var retorno = {"list"	  : list,
-                   "salvar"   : salvar,
-                   "erase"    : erase};
+    var retorno = {"list"	        : list,
+                   "providerlist"   : providerlist,
+                   "salvar"         : salvar,
+                   "erase"          : erase};
 
 	return retorno;	
 	}
