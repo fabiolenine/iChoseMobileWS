@@ -35,24 +35,21 @@ module.exports = function(mongoose)
             if(vdata.website               === undefined){vdata.website               = '';}
             if(vdata.situacao              === undefined){vdata.situacao              = '';}
             
-            var vdatasid = {evento             : String,
-					        dataevento         : String,
-                            estabelecimentoid  : Object,
-					        usuariocadastroid  : Object,
-					        imagembanner       : String,
-                            abertura           : String, 
-                            inicio             : String,
-                            classificacao      : String,
-                            descricao          : String,
-                            urlyoutube         : String,
-                            website            : String,
-                            tags               : [],
-                                   forauso            : {type: Boolean, default: false},
-                                   situacao           : String,
-                                   ingresso           : [{  genero  : String
-                                                         //   ,produto : [{setor : String,
-                                                        //                 valor : String}]
-                                                         }]}; 
+            var vdatasid = {evento             : vdata.evento,
+					        dataevento         : vdata.dataevento,
+                            estabelecimentoid  : vdata.estabelecimentoid,
+					        usuariocadastroid  : vdata.usuariocadastroid,
+					        imagembanner       : vdata.imagembanner,
+                            abertura           : vdata.abertura, 
+                            inicio             : vdata.inicio,
+                            classificacao      : vdata.classificacao,
+                            descricao          : vdata.descricao,
+                            urlyoutube         : vdata.urlyoutube,
+                            website            : vdata.website,
+                            tags               : vdata.tags,
+                            forauso            : vdata.forauso,
+                            situacao           : vdata.situacao,
+                            ingresso           : vdata.ingresso}; 
                
             eventmodel.model.update(condition,{ $set: vdatasid},{upsert:false},function updateCallback(err) {
 						if(err){
