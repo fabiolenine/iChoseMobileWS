@@ -39,6 +39,7 @@ module.exports = function(mongoose)
             if(vdata.inscricaomunicipal    === undefined){vdata.inscricaomunicipal    = '';}
             if(vdata.cep                   === undefined){vdata.cep                   = '';}
             if(vdata.website               === undefined){vdata.website               = '';}
+            if(vdata.situacao              === undefined){vdata.situacao              = '';}
             
             var vdatasid = {    nomefantasia       : vdata.nomefantasia,
                                 nomeresponsavel    : vdata.nomeresponsavel,
