@@ -1,18 +1,16 @@
 var mongoose = require('mongoose');
-var hotsitesacSchema, OcorrenciasSchema
-
-OcorrenciasSchema = new mongoose.Schema({timestamp   : {type: Date, default: Date.now},
-								         loc         : {type: {type: String,
-                                                              enum: ['Point']},
-                                                              coordinates: [Number]},
-					                     nome        : String,
-                                         mensagem    : String,
-                                         forauso     : {type: Boolean, default: false},
-                                         situacao    : {type: String , default: 'Não lido'},
-                                         confirmado  : {type: Boolean, default: false}
-                                       });
+var hotsitesacSchema;
 
 hotsitesacSchema = new mongoose.Schema({email       : String,
-                                        ocorrencias : [Ocorrencias]});
+                                        ocorrencias : [{  timestamp   : {type: Date, default: Date.now},
+                                                         loc         : {type: {type: String,
+                                                                              enum: ['Point']},
+                                                                              coordinates: [Number]},
+                                                         nome        : String,
+                                                         mensagem    : String,
+                                                         forauso     : {type: Boolean, default: false},
+                                                         situacao    : {type: String , default: 'Não lido'},
+                                                         confirmado  : {type: Boolean, default: false}}]
+                                       });
 
 exports.model = mongoose.model('hotsitesac',hotsitesacSchema);
