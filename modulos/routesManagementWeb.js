@@ -170,7 +170,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         } 
         else {
             res.send(404);
-        };
+        }
       });
       
   app.get('/fornecedor/userlist', function(req, res) {
