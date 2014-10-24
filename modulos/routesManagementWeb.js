@@ -1,6 +1,6 @@
-//RoutesManagement.js
-module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes, ProviderDetalhes) {
-
+//routesManagementWeb.js
+module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes, ProviderDetalhes) 
+{
     app.set('views', '../iChoseManagementWeb');
     
 // =====================================
@@ -57,8 +57,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
   app.get('/event/list', function(req, res) {
       EventDetalhes.list(req.body, function(success){
-        console.log('passei pela rota');
-        console.log(success);
         res.send(success);
       });
   });    
@@ -172,6 +170,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             res.send(404);
         }
       });
+  });
       
   app.get('/fornecedor/userlist', function(req, res) {
       ProviderDetalhes.userlist(req.body, function(success){
@@ -193,8 +192,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         else {
             res.send(404);
         }
-      });
-      
+      });  
   });
     
     
@@ -211,7 +209,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
         }
         else {res.send(400);}
     });
-
   });
     
 // =====================================
@@ -247,8 +244,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
 
     app.get('/accessdenied', function(req,res){
         res.render('accessdenied.ejs');
-        });
-    
+        });  
 };
 
 
@@ -261,4 +257,4 @@ function isLoggedIn(req, res, next) {
 
   // if they aren't redirect them to the home page
   res.redirect('/accessdenied');
-}
+};
