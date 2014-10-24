@@ -80,7 +80,7 @@ module.exports = function(app, passport) {
         {
         res.render('accessdenied.ejs');
         });
-    
+
 };
 
 

@@ -11,7 +11,6 @@ module.exports = function(mongoose)
                 console.log('Erro na busca dos locais');
             }
             else {
-                console.log('passei por aqui');
                 callback(doc);
             }
         });

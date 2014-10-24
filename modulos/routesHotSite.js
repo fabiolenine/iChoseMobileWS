@@ -29,6 +29,29 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
 		res.render('index.ejs');
 	});
 
+    app.post('/hotsite/sacemail', function(req, res) {   
+        var hostname            = req.headers.host;
+        var confirmarEmailURL   = 'http://' + hostname + '/hotsite/sacemail/confirmaremail';
+        var Email               = req.body.email;
+        var Mensagem            = req.body.mensagem;
+        var Nome                = req.body.nome;
+        var Loc                 = req.body.location.lng;
+        var Lat                 = req.body.location.lat;
+        
+        if (null == Email || Email.length < 5)
+                {
+                    res.send(false);
+                 }
+        else
+        {
+            hotsitedetalhes.sacemail(Email, Nome, Mensagem, Lat, Loc, confirmarEmailURL, function(success)
+            {
+                res.send(success);
+            });
+        }
+    });
+    
+    
 	// process the login form
 	// app.post('/login', do all our passport stuff here);
 
@@ -45,13 +68,9 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
         var Loc                 = req.body.location.lng;
         var Lat                 = req.body.location.lat;
         
-        console.log(Loc);
-        console.log(Lat);
-        console.log(Email);
-        
         if (null == Email || Email.length < 5)
                 {
-                        res.send(false);
+                    res.send(false);
                  }
         else
         {

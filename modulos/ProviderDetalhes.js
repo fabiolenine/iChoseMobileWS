@@ -1,7 +1,9 @@
 //ProviderDetalhes.js
 module.exports = function(mongoose)
 	{
-	var providermodel = require('./ProviderModel.js');
+	var providermodel      = require('./ProviderModel.js');
+    var userprovidermodel  = require('./ProviderUserModel.js');  // local up the user model
+    
     var ObjectID 	  = mongoose.Types.ObjectId;
             
 	//chamar o model e acima fazer um require;
@@ -102,10 +104,91 @@ module.exports = function(mongoose)
         });    
     };
     
+    
+//
+// LOCAL SIGNUP - Provider
+//
+
+    var userlist = function(data, callback){
+    
+        userprovidermodel.model.find(function(err, doc){
+            if(err){
+                console.log('Erro na busca dos locais');
+            }
+            else {
+                callback(doc);
+            }
+        });
+    };
+    
+    var usersalvar = function(data, callback){
+        var newUser     = new userprovidermodel.model.(data);
+        var condition   = {_id: new ObjectID(data.local._id)};
+        if(!data.local._id){
+            // if there is no user with that email
+            // create the user
+
+            // set the user's local credentials
+            newUser.local.email         = email;
+            newUser.local.password      = newUser.generateHash(password);
+            newUser.local.nome          = nome;
+            newUser.local.cargo         = cargo;
+            newUser.local.urlfoto       = urlfoto;
+            newUser.local.forauso       = forauso;
+            newUser.local.datavalidade  = datavalidade;
+
+            // save the user
+            newUser.save(function(err,doc){
+                if (err) throw err;
+                    callback(doc);
+            });
+        }
+        else {
+            
+            var newUsersid = {local : { nome         : newUser.nome,
+                                        cargo        : newUser.cargo,
+                                        urlfoto      : newUser.urlfoto,
+                                        forauso      : newUser.forauso,
+                                        datavalidade : newUser.datavalidade,
+                                        email        : newUser.email,
+                                        password     : newUser.generateHash(password)
+                                    }
+                            }; 
+               
+            userprovidermodel.model.update(condition,{ $set: newUsersid},{upsert:false},function updateCallback(err) {
+						if(err){
+							console.log('Atualização do data falhou, ID: ' + newUser._id);
+                            console.log(err);
+							callback(false);
+						}
+						else {
+							console.log('Sucesso ao atualizar o ID: ' + newUser._id);
+							callback(data);
+						}
+            });    
+        }
+    };
+    
+    var usererase = function(data, callback){
+        userprovidermodel.model.update({_id: data},{$set: {forauso: true}},{upsert:false},function updateCallback(err) {
+						if(err){
+							console.log('exclusão do ID: ' + data);
+							callback(false);
+						}
+						else {
+							console.log('Sucesso ao excluir o ID: ' + data);
+							callback(true);
+						}
+        });    
+    };
+    
     var retorno = {"list"	        : list,
                    "providerlist"   : providerlist,
                    "salvar"         : salvar,
-                   "erase"          : erase};
+                   "erase"          : erase,
+                   "userlist"       : userlist,
+                   "usersalvar"     : usersalvar,
+                   "usererase"      : usererase};
 
 	return retorno;	
 	}

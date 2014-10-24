@@ -172,6 +172,29 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
             res.send(404);
         };
       });
+      
+  app.get('/fornecedor/userlist', function(req, res) {
+      ProviderDetalhes.userlist(req.body, function(success){
+        res.send(success);
+      });
+  });    
+
+  app.post('/fornecedor/usersalvar', function(req, res) {   
+      ProviderDetalhes.usersalvar(req.body, function(success){
+        res.json(success);
+      });
+  });
+
+  app.post('/fornecedor/usererase/:erase_id', function(req, res) {   
+      ProviderDetalhes.usererase(req.params.erase_id, function(success){
+        if(success){
+            res.send(200);
+        } 
+        else {
+            res.send(404);
+        };
+      });
+      
   });
     
     

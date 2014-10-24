@@ -3,14 +3,18 @@ var bcrypt   = require('bcrypt-nodejs');
 var provideruserSchema;
 
 // define the schema for our user model
-var provideruserSchema = mongoose.Schema({
-                                            local       : { email       : String,
-                                                            password    : String}
-//                                            ,
-//                                            nome        : String,
-//                                            cargo       : String,
-//                                            foto        : String,
-//                                            providerid  : Object
+var provideruserSchema = mongoose.Schema({local : { nome         : String,
+                                                    cargo        : String,
+                                                    urlfoto      : String,
+                                                    forauso      : {type: Boolean, default: false},
+                                                    timestamp    : {type: Date, default: Date.now},
+                                                    datavalidade : Date,
+                                                    email        : String,
+                                                    password     : String,
+                                                    evento       : [],
+                                                    perfil       : [],
+                                                    historico    : []
+                                                  }
                                         });
 
 // methods
