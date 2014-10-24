@@ -122,7 +122,7 @@ module.exports = function(mongoose)
     };
     
     var usersalvar = function(data, callback){
-        var newUser     = new userprovidermodel.model.(data);
+        var newUser     = new userprovidermodel.model(data);
         var condition   = {_id: new ObjectID(data.local._id)};
         if(!data.local._id){
             // if there is no user with that email
