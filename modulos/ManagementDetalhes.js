@@ -41,7 +41,7 @@ module.exports = function(mongoose, request, cheerio)
                             
                             var eventf = eventmodel.model.findOne({
                                 'evento'            : eventscrape.evento,
-                                'dataevento'        : eventscrape.dataevento,
+                                'dataevento'        : new Date(eventscrape.dataevento),
                                 'estabelecimentoid' : doc._id},
                                 function findevento(err,doc){
                                     if(err){
