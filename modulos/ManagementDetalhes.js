@@ -39,15 +39,9 @@ module.exports = function(mongoose, request, cheerio)
                             
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
                             
-                            console.log('//////////////////////');
-                            console.log(eventscrape.dataevento);
-                            console.log('======================');
-                            console.log(new Date(eventscrape.dataevento));
-                            console.log('//////////////////////');
-                            
                             var eventf = eventmodel.model.findOne({
                                 'evento'            : eventscrape.evento,
-                                'dataevento'        : new Date(eventscrape.dataevento),
+                                'dataevento'        : eventscrape.dataevento,
                                 'estabelecimentoid' : doc._id},
                                 function findevento(err,doc){
                                     if(err){
@@ -98,24 +92,29 @@ module.exports = function(mongoose, request, cheerio)
             var xabertura               = extracao.search("Abertura:") + 10;
             var xinicio                 = extracao.search("In�cio:") + 8;
             var xcidade                 = extracao.search('Cidade/UF') 
-            
+        
             eventscrape.abertura        = extracao.substr(xabertura,5);
             eventscrape.classificacao   = extracao.substr(xclassificacao,7);
             if(xinicio > 8){
                 eventscrape.inicio = extracao.substr(xinicio,5);
             }
-            eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
-            eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
             if(eventscrape.dataevento === undefined)
             {
                 var dt                  = $('.data_interna_evento').text().split(",");
                 if(dt[1]){
-                var dtevento        = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                    var databruto        = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                    var separardata = databruta.split("/");
+                    var ano         = separardata[2];
+                    var mes         = separardata[1];
+                    var dia         = separardata[0];
                 }
-                eventscrape.dataevento  = new Date(dtevento);
-                console.log('dtevento: ' + dtevento);
-            }
+                eventscrape.dataevento  = new Date(ano + '-' + mes + '-'+ dia);
+                console.log('convertido2:' + eventscrape.dataevento);
+            } else {console.log('convertido1:' + eventscrape.dataevento);}
+            
+            eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
+            eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
@@ -173,10 +172,14 @@ module.exports = function(mongoose, request, cheerio)
                 event.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
                 var dt                    = $(this).find('.data_evento_lista').text().split(",");
                 if(dt[1]){
-                event.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                    var databruta   = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                    var separardata = databruta.split("/");
+                    var ano         = separardata[2];
+                    var mes         = separardata[1];
+                    var dia         = separardata[0];
+    
+                    event.dataevento = ano + '-' + mes + '-' + dia; 
                 }
-                console.log(event.dataevento);
-                console.log('------------------');
                 scrapeparttwo(event);
             
             });
