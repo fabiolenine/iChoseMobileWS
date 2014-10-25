@@ -39,9 +39,12 @@ module.exports = function(mongoose, request, cheerio)
                             
                             eventscrape.estabelecimentoid = new ObjectID(doc._id);
                             
+                            console.log('//////////////////////');
                             console.log(eventscrape.dataevento);
+                            console.log('======================');
                             console.log(new Date(eventscrape.dataevento));
-                                        
+                            console.log('//////////////////////');
+                            
                             var eventf = eventmodel.model.findOne({
                                 'evento'            : eventscrape.evento,
                                 'dataevento'        : new Date(eventscrape.dataevento),
@@ -104,6 +107,16 @@ module.exports = function(mongoose, request, cheerio)
             eventscrape.website         = $('.desc_basica_evento p span').find('a').attr('href');
             eventscrape.descricao       = $('.desc_completa_evento .caixa_texto .scroll-pane').text();
             
+            if(eventscrape.dataevento === undefined)
+            {
+                var dt                  = $('.data_interna_evento').text().split(",");
+                if(dt[1]){
+                var dtevento        = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                }
+                eventscrape.dataevento  = new Date(dtevento);
+                console.log('dtevento: ' + dtevento);
+            }
+            
             local.imagembanner         = $('.div_img a').find('img').attr('src');
             local.estabelecimento      = $('.desc_interna_azul').text().trim();
             local.logradouro           = $('.local_evento p').eq(1).text().replace('Endere�o' , '').replace(/\t/g , '').replace(/\n/g , '').replace(/\r/g , ',').trim();
@@ -162,7 +175,8 @@ module.exports = function(mongoose, request, cheerio)
                 if(dt[1]){
                 event.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
                 }
-                
+                console.log(event.dataevento);
+                console.log('------------------');
                 scrapeparttwo(event);
             
             });
