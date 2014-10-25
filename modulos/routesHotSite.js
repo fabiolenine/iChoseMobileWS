@@ -29,6 +29,27 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
 		res.render('index.ejs');
 	});
 
+    app.get('/hotsite/list', function(req, res) {
+        hotsitedetalhes.list(req.body, function(success){
+            res.send(success);
+        });
+    });
+    
+    app.get('/hotsite/sacemail/confirmaremail',function(req, res) {
+        var accountId   = req.param('account',null);
+        var condition   = { _id: new ObjectID(accountId), confirmado: false };
+		if(null  != accountId){
+            hotsitedetalhes.confirmaremail(condition,function(success){
+                if(success){
+                    res.render('sacconfirmado.ejs');
+                }
+                else {
+                    res.render('opsalgodeuerrado.ejs');
+                }
+            });
+        }            
+    });
+    
     app.post('/hotsite/sacemail', function(req, res) {   
         var hostname            = req.headers.host;
         var confirmarEmailURL   = 'http://' + hostname + '/hotsite/sacemail/confirmaremail';

@@ -4,6 +4,7 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
 	var emailverao2015 			= require('./EmailVerao2015Model.js');
     var triedemailverao2015 	= require('./TriedEmailVerao2015Model.js');
     var hotsitesacmodel         = require('./HotSiteSacModel.js');
+    var eventmodel              = require('./EventModel.js');
     
     var confirmaremail = function(condition, callback)
     {
@@ -117,11 +118,36 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 				});
 		};
     
+        var list = function(callback){
+    
+            eventmodel.model.find({dataevento: {$gte: Date()}},
+                                  {imagembanner:1, evento:1, dataevento:1, website:1}).sort({dataevento:1}).limit(6).exec( 
+                                  function(err, doc){
+                                        if(err){
+                                            console.log('Erro na busca dos seis primeiros eventos.');
+                                        }
+                                        else {
+                                            callback(doc);
+                                        }
+                                    });
+        };
+    
+        var confirmarsac = function(condition, callback)
+        {
+            hotsitesacmodel.model.update(condition,{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
+                    if(erro){callback(false);}
+                    else {
+                        if(doc==0){callback(false);}
+                        else {callback(true);}
+                    }
+                });
+        };
     
     	var retorno = {"envioemail"		: envioemail,
                        "confirmaremail" : confirmaremail,
                        "cancelaremail"  : cancelaremail,
-                       "sacemail"       : sacemail};
+                       "sacemail"       : sacemail,
+                       "list"           : list};
 
 	return retorno;	
 }

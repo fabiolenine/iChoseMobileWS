@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var eventSchema;
 
 eventSchema = new mongoose.Schema({evento             : String,
-					               dataevento         : String,
+					               dataevento         : {type: Date},
                                    timestamp          : {type: Date, default: Date.now},
                                    estabelecimentoid  : Object,
 					               usuariocadastroid  : Object,
