@@ -128,7 +128,7 @@ module.exports = function(mongoose, request, cheerio)
         
         var event  = {  estabelecimentoid   : "",
                         evento              : "", 
-                        dataevento          : {type:Date}, 
+                        dataevento          : "", 
                         imagembanner        : "",
                         urlscrapedetalhes   : "",
                         abertura            : "",
@@ -157,7 +157,7 @@ module.exports = function(mongoose, request, cheerio)
                 event.estabelecimento     = $(this).find('.desc_evento_lista strong').text().trim();
                 var dt                    = $(this).find('.data_evento_lista').text().split(",");
                 if(dt[1]){
-                event.dataevento          = new date(dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim());
+                event.dataevento          = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
                 }
                 
                 scrapeparttwo(event);
