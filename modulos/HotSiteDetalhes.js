@@ -118,7 +118,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 				});
 		};
     
-        var list = function(callback){
+        var list = function(data,callback){
     
             eventmodel.model.find({dataevento: {$gte: Date()}},
                                   {imagembanner:1, evento:1, dataevento:1, website:1}).sort({dataevento:1}).limit(6).exec( 
