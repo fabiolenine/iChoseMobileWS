@@ -31,6 +31,9 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
 
     app.get('/hotsite/list', function(req, res) {
         hotsitedetalhes.list(req.body, function(success){
+            console.log('Saida da rota');
+            console.log('-------------');
+            console.log(success);
             res.send(success);
         });
     });

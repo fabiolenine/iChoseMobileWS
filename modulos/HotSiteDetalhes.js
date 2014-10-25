@@ -119,7 +119,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 		};
     
         var list = function(data,callback){
-    
+            console.log('acessou a função List...');
             eventmodel.model.find({dataevento: {$gte: Date()}},
                                   {imagembanner:1, evento:1, dataevento:1, website:1}).sort({dataevento:1}).limit(6).exec( 
                                   function(err, doc){
@@ -127,6 +127,9 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                             console.log('Erro na busca dos seis primeiros eventos.');
                                         }
                                         else {
+                                            console.log('Saída do DOC');
+                                            console.log('-------------');
+                                            console.log(success);
                                             callback(doc);
                                         }
                                     });

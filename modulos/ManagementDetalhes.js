@@ -128,7 +128,7 @@ module.exports = function(mongoose, request, cheerio)
         
         var event  = {  estabelecimentoid   : "",
                         evento              : "", 
-                        dataevento          : "", 
+                        dataevento          : {type:Date}, 
                         imagembanner        : "",
                         urlscrapedetalhes   : "",
                         abertura            : "",
