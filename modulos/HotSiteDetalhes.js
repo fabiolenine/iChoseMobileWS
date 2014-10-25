@@ -129,7 +129,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                         else {
                                             console.log('Saída do DOC');
                                             console.log('-------------');
-                                            console.log(success);
+                                            console.log(doc);
                                             callback(doc);
                                         }
                                     });
