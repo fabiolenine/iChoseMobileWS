@@ -154,7 +154,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                        "confirmaremail" : confirmaremail,
                        "cancelaremail"  : cancelaremail,
                        "sacemail"       : sacemail,
-                       "list"           : list};
+                       "list"           : list,
+                       "confirmarsac"   : confirmarsac};
 
 	return retorno;	
 }
