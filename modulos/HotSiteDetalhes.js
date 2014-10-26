@@ -142,9 +142,11 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
         {
             console.log('cheguei aqui.');
             hotsitesacmodel.model.update({'ocorrencias._id': new ObjectID(condition), 'confirmado': false },{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
-                    if(erro){callback(false);}
+                    if(erro){console.log('Erro ao procurar o ID: ' + erro);
+                             callback(false);}
                     else {
-                        if(doc==0){callback(false);}
+                        if(doc==0){console.log('Não encontrou nada: ' + doc);
+                                   callback(false);}
                         else {callback(true);}
                     }
                 });
