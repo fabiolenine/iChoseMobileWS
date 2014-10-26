@@ -37,7 +37,7 @@ module.exports = function(app, passport, mongoose, hotsitedetalhes) {
     
     app.get('/hotsite/sacemail/confirmaremail',function(req, res) {
         var accountId   = req.param('account',null);
-        var condition   = { "ocorrencias._id": new ObjectID(accountId), confirmado: false };
+        var condition   = new ObjectID(accountId);
 		if(null  != accountId){
             hotsitedetalhes.confirmarsac(condition,function(success){
                 if(success){

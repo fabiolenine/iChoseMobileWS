@@ -137,7 +137,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
     
         var confirmarsac = function(condition, callback)
         {
-            hotsitesacmodel.model.update(condition,{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
+            hotsitesacmodel.model.update(ocorrencias._id: condition, confirmado: false },{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
                     if(erro){callback(false);}
                     else {
                         if(doc==0){callback(false);}
