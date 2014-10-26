@@ -108,9 +108,9 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                                                     callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
                                                                 console.log(doc);
-                                                                console.log('----------);
+                                                                console.log('----------');
                                                                 console.log(doc.ocorrencias);
-                                                                console.log('----------);
+                                                                console.log('----------');
                                                                 console.log(doc.ocorrencias.id); 
                                                                 confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
