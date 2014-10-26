@@ -107,6 +107,11 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                             sac.save(function(err,doc) {if(err) {   console.log('Erro ao salvar: ' + err);
                                                                     callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
+                                                                console.log(doc);
+                                                                console.log('----------);
+                                                                console.log(doc.ocorrencias);
+                                                                console.log('----------);
+                                                                console.log(doc.ocorrencias.id); 
                                                                 confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
