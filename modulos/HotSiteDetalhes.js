@@ -142,10 +142,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
     
         var confirmarsac = function(condition, callback)
         {
-            console.log('cheguei aqui.');
             var condicao = {"ocorrencias._id": new ObjectID(condition)};
-            console.log(condicao);
-            //Erro ao procurar o ID: MongoError: can't append to array using string field name: confirmado
             hotsitesacmodel.model.update(condicao,{$set:{"ocorrencias.$.confirmado":true}},{upsert:false, multi:true},function(erro,doc){
                     if(erro){console.log('Erro ao procurar o ID: ' + erro);
                              callback(false);}

@@ -113,7 +113,7 @@ module.exports = function(mongoose)
     
         userprovidermodel.model.find(function(err, doc){
             if(err){
-                console.log('Erro na busca dos locais');
+                console.log('Erro na busca dos locais:' + err);
             }
             else {
                 callback(doc);

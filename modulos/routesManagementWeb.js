@@ -133,7 +133,7 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     
     
 // =====================================
-// Provider SECTION ====================
+// Provider Cadastro ===================
 // =====================================
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
@@ -172,7 +172,18 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });
       
-  app.get('/fornecedor/userlist', function(req, res) {
+// =====================================
+// Provider Users ======================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/fornecedorusuario', isLoggedIn, function(req, res) {
+    res.render('fornecedorusuario.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+    
+    app.get('/fornecedor/userlist', function(req, res) {
       ProviderDetalhes.userlist(req.body, function(success){
         res.send(success);
       });
