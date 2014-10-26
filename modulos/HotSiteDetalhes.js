@@ -87,7 +87,12 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                             doc.save(function(err,doc) {if(err) {console.log('Erro ao salvar: ' + err);
                                                                  callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
-                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
+                                                                                                                                console.log(doc);
+                                                                console.log('----------');
+                                                                console.log(doc.ocorrencias);
+                                                                console.log('----------');
+                                                                console.log(doc.ocorrencias._id); 
+                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
@@ -111,8 +116,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                                                 console.log('----------');
                                                                 console.log(doc.ocorrencias);
                                                                 console.log('----------');
-                                                                console.log(doc.ocorrencias.id); 
-                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
+                                                                console.log(doc.ocorrencias._id); 
+                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
