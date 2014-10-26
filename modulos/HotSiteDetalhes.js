@@ -81,7 +81,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 					                           else    {
 						if(doc){
                             //acrescentar aqui o nome e a mensagem na dependência.
-							doc.ocorrencias.push({ loc     : {type: Point,coordinates: [Lon,Lat]},
+							doc.ocorrencias.push({ loc     : {type: 'Point',coordinates: [Lon,Lat]},
 					                               nome    : Nome,
                                                    mensagem: Mensagem});
                             doc.save(function(err,doc) {if(err) {callback(false);}
@@ -127,9 +127,6 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                             console.log('Erro na busca dos seis primeiros eventos.');
                                         }
                                         else {
-                                            console.log('Saída do DOC');
-                                            console.log('-------------');
-                                            console.log(doc);
                                             callback(doc);
                                         }
                                     });
