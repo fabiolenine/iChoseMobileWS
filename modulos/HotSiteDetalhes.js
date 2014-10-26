@@ -84,14 +84,16 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 							doc.ocorrencias.push({ loc     : {type: 'Point',coordinates: [Lon,Lat]},
 					                               nome    : Nome,
                                                    mensagem: Mensagem});
-                            doc.save(function(err,doc) {if(err) {callback(false);}
+                            doc.save(function(err,doc) {if(err) {console.log('Erro ao salvar: ' + err);
+                                                                 callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
                                                                 confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
                         html    : '<!DOCTYPE html><html lang="pt-br"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="keywords" content="ichose, provider, baladas, eventos, festas, shows, comanda, digital, danceteria, software, balcão"/><meta name="author" content="Fabio Lenine, Jadson Mezzari, Jesualdo Pinheiro and Lucas Assis."/><link rel="author" href="https://google.com/+FabioLenine"/><link rel="stylesheet" href= "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" > <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/normalize.min.css" ><link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/main.css"><title>iChose - Mensagem Recebida</title></head><body><p><b>Olá</b>' + Nome + ',</p><p>Sua mensagem foi recebida e está sendo analisada por nossa equipe de suporte.</p><p><b>Mensagem:</b> ' + Mensagem + '</p><p><a href="' + confirmarEmailUrl + '" target="_blank">Para damos continuidade, por favor, confirme que foi você quem enviou a mensagem clicando aqui.</a></p><p>Obrigado,</p><p><b>iChose.</b></p><footer><ul class="footer-area"><li><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/logo_desc_footer.png" /></li><li><a href="mailto:hello@ichose.com.br" target="_blank"><span class="glyphicon glyphicon-envelope"></span>hello@ichose.com.br</a><span class="glyphicon glyphicon-phone"></span><span>+55 48 8822 9472</span></li><li><a href="https://www.facebook.com/ichoseapp" target="_blank"><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/facebook.png" /></a><a href="https://twitter.com/ichoseapp" target="_blank"><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/twitter.png" /></a><a href="https://plus.google.com/105051016492501659885" rel="publisher">Google+</a></li></ul></footer></body>'},
-                       function emailsac(error){ if(error) { callback(false);}
+                       function emailsac(error){ if(error) { console.log('Erro ao enviar a mensagem: ' + error);
+                                                             callback(false);}
                                                    else    { callback(true);}                                                                                                       });    
                                                                     }
                                                          });
@@ -102,14 +104,16 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 					                                                                nome    : Nome,
                                                                                     mensagem: Mensagem}]
                                                                 });
-                            sac.save(function(err,doc) {if(err) {callback(false);}
+                            sac.save(function(err,doc) {if(err) {   console.log('Erro ao salvar: ' + err);
+                                                                    callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
                                                                 confirmarEmailUrl  += '/?account=' + doc.ocorrencias.id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
                         html    : '<!DOCTYPE html><html lang="pt-br"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="keywords" content="ichose, provider, baladas, eventos, festas, shows, comanda, digital, danceteria, software, balcão"/><meta name="author" content="Fabio Lenine, Jadson Mezzari, Jesualdo Pinheiro and Lucas Assis."/><link rel="author" href="https://google.com/+FabioLenine"/><link rel="stylesheet" href= "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" > <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/normalize.min.css" ><link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/css/main.css"><title>iChose - Mensagem Recebida</title></head><body><p><b>Olá</b>' + Nome + ',</p><p>Sua mensagem foi recebida e está sendo analisada por nossa equipe de suporte.</p><p><b>Mensagem:</b> ' + Mensagem + '</p><p><a href="' + confirmarEmailUrl + '" target="_blank">Para damos continuidade, por favor, confirme que foi você quem enviou a mensagem clicando aqui.</a></p><p>Obrigado,</p><p><b>iChose.</b></p><footer><ul class="footer-area"><li><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/logo_desc_footer.png" /></li><li><a href="mailto:hello@ichose.com.br" target="_blank"><span class="glyphicon glyphicon-envelope"></span>hello@ichose.com.br</a><span class="glyphicon glyphicon-phone"></span><span>+55 48 8822 9472</span></li><li><a href="https://www.facebook.com/ichoseapp" target="_blank"><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/facebook.png" /></a><a href="https://twitter.com/ichoseapp" target="_blank"><img src="https://s3-us-west-2.amazonaws.com/ichose/site/hotsite/img/twitter.png" /></a><a href="https://plus.google.com/105051016492501659885" rel="publisher">Google+</a></li></ul></footer></body>'},
-                       function emailsac(error){ if(error) { callback(false);}
+                       function emailsac(error){ if(error) { console.log('Erro ao enviar a mensagem: ' + error);
+                                                             callback(false);}
                                                    else    { callback(true);}                                                                                                       });    
                                                                     }
                                                          });    
