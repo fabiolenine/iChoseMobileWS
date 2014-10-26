@@ -98,7 +98,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 						} 
 						else { 
                             var sac = new hotsitesacmodel.model ({  email       : Email,
-                                                                    ocorrencias : [{loc     : {type: Point,coordinates: [Lon,Lat]},
+                                                                    ocorrencias : [{loc     : {type: 'Point',coordinates: [Lon,Lat]},
 					                                                                nome    : Nome,
                                                                                     mensagem: Mensagem}]
                                                                 });
