@@ -91,8 +91,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                                                 console.log('----------');
                                                                 console.log(doc.ocorrencias);
                                                                 console.log('----------');
-                                                                console.log(doc.ocorrencias._id); 
-                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias._id;
+                                                                console.log(doc.ocorrencias[0]._id); 
+                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias[0]._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
@@ -116,8 +116,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                                                 console.log('----------');
                                                                 console.log(doc.ocorrencias);
                                                                 console.log('----------');
-                                                                console.log(doc.ocorrencias._id); 
-                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias._id;
+                                                                console.log(doc.ocorrencias[0]._id); 
+                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias[0]._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
