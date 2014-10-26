@@ -143,7 +143,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
         var confirmarsac = function(condition, callback)
         {
             console.log('cheguei aqui.');
-            var condicao = {'ocorrencias._id': new ObjectID(condition), 'confirmado': false };
+            var condicao = {'ocorrencias._id': new ObjectID(condition), 'ocorrencias.confirmado': false };
             console.log(condicao);
             hotsitesacmodel.model.update(condicao,{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
                     if(erro){console.log('Erro ao procurar o ID: ' + erro);
