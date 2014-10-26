@@ -82,6 +82,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
 				function findemail(err,doc){   if(err) {callback(false);}
 					                           else    {
 						if(doc){
+                            console.log('Encontrou o e-mail');
                             //acrescentar aqui o nome e a mensagem na dependência.
 							doc.ocorrencias.push({ loc     : {type: 'Point',coordinates: [Lon,Lat]},
 					                               nome    : Nome,
@@ -101,6 +102,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                                                          });
 						} 
 						else { 
+                            console.log('Não encontrou o e-mail, vai inserir um novo.');
                             var sac = new hotsitesacmodel.model ({  email       : Email,
                                                                     ocorrencias : [{loc     : {type: 'Point',coordinates: [Lon,Lat]},
 					                                                                nome    : Nome,
