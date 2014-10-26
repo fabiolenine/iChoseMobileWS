@@ -6,6 +6,8 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
     var hotsitesacmodel         = require('./HotSiteSacModel.js');
     var eventmodel              = require('./EventModel.js');
     
+    var ObjectID 		= mongoose.Types.ObjectId;
+    
     var confirmaremail = function(condition, callback)
     {
        emailverao2015.model.update(condition,{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
@@ -87,12 +89,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                             doc.save(function(err,doc) {if(err) {console.log('Erro ao salvar: ' + err);
                                                                  callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
-                                                                                                                                console.log(doc);
-                                                                console.log('----------');
-                                                                console.log(doc.ocorrencias);
-                                                                console.log('----------');
-                                                                console.log(doc.ocorrencias[0]._id); 
-                                                                confirmarEmailUrl  += '/?account=' + doc.ocorrencias[0]._id;
+                                                                    confirmarEmailUrl  += '/?account=' + doc.ocorrencias[0]._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
                         subject : 'iChose - Mensagem Recebida.',
@@ -112,11 +109,7 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                             sac.save(function(err,doc) {if(err) {   console.log('Erro ao salvar: ' + err);
                                                                     callback(false);}
                                                         else    {var smtpTransport = nodemailer.createTransport(sesTransport(config.mail));
-                                                                console.log(doc);
-                                                                console.log('----------');
-                                                                console.log(doc.ocorrencias);
-                                                                console.log('----------');
-                                                                console.log(doc.ocorrencias[0]._id); 
+                                       
                                                                 confirmarEmailUrl  += '/?account=' + doc.ocorrencias[0]._id;
 smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                         to      : Email,
@@ -147,7 +140,8 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
     
         var confirmarsac = function(condition, callback)
         {
-            hotsitesacmodel.model.update({'ocorrencias._id': condition, 'confirmado': false },{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
+            console.log('cheguei aqui.');
+            hotsitesacmodel.model.update({'ocorrencias._id': new ObjectID(condition), 'confirmado': false },{$set:{confirmado:true}},{upsert:false, multi:true},function(erro,doc){
                     if(erro){callback(false);}
                     else {
                         if(doc==0){callback(false);}
