@@ -129,13 +129,7 @@ module.exports = function(mongoose)
             // create the user
 
             // set the user's local credentials
-            newUser.local.email         = email;
-            newUser.local.password      = newUser.generateHash(password);
-            newUser.local.nome          = nome;
-            newUser.local.cargo         = cargo;
-            newUser.local.urlfoto       = urlfoto;
-            newUser.local.forauso       = forauso;
-            newUser.local.datavalidade  = datavalidade;
+            newUser.local.password      = newUser.generateHash(data.local.password);
 
             // save the user
             newUser.save(function(err,doc){
