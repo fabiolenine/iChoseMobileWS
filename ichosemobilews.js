@@ -78,7 +78,7 @@ var ManagementDetalhes  = require('./modulos/ManagementDetalhes.js')(mongoose, r
 var EventDetalhes       = require('./modulos/EventDetalhes.js')(mongoose);
 var LocalDetalhes       = require('./modulos/LocalDetalhes.js')(mongoose);
 var ProviderDetalhes    = require('./modulos/ProviderDetalhes.js')(mongoose);
-var mobilewsDetalhes    = require('./mobilewsDetalhes.js')(mongoose);
+var mobilewsDetalhes    = require('./modulos/mobilewsDetalhes.js')(mongoose);
 
 var ObjectID 		= mongoose.Types.ObjectId;
 
