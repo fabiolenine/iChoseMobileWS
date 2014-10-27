@@ -1,5 +1,5 @@
 //routesManagementWeb.js
-module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes, ProviderDetalhes) 
+module.exports = function(app, passport, mongoose, request, cheerio, ManagementDetalhes, EventDetalhes, LocalDetalhes, ProviderDetalhes, hotsitedetalhes, mobilewsDetalhes) 
 {
     app.set('views', '../iChoseManagementWeb');
     
@@ -33,8 +33,8 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
     });
   });
 
-  app.get('/dashboard/veraocount', function(req, res) {
-      ManagementDetalhes.veraocount(req.body, function(success){
+  app.get('/dashboard/saccount', function(req, res) {
+      hotsitedetalhes.saccount(req.body, function(success){
         res.send(success);
       });
   });    
@@ -45,14 +45,14 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });
 
-  app.get('/dashboard/saccount', function(req, res) {
-      ManagementDetalhes.eventcount(req.body, function(success){
+  app.get('/dashboard/usermobilecount', function(req, res) {
+      mobilewsDetalhes.usermobilecount(req.body, function(success){
         res.send(success);
       });
   });
     
-  app.get('/dashboard/mobileusercount', function(req, res) {
-      ManagementDetalhes.mobileusercount(req.body, function(success){
+  app.get('/dashboard/emailveraocount', function(req, res) {
+      hotsitedetalhes.emailveraocount(req.body, function(success){
         res.send(success);
       });
   });

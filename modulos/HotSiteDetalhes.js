@@ -7,6 +7,31 @@ module.exports = function(config, mongoose, nodemailer, sesTransport)
     var eventmodel              = require('./EventModel.js');
     
     var ObjectID 		= mongoose.Types.ObjectId;
+
+
+    var emailveraocount = function(data, callback){
+        emailverao2015.model.find().count().exec( function(err, doc){
+            if(err){
+                console.log('Erro na busca dos sacs: ' + err);
+            }
+            else {
+                vjson = {emailverao: doc};
+                callback(vjson);
+            }
+        });
+    };
+
+    var saccount = function(data, callback){
+        hotsitesacmodel.model.find({'ocorrencias.forauso': false, 'ocorrencias.confirmado': true, 'ocorrencias.situacao': 'Não lido'}).count().exec( function(err, doc){
+            if(err){
+                console.log('Erro na busca dos sacs: ' + err);
+            }
+            else {
+                vjson = {sac: doc};
+                callback(vjson);
+            }
+        });
+    };
     
     var confirmaremail = function(condition, callback)
     {
@@ -159,7 +184,9 @@ smtpTransport.sendMail({from    : 'hello@ichoseapp.com',
                        "cancelaremail"  : cancelaremail,
                        "sacemail"       : sacemail,
                        "list"           : list,
-                       "confirmarsac"   : confirmarsac};
+                       "confirmarsac"   : confirmarsac,
+                       "saccount"       : saccount,
+                       "emailveraocount": emailveraocount};
 
 	return retorno;	
 }

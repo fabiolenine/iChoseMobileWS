@@ -1,5 +1,5 @@
 // app/routesMobileWS.js
-module.exports = function(app, passport) {
+module.exports = function(app, passport, mongoose, mobilewsDetalhes) {
 
     // ------------------------------------------------------------------------
     // set up Express routes to handle incoming requests
