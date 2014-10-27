@@ -123,8 +123,8 @@ module.exports = function(mongoose)
     
     var usersalvar = function(data, callback){
         var newUser     = new userprovidermodel.model(data);
-        var condition   = {_id: new ObjectID(data.local._id)};
-        if(!data.local._id){
+        var condition   = {_id: new ObjectID(data._id)};
+        if(!data._id){
             // if there is no user with that email
             // create the user
 
@@ -157,12 +157,12 @@ module.exports = function(mongoose)
                
             userprovidermodel.model.update(condition,{ $set: newUsersid},{upsert:false},function updateCallback(err) {
 						if(err){
-							console.log('Atualização do data falhou, ID: ' + newUser._id);
+							console.log('Atualização do data falhou, ID: ' + condition);
                             console.log(err);
 							callback(false);
 						}
 						else {
-							console.log('Sucesso ao atualizar o ID: ' + newUser._id);
+							console.log('Sucesso ao atualizar o ID: ' + condition);
 							callback(data);
 						}
             });    
