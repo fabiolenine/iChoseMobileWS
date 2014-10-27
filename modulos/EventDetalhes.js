@@ -6,11 +6,13 @@ module.exports = function(mongoose)
 	//chamar o model e acima fazer um require;
 
     var eventcount = function(data, callback){
+        console.log('Acessei a função.');
         eventmodel.model.find({dataevento: {$gte: Date()}}).count().exec( function(err, doc){
             if(err){
-                console.log('Erro na busca dos eventos');
+                console.log('Erro na busca dos eventos: ' + err);
             }
             else {
+                console.log('Valor do DOC: ' + doc);
                 callback(doc);
             }
         });
