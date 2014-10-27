@@ -122,6 +122,7 @@ module.exports = function(mongoose)
     };
     
     var usersalvar = function(data, callback){
+        var password    = data.local.password;
         var newUser     = new userprovidermodel.model(data);
         var condition   = {_id: new ObjectID(newUser._id)};
         if(!data._id){
@@ -131,12 +132,12 @@ console.log(newUser);
 console.log('-------------');
 console.log(newUser.local.password);
 console.log('-------------');
-console.log(data.local.password);
+console.log(password);
             
             // set the user's local credentials
             // Melhorar esse ponto.
 //            newUser.local.email         = newUser.local.email;
-              newUser.local.password      = newUser.generateHash(newUser.local.password);
+              newUser.local.password      = newUser.generateHash(password);
 //            newUser.local.nome          = newUser.local.nome;
 //            newUser.local.cargo         = newUser.local.cargo;
 //            newUser.local.urlfoto       = newUser.local.urlfoto;
