@@ -33,4 +33,5 @@ provideruserSchema.methods.validPassword = function(password)
 };
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('provideruser', provideruserSchema);
+//module.exports = mongoose.model('provideruser', provideruserSchema);
+exports.model = mongoose.model('provideruser', provideruserSchema);
