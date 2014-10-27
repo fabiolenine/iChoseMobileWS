@@ -124,17 +124,19 @@ module.exports = function(mongoose)
     var usersalvar = function(data, callback){
         var newUser     = new userprovidermodel.model(data);
         var condition   = {_id: new ObjectID(newUser._id)};
-        if(!newUser._id){
+        if(!data._id){
             // if there is no user with that email
             // create the user
 console.log(newUser);
 console.log('-------------');
 console.log(newUser.local.password);
+console.log('-------------');
+console.log(data.local.password);
             
             // set the user's local credentials
             // Melhorar esse ponto.
 //            newUser.local.email         = newUser.local.email;
-//            newUser.local.password      = newUser.generateHash(newUser.local.password);
+              newUser.local.password      = newUser.generateHash(newUser.local.password);
 //            newUser.local.nome          = newUser.local.nome;
 //            newUser.local.cargo         = newUser.local.cargo;
 //            newUser.local.urlfoto       = newUser.local.urlfoto;
