@@ -32,7 +32,31 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       user : req.user // get the user out of session and pass to template
     });
   });
+
+  app.get('/dashboard/veraocount', function(req, res) {
+      ManagementDetalhes.veraocount(req.body, function(success){
+        res.send(success);
+      });
+  });    
     
+  app.get('/dashboard/eventcount', function(req, res) {
+      EventDetalhes.eventcount(req.body, function(success){
+        res.send(success);
+      });
+  });
+
+  app.get('/dashboard/saccount', function(req, res) {
+      ManagementDetalhes.eventcount(req.body, function(success){
+        res.send(success);
+      });
+  });
+    
+  app.get('/dashboard/mobileusercount', function(req, res) {
+      ManagementDetalhes.mobileusercount(req.body, function(success){
+        res.send(success);
+      });
+  });
+
 // =====================================
 // Perfil SECTION =====================
 // =====================================
