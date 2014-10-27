@@ -40,7 +40,6 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
   });    
     
   app.get('/dashboard/eventcount', function(req, res) {
-      console.log('Roteamento encontrado.');
       EventDetalhes.eventcount(req.body, function(success){
         res.send(success);
       });
