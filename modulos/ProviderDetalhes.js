@@ -123,20 +123,23 @@ module.exports = function(mongoose)
     
     var usersalvar = function(data, callback){
         var newUser     = new userprovidermodel.model(data);
-        var condition   = {_id: new ObjectID(data._id)};
+        var condition   = {_id: new ObjectID(newUser._id)};
         if(!newUser._id){
             // if there is no user with that email
             // create the user
-
+console.log(newUser);
+console.log('-------------');
+console.log(newUser.local.password);
+            
             // set the user's local credentials
             // Melhorar esse ponto.
-            newUser.local.email         = newUser.local.email;
-            newUser.local.password      = newUser.generateHash(newUser.local.password);
-            newUser.local.nome          = newUser.local.nome;
-            newUser.local.cargo         = newUser.local.cargo;
-            newUser.local.urlfoto       = newUser.local.urlfoto;
-            newUser.local.forauso       = newUser.local.forauso;
-            newUser.local.datavalidade  = newUser.local.datavalidade;
+//            newUser.local.email         = newUser.local.email;
+//            newUser.local.password      = newUser.generateHash(newUser.local.password);
+//            newUser.local.nome          = newUser.local.nome;
+//            newUser.local.cargo         = newUser.local.cargo;
+//            newUser.local.urlfoto       = newUser.local.urlfoto;
+//            newUser.local.forauso       = newUser.local.forauso;
+//            newUser.local.datavalidade  = newUser.local.datavalidade;
             
             // save the user
             newUser.save(function(err,doc){
@@ -152,7 +155,7 @@ module.exports = function(mongoose)
                                         forauso      : newUser.local.forauso,
                                         datavalidade : newUser.local.datavalidade,
                                         email        : newUser.local.email,
-                                        password     : newUser.local.generateHash(password)
+                                        password     : newUser.local.generateHash(newUser.local.password)
                                     }
                             }; 
                
