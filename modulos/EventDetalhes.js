@@ -12,8 +12,9 @@ module.exports = function(mongoose)
                 console.log('Erro na busca dos eventos: ' + err);
             }
             else {
-                console.log('Valor do DOC: ' + doc);
-                callback(doc);
+                vjson = {event: doc};
+                console.log('Valor do DOC: ' + doc + ', Json:' + vjson);
+                callback(vjson);
             }
         });
     };
