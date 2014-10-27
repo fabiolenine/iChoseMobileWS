@@ -88,9 +88,10 @@ module.exports = function(mongoose)
         });    
     };
     
-    var retorno = {"list"	  : list,
-                   "salvar"   : salvar,
-                   "erase"    : erase};
+    var retorno = {"list"	    : list,
+                   "salvar"     : salvar,
+                   "erase"      : erase,
+                   "eventcount" : eventcount};
 
 	return retorno;	
 	}
