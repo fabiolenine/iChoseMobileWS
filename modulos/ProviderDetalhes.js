@@ -127,9 +127,19 @@ module.exports = function(mongoose)
         if(!data._id){
             // if there is no user with that email
             // create the user
+            
+            console.log(data);
+            console.log('-------------------');
+            console.log(data.local.password);
 
             // set the user's local credentials
-            newUser.local.password      = newUser.generateHash(data.local.password);
+            newUser.local.email         = email;
+            newUser.local.password      = newUser.generateHash(password);
+            newUser.local.nome          = nome;
+            newUser.local.cargo         = cargo;
+            newUser.local.urlfoto       = urlfoto;
+            newUser.local.forauso       = forauso;
+            newUser.local.datavalidade  = datavalidade;
 
             // save the user
             newUser.save(function(err,doc){
