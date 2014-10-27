@@ -124,16 +124,17 @@ module.exports = function(mongoose)
     var usersalvar = function(data, callback){
         var newUser     = new userprovidermodel.model(data);
         var condition   = {_id: new ObjectID(data._id)};
+        
+        console.log(newUser);
+        
         if(!data._id){
             // if there is no user with that email
             // create the user
             
-            console.log(data);
-            console.log('-------------------');
-            console.log(data.local[0].password);
+            console.log(newUser.local.password);
 
             // set the user's local credentials
-            newUser.local.password      = newUser.generateHash(data.local[0].password);
+            newUser.local.password      = newUser.generateHash(newUser.local.password);
 
             // save the user
             newUser.save(function(err,doc){
@@ -143,13 +144,13 @@ module.exports = function(mongoose)
         }
         else {
             
-            var newUsersid = {local : { nome         : newUser.nome,
-                                        cargo        : newUser.cargo,
-                                        urlfoto      : newUser.urlfoto,
-                                        forauso      : newUser.forauso,
-                                        datavalidade : newUser.datavalidade,
-                                        email        : newUser.email,
-                                        password     : newUser.generateHash(password)
+            var newUsersid = {local : { nome         : newUser.local.nome,
+                                        cargo        : newUser.local.cargo,
+                                        urlfoto      : newUser.local.urlfoto,
+                                        forauso      : newUser.local.forauso,
+                                        datavalidade : newUser.local.datavalidade,
+                                        email        : newUser.local.email,
+                                        password     : newUser.generateHash(newUser.local.password)
                                     }
                             }; 
                
