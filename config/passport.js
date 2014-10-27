@@ -25,7 +25,7 @@ module.exports = function(passport)
 // Melhorar esse DeserializeUse área de risco de segurança
   passport.deserializeUser(function(id, done)
   {
-    UserProvider.findById(id, function(err, user)
+    UserProvider.model.findById(id, function(err, user)
     {   
         if(err) done(err);
         if(!user) 
@@ -73,7 +73,7 @@ module.exports = function(passport)
             {
   		          // find a user whose email is the same as the forms email
   		          // we are checking to see if the user trying to login already exists
-                UserProvider.findOne({ 'local.email' :  email }, function(err, user) 
+                UserProvider.model.findOne({ 'local.email' :  email }, function(err, user) 
                   {
                     // if there are any errors, return the error
                     if (err) return done(err);
@@ -219,7 +219,7 @@ module.exports = function(passport)
     function(req, email, password, done) { // callback with email and password from our form
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
-        UserProvider.findOne({ 'local.email' :  email }, function(err, user) {
+        UserProvider.model.findOne({ 'local.email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
