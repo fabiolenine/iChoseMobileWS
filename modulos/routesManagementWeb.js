@@ -114,6 +114,73 @@ module.exports = function(app, passport, mongoose, request, cheerio, ManagementD
       });
   });    
 
+// =====================================
+// Cargo ===============================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/cargos', isLoggedIn, function(req, res) {
+    res.render('cargos.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+    
+  app.get('/cargos/list', function(req, res) {
+      ManagementDetalhes.cargoList(req.body, function(success){
+        res.send(success);
+      });
+  }); 
+
+  app.post('/cargos/salvar', function(req, res) {   
+      ManagementDetalhes.cargoSalvar(req.body, function(success){
+        res.json(success);
+      });
+  });
+
+  app.post('/cargos/erase/:erase_id', function(req, res) {   
+      ManagementDetalhes.cargoErase(req.params.erase_id, function(success){
+        if(success){
+            res.send(200);
+        } 
+        else {
+            res.send(404);
+        }
+      });
+  });
+
+// =====================================
+// Tags ================================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+  app.get('/tags', isLoggedIn, function(req, res) {
+    res.render('tags.ejs', {
+      user : req.user // get the user out of session and pass to template
+    });
+  });
+    
+  app.get('/tags/list', function(req, res) {
+      ManagementDetalhes.tagList(req.body, function(success){
+        res.send(success);
+      });
+  }); 
+
+  app.post('/tags/salvar', function(req, res) {   
+      ManagementDetalhes.tagSalvar(req.body, function(success){
+        res.json(success);
+      });
+  });
+
+  app.post('/tags/erase/:erase_id', function(req, res) {   
+      ManagementDetalhes.tagErase(req.params.erase_id, function(success){
+        if(success){
+            res.send(200);
+        } 
+        else {
+            res.send(404);
+        }
+      });
+  });
     
 // =====================================
 // Locais SECTION ======================
