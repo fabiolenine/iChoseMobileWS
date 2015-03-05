@@ -176,6 +176,11 @@ module.exports = function(mongoose, request, cheerio)
                 var dt                    = $(this).find('.data_evento_lista').text().split(",");
                 if(dt[1]){
                     var databruta   = dt[1].replace(" de Janeiro de ","/01/").replace(" de Fevereiro de ","/02/").replace(" de Março de ","/03/").replace(" de Abril de ","/04/").replace(" de Maio de ","/05/").replace(" de Junho de ","/06/").replace(" de Julho de ","/07/").replace(" de Agosto de ","/08/").replace(" de Setembro de ","/09/").replace(" de Outubro de ","/10/").replace(" de Novembro de ","/11/").replace(" de Dezembro de ","/12/").trim();
+                    
+                    if (typeof databruta === "undefined") {
+                        databruta = "01/01/1900";
+                    };
+                    
                     var separardata = databruta.split("/");
                     var ano         = separardata[2];
                     var mes         = separardata[1];
